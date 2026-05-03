@@ -48,3 +48,43 @@ export interface Stat {
   trend?: string;
   color?: string;
 }
+
+export interface CaseStudyDetail {
+  id: string;
+  slug: string;
+  title: string;
+  tag: string;
+  industry: string;
+  timeline: string;
+  teamSize: string;
+  year: string;
+  outcome: string;
+  description: string;
+  heroGradient: string;
+  clientName: string;
+  clientDescription: string;
+  theIdea: string;
+  theChallenge: string;
+  theResult: string;
+  businessChallenge: {
+    intro: string;
+    problems: string[];
+    highlights?: { title: string; description: string }[];
+  };
+  architectureIntro: string;
+  architectureType: string;
+  productFeatures: string[];
+  devTimeline: {
+    title: string;
+    description: string;
+    duration: string;
+  }[];
+  techStack: { name: string; category: string }[];
+  results: { label: string; value: string; prefix?: string; suffix?: string }[];
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+    company: string;
+  };
+}
