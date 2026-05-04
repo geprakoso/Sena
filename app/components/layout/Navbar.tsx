@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          aria-label="SolveCore home"
+          aria-label={`${process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"} home`}
           style={{
             display: "flex",
             alignItems: "center",
@@ -67,7 +67,7 @@ export default function Navbar() {
               letterSpacing: "-0.02em",
             }}
           >
-            SolveCore
+            {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena Logo"}
           </span>
         </Link>
 
@@ -219,6 +219,21 @@ export default function Navbar() {
 }
 
 function LogoIcon() {
+  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL;
+
+  if (logoUrl) {
+    return (
+      <img
+        src={logoUrl}
+        alt=""
+        width={28}
+        height={28}
+        style={{ objectFit: "contain" }}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
       <rect width="28" height="28" rx="7" fill="var(--color-accent)" />
