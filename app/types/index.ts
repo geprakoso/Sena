@@ -73,6 +73,8 @@ export interface CaseStudyDetail {
   };
   architectureIntro: string;
   architectureType: string;
+  businessArchitectureImage?: string;
+  systemArchitectureImage?: string;
   productFeatures: string[];
   devTimeline: {
     title: string;

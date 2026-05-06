@@ -72,6 +72,10 @@ export default function ResultsSection({ study }: { study: CaseStudyDetail }) {
                 borderRadius: "1rem",
                 padding: "2rem 1.5rem",
                 textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                minHeight: "140px",
                 transition: "transform 0.2s, box-shadow 0.2s",
               }}
               className="result-card"

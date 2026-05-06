@@ -236,6 +236,7 @@ function FeaturedImage({ type }: { type: string }) {
           {type === "checkout-flow" && "Checkout Flow"}
           {type === "iot-dashboard" && "Fleet Command"}
           {type === "ai-platform" && "Learning Analytics"}
+          {type === "tall-stack-erp" && "Management System"}
         </span>
       </div>
 
@@ -246,6 +247,7 @@ function FeaturedImage({ type }: { type: string }) {
         {type === "checkout-flow" && <EcommerceMockup />}
         {type === "iot-dashboard" && <LogisticsMockup />}
         {type === "ai-platform" && <EdTechMockup />}
+        {type === "tall-stack-erp" && <HaenKomputerMockup />}
       </div>
     </div>
   );
@@ -497,6 +499,68 @@ function EdTechMockup() {
       <rect x="566" y="216" width="180" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
       <rect x="566" y="232" width="210" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
       <rect x="566" y="248" width="190" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+    </svg>
+  );
+}
+
+function HaenKomputerMockup() {
+  return (
+    <svg width="100%" height="280" viewBox="0 0 800 280" fill="none" aria-hidden="true" style={{ maxWidth: "800px" }}>
+      {/* Sidebar */}
+      <rect x="0" y="0" width="140" height="280" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <rect x="16" y="16" width="60" height="8" rx="4" fill="rgba(16,185,129,0.35)" />
+      <rect x="16" y="36" width="108" height="6" rx="3" fill="rgba(16,185,129,0.2)" />
+      <rect x="16" y="52" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="68" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="84" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="100" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="116" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="132" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="156" width="108" height="6" rx="3" fill="rgba(79,110,247,0.2)" />
+      <rect x="16" y="172" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="16" y="188" width="108" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+
+      {/* Main dashboard area */}
+      <rect x="156" y="0" width="440" height="130" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <rect x="172" y="16" width="100" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+      {/* Metric cards */}
+      <rect x="172" y="36" width="96" height="70" rx="6" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" />
+      <text x="220" y="64" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="16" fontWeight="700">0</text>
+      <text x="220" y="82" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Stock In</text>
+      <rect x="280" y="36" width="96" height="70" rx="6" fill="rgba(79,110,247,0.1)" stroke="rgba(79,110,247,0.2)" />
+      <text x="328" y="64" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="16" fontWeight="700">0</text>
+      <text x="328" y="82" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Sales</text>
+      <rect x="388" y="36" width="96" height="70" rx="6" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.2)" />
+      <text x="436" y="64" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="16" fontWeight="700">0</text>
+      <text x="436" y="82" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Revenue</text>
+      <rect x="496" y="36" width="84" height="70" rx="6" fill="rgba(254,188,46,0.1)" stroke="rgba(254,188,46,0.2)" />
+      <text x="538" y="64" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="16" fontWeight="700">0</text>
+      <text x="538" y="82" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Pending</text>
+
+      {/* Table area */}
+      <rect x="156" y="150" width="440" height="130" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <rect x="172" y="166" width="100" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+      <rect x="172" y="188" width="408" height="6" rx="3" fill="rgba(79,110,247,0.18)" />
+      <rect x="172" y="204" width="380" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="172" y="220" width="400" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="172" y="236" width="360" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="172" y="252" width="340" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+
+      {/* Right panel */}
+      <rect x="612" y="0" width="188" height="280" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <rect x="628" y="16" width="80" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+      <circle cx="706" cy="80" r="48" fill="none" stroke="rgba(16,185,129,0.15)" strokeWidth="10" />
+      <circle cx="706" cy="80" r="48" fill="none" stroke="rgba(16,185,129,0.6)" strokeWidth="10" strokeDasharray="200 302" strokeLinecap="round" transform="rotate(-90 706 80)" />
+      <text x="706" y="78" textAnchor="middle" fill="rgba(255,255,255,0.85)" fontSize="14" fontWeight="700">40%</text>
+      <text x="706" y="94" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Efficiency</text>
+      <rect x="628" y="148" width="156" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="628" y="164" width="140" height="6" rx="3" fill="rgba(16,185,129,0.2)" />
+      <rect x="628" y="180" width="130" height="6" rx="3" fill="rgba(79,110,247,0.2)" />
+      <rect x="628" y="196" width="120" height="6" rx="3" fill="rgba(167,139,250,0.15)" />
+      <rect x="628" y="220" width="156" height="30" rx="6" fill="rgba(16,185,129,0.15)" />
+      <rect x="642" y="230" width="90" height="6" rx="3" fill="rgba(255,255,255,0.1)" />
+      <rect x="628" y="260" width="156" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      <rect x="628" y="274" width="120" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
     </svg>
   );
 }

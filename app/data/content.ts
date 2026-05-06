@@ -93,11 +93,11 @@ export const APPROACH_STEPS: ApproachStep[] = [
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "fintech",
-    title: "FinTech Platform Modernization",
-    description: "Modernized legacy system and improved performance by 70%.",
-    tag: "FinTech",
-    gradient: "from-indigo-900 to-blue-900",
+    id: "haen-komputer",
+    title: "Haen Komputer Management System",
+    description: "Transformed a spreadsheet-based retail operation into a fully integrated custom ERP system.",
+    tag: "Retail",
+    gradient: "from-emerald-900 to-teal-900",
     href: "/portfolio",
   },
   {
@@ -122,14 +122,14 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
-    id: "fintech",
-    title: "FinTech Platform Modernization",
+    id: "haen-komputer",
+    title: "Haen Komputer Management System",
     description:
-      "A legacy banking platform with critical performance bottlenecks was fully re-architected. We migrated the monolith to a microservices model, introduced event-driven processing and replaced the dated frontend with a modern React stack.",
-    tag: "FinTech",
-    outcome: "70% performance improvement",
+      "Transformed Haen Komputer's spreadsheet-based operations into a fully integrated custom ERP system built on the TALL Stack, reducing manual errors and improving real-time visibility across procurement, sales, inventory, and accounting.",
+    tag: "Retail",
+    outcome: "40% efficiency gain",
     year: "2024",
-    href: "/portfolio/fintech",
+    href: "/portfolio/haen-komputer",
   },
   {
     id: "healthcare",
@@ -185,122 +185,137 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
 
 export const CASE_STUDY_DETAILS: CaseStudyDetail[] = [
   {
-    id: "fintech",
-    slug: "fintech",
-    title: "FinTech Platform Modernization",
-    tag: "FinTech",
-    industry: "Financial Technology",
+    id: "haen-komputer",
+    slug: "haen-komputer",
+    title: "Haen Komputer Management System",
+    tag: "Retail",
+    industry: "Retail",
     timeline: "6 months",
-    teamSize: "5 engineers",
+    teamSize: "3 engineers",
     year: "2024",
-    outcome: "70% performance improvement",
+    outcome: "40% efficiency gain",
     description:
-      "Modernized legacy system and improved performance by 70%.",
-    heroGradient: "from-indigo-900 to-blue-900",
-    clientName: "Finova Bank",
+      "Transformed a spreadsheet-based retail operation into a fully integrated custom ERP system.",
+    heroGradient: "from-emerald-900 to-teal-900",
+    clientName: "Haen Komputer",
     clientDescription:
-      "Finova Bank is a mid-sized retail bank serving over 2 million customers across Southeast Asia. With a legacy core banking system built in 2009, they faced mounting pressure from digital-native competitors offering real-time payments and seamless mobile experiences.",
+      "Haen Komputer is a custom PC building service focused on helping users create machines that truly fit their needs. In a market filled with one-size-fits-all solutions, they provide flexible component customization and expert guidance allowing customers to build high-performance, personalized systems without compromise.",
     theIdea:
-      "The vision was to transform Finova's monolithic legacy platform into a modern, cloud-native banking ecosystem capable of real-time transaction processing, instant peer-to-peer transfers, and API-first integrations with fintech partners — all while maintaining the strictest security and compliance standards.",
+      "The vision was to transform Haen Komputer's traditional, spreadsheet-based workflow into a modern, integrated system that streamlines operations, reduces manual errors, and improves overall efficiency while ensuring the platform remains intuitive and easy to use for daily business activities.",
     theChallenge:
-      "The existing platform was a 15-year-old monolithic Java application running on bare-metal servers. API response times averaged 4 seconds during peak hours, deployment cycles took three weeks, and the system suffered from over 8 hours of unplanned downtime per month. Regulatory compliance gaps were widening, and integrating with modern fintech APIs was nearly impossible.",
+      "The existing workflow relied heavily on multiple spreadsheets and manual calculations, with certain processes handled outside of the system using calculators. Over the past eight years, these fragmented and unconventional methods became deeply embedded in daily operations, making it difficult to standardize workflows or adopt off-the-shelf ERP solutions.",
     theResult:
-      "We delivered a fully re-architected microservices platform running on Kubernetes. API response times dropped below 200ms, uptime reached 99.99%, and infrastructure costs were cut in half. Finova passed its regulatory audit with zero critical findings and launched a white-label API platform now used by 12 partner fintechs.",
+      "The result was a fully integrated, custom ERP system built on Haen Komputer's platform transforming years of fragmented, manual processes into a cohesive digital workflow. This enabled faster operations, reduced dependency on manual calculations, and provided a scalable foundation for future growth.",
     businessChallenge: {
       intro:
-        "Finova's core banking system had become a strategic liability. Competitors were offering instant payments and mobile-first experiences while Finova's customers faced slow transfers, outdated interfaces, and frequent service interruptions during peak trading hours.",
+        "Haen Komputer's operations were constrained by fragmented and manual workflows. Accounting records lacked consistency, transaction tracking was complex and time-consuming, and inventory processes—such as stock mutation and stock opname—were unreliable. As a result, management faced significant challenges in maintaining accurate data and operational control.",
       problems: [
-        "API latency exceeded 4 seconds during peak traffic, causing timeouts in mobile apps",
-        "Monthly unplanned downtime averaged 8+ hours, eroding customer trust",
-        "Deployment cycles took 3 weeks due to manual testing and brittle monolithic releases",
-        "Regulatory compliance gaps were identified in three critical audit areas",
-        "Integration with modern fintech APIs required months of custom middleware development",
+        "Accounting processes relied on manually updated spreadsheets, creating dependency on specific staff and leading to gaps in financial records when updates were missed.",
+        "Transaction tracking was fragmented, with purchase and sales activities often recorded through WhatsApp groups, making data difficult to trace, validate, and consolidate.",
+        "Overreliance on informal communication channels resulted in scattered documentation and reduced operational visibility.",
+        "Inventory management lacked proper tracking, including stock movements and warranty return processes, leading to inconsistent and unreliable data.",
+        "Service items were not consistently recorded within the system, causing miscommunication and coordination issues between staff.",
       ],
       highlights: [
         {
-          title: "Legacy Monolith",
+          title: "Manual Accounting Dependency",
           description:
-            "2.4M lines of legacy Java code with zero test coverage and undocumented business logic.",
+            "Accounting relied on manually updated spreadsheets, creating gaps in financial records and heavy dependency on specific staff availability.",
         },
         {
-          title: "Scaling Ceiling",
+          title: "Fragmented Transaction Tracking",
           description:
-            "Vertical scaling maxed out. Adding users meant buying expensive mainframe capacity.",
+            "Purchase and sales records were scattered across spreadsheets and WhatsApp groups, making transactions difficult to trace and validate.",
         },
         {
-          title: "Compliance Risk",
+          title: "Inventory Visibility Gap",
           description:
-            "Missing audit trails and encryption standards exposed the bank to regulatory penalties.",
+            "Stock movements, warranty returns, and inventory updates were not properly tracked, resulting in inconsistent and unreliable stock data.",
+        },
+        {
+          title: "Unstructured Workflow",
+          description:
+            "Service items and operational tasks were not consistently recorded, leading to frequent miscommunication and inefficient coordination between staff.",
         },
       ],
     },
     architectureIntro:
-      "We designed a domain-driven microservices architecture split across bounded contexts: Accounts, Payments, KYC, Notifications, and Analytics. Each service communicates asynchronously via an event bus, ensuring fault tolerance and horizontal scalability.",
-    architectureType: "microservices",
+      "We structured the system around Haen Komputer's core business domains: Sales, Procurement, Inventory, Service, and Accounting. Each domain is connected through a centralized platform, enabling real-time data synchronization across transactions, stock movements, and financial records. This unified approach ensures consistent data flow and improved operational visibility across all departments.",
+    architectureType: "tall-stack-erp",
+    businessArchitectureImage: "/images/case-studies/haen-komputer/business-architecture.png",
+    systemArchitectureImage: "/images/case-studies/haen-komputer/system-architecture.png",
     productFeatures: [
-      "Real-time balance updates with push notifications to mobile and web clients",
-      "Instant peer-to-peer transfers settled in under 500ms across all currencies",
-      "Multi-currency support with live exchange rate integration",
-      "Advanced fraud detection dashboard with ML-powered risk scoring",
-      "Automated regulatory reporting with exportable audit trails",
-      "White-label REST API for fintech partner integrations",
+      "**Procurement & Purchasing** — Purchase Order Management: Full lifecycle of purchase orders with suppliers. Finalized Data Protection: Implementation of an edit lock on historical purchase data (PO details, items, and grand totals) to ensure data integrity. Supplier Management: Centralized database for managing vendor information and performance. Purchasing Reports: Detailed reporting on procurement activities and expenses.",
+      "**Sales & Point of Sale** — POS System: Specialized interface for direct sales and transaction processing. Tukar Tambah (Trade-in): Complex logic for handling product trade-ins within the sales flow. Member Management: Loyalty or customer database management. Sales Reporting: Comprehensive dashboards for sales performance and revenue tracking.",
+      "**Inventory & Warehouse Management** — Unified Inventory: Real-time tracking of stock across multiple warehouses (Gudang). Stock Adjustment & Opname: Tools for manual stock corrections and periodic physical inventory checks. Product Catalog: Management of products, brands, and categories. Batch Tracking Logic: Advanced stock management using batch identifiers for inventory precision.",
+      "**Human Resources & Finance** — Attendance (Absensi): Employee check-in/out and attendance tracking. Payroll (Gaji Karyawan): Salary calculation and management. Leave Management: Automated reporting and approval flow for employee leave requests. Accounting Integration: Chart of accounts (Kode Akun) and transaction mapping for financial transparency.",
+      "**System Integrity & Support** — Validation Logs: System for tracking and resolving operational discrepancies. Role-Based Access Control (RBAC): Specific restrictions (e.g., restricting Validation Log resolution to Manager roles). RMA (Return Merchandise Authorization): Handling product returns and warranty claims. Notification System: Real-time alerts for critical system events.",
+      "**Database Optimization** — Seeder Cleanup: Streamlined database initialization by retaining only essential master data seeders (Karyawan and Kode Akun).",
     ],
     devTimeline: [
       {
-        title: "Discovery",
+        title: "Discovery Phase",
         description:
-          "Deep-dive stakeholder interviews, legacy code audit, compliance gap analysis, and competitive benchmarking. We mapped every critical user journey and identified 47 high-priority technical debt items.",
-        duration: "3 weeks",
+          "Stakeholder Requirements: We identified the need for a unified system that bridges the gap between retail operations (POS), inventory management, and backend accounting. Problem Identification: We pinpointed critical pain points such as inventory leakage, lack of historical data integrity in purchasing, and the need for a granular approval system. Scope Definition: We defined the core modules: Purchasing (Procurement), Sales (POS/Trade-in), Inventory (Warehousing), HR (Payroll/Attendance), and Accounting (COA/Transactions). Tech Stack Selection: Chose the TALL Stack (Tailwind CSS, Alpine.js, Laravel, Livewire) with FilamentPHP to ensure rapid development without sacrificing a premium, custom-feel experience.",
+        duration: "2 weeks",
       },
       {
         title: "UI/UX Design",
         description:
-          "Created a comprehensive design system with accessible components, redesigned the mobile banking flow, and conducted usability testing with 24 active customers to validate assumptions.",
-        duration: "4 weeks",
+          "Information Architecture: Organized complex business data into logical Resources and Relation Managers to reduce cognitive load for users. Admin-First Experience: Leveraged Filament's design system to provide a clean, consistent interface. We customized forms for complex actions like Tukar Tambah (Trade-in) to guide users through multi-step processes. Aesthetic Polish: Implemented a modern, dark-mode friendly UI with high-contrast elements for readability in high-speed retail environments (POS). Responsiveness: Designed the layout to be fully responsive, ensuring managers can view reports and approve logs from mobile devices while staff use tablets or desktops.",
+        duration: "3 weeks",
       },
       {
         title: "Development",
         description:
-          "Built 11 microservices with NestJS, implemented an API gateway with Kong, set up an Apache Kafka event bus, and rewrote the customer-facing frontend in Next.js with server-side rendering.",
-        duration: "14 weeks",
+          "Backend Architecture: Built on Laravel 11, utilizing Service Classes and Action patterns to keep the business logic (like batch inventory calculation) decoupled from the UI. Feature Implementation: Immutable History — Developed the edit lock logic to freeze historical POs, ensuring financial records cannot be altered retroactively. Complex Relations — Managed deep relationships between Products, Brands, and Inventory across multiple warehouses. Security & RBAC: Implemented strict Role-Based Access Control using Laravel Policies, specifically isolating sensitive operations like Validation Log resolution to Manager roles. Database Design: Optimized MySQL schemas with proper indexing to handle large datasets in Sales and Purchasing reports.",
+        duration: "8 weeks",
       },
       {
         title: "Testing",
         description:
-          "Executed comprehensive load testing simulating 50,000 concurrent users, security penetration testing by an external firm, and end-to-end compliance validation with auditors.",
-        duration: "4 weeks",
+          "Functional Testing: Conducted end-to-end testing of the Order-to-Stock flow, verifying that purchasing an item correctly updates warehouse inventory and accounting ledgers. Integrity Verification: Used the Validation Log system as a built-in testing tool to catch and log operational anomalies during the beta phase. User Acceptance Testing (UAT): Simulating real-world retail scenarios, such as processing a sales return or a stock opname, to ensure the UI behaves as expected under pressure. Role Validation: Rigorously tested permission sets to ensure Staff users cannot bypass security constraints or view sensitive payroll data.",
+        duration: "3 weeks",
       },
       {
         title: "Deployment",
         description:
-          "Rolled out using a blue-green strategy with zero downtime. Migrated 2M customer records through a custom ETL pipeline and established 24/7 monitoring with Prometheus and Grafana.",
-        duration: "3 weeks",
+          "Containerization: Utilized Podman/Docker to create a reproducible environment, ensuring the it works on my machine consistency across development and production. Environment Orchestration: Managed configurations via secure .env structures and Laravel's built-in caching mechanisms (Config/Route/View) for production performance. Migration Strategy: Developed a streamlined deployment script that handles database migrations and seeds essential master data (like Account Codes) while keeping the production database clean. CI/CD Ready: Structured the codebase for automated deployment pipelines, allowing for zero-downtime updates as the project evolves.",
+        duration: "1 week",
       },
     ],
     techStack: [
-      { name: "Next.js", category: "Frontend" },
-      { name: "Node.js", category: "Backend" },
-      { name: "PostgreSQL", category: "Database" },
-      { name: "Redis", category: "Cache" },
-      { name: "Kafka", category: "Messaging" },
-      { name: "Docker", category: "Container" },
-      { name: "Kubernetes", category: "Orchestration" },
-      { name: "AWS", category: "Cloud" },
-      { name: "Terraform", category: "IaC" },
-      { name: "Prometheus", category: "Monitoring" },
+      { name: "Laravel", category: "Framework" },
+      { name: "PHP", category: "Language" },
+      { name: "Blade", category: "Templating" },
+      { name: "Livewire", category: "Reactivity" },
+      { name: "Filament", category: "Interface" },
+      { name: "Tailwind", category: "Styling" },
+      { name: "MySQL", category: "Database" },
+      { name: "Docker", category: "Containerization" },
+      { name: "Redis", category: "Caching" },
+      { name: "Vite", category: "Bundling" },
+      { name: "Alpine.js", category: "Scripting" },
+      { name: "Pest", category: "Testing" },
+      { name: "Spatie Shield", category: "Permissions" },
+      { name: "PWA", category: "Offline-ready" },
+      { name: "DomPDF", category: "Reports" },
+      { name: "QR Code", category: "Scanning" },
+      { name: "FullCalendar", category: "Scheduling" },
+      { name: "Pint", category: "Linting" },
     ],
     results: [
-      { label: "Performance Improvement", value: "70", suffix: "%" },
-      { label: "Uptime Achieved", value: "99.99", suffix: "%" },
-      { label: "Cost Reduction", value: "50", suffix: "%" },
-      { label: "API Response Time", value: "<200", suffix: "ms" },
+      { label: "Efficiency Gain", value: "40", suffix: "%" },
+      { label: "Paper Reduction", value: "Significant", suffix: "" },
+      { label: "Data Accuracy", value: "Real-time", suffix: "" },
+      { label: "Report Accuracy", value: "45", suffix: "% increase" },
     ],
     testimonial: {
       quote:
-        "SolveCore didn't just rebuild our platform. They transformed how we think about technology as a competitive advantage. Our customers now enjoy instant transfers and a mobile experience that rivals any digital bank.",
-      name: "David Chen",
-      role: "Chief Technology Officer",
-      company: "Finova Bank",
+        "Before Haen Komputer's system, our closing process was a nightmare. We relied on a massive Excel sheet that would crash half the time, and we often found 'invisible' losses because someone forgot to update a formula or a stock count. Moving to this system changed everything. The biggest win for us is the Batch and Serial Number tracking. Now, if a customer comes in for a warranty claim, we can find the exact purchase date and SN in seconds. No more digging through old receipts or Excel tabs. It has saved us at least 15 hours of manual admin work every week!",
+      name: "Operations Manager",
+      role: "Operations Lead",
+      company: "Haen Komputer",
     },
   },
   {

@@ -1,4 +1,5 @@
 import type { CaseStudyDetail } from "@/app/types";
+import Image from "next/image";
 
 export default function ArchitectureSection({ study }: { study: CaseStudyDetail }) {
   return (
@@ -60,7 +61,19 @@ export default function ArchitectureSection({ study }: { study: CaseStudyDetail 
           }}
         >
           <div style={{ padding: "2rem" }}>
-            <SystemArchitectureDiagram type={study.architectureType} />
+            {study.systemArchitectureImage ? (
+              <div style={{ position: "relative", width: "100%", maxWidth: "900px", margin: "0 auto" }}>
+                <Image
+                  src={study.systemArchitectureImage}
+                  alt={`${study.title} system architecture`}
+                  width={900}
+                  height={360}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            ) : (
+              <SystemArchitectureDiagram type={study.architectureType} />
+            )}
           </div>
         </div>
       </div>
@@ -135,73 +148,68 @@ function SystemArchitectureDiagram({ type }: { type: string }) {
     );
   }
 
-  if (type === "data-platform") {
+  if (type === "tall-stack-erp") {
     return (
       <svg width="100%" height="360" viewBox="0 0 900 360" fill="none" aria-hidden="true" style={{ maxWidth: "900px", margin: "0 auto", display: "block" }}>
-        <rect x="20" y="20" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
-        <text x="80" y="48" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">EHR Systems</text>
-        <rect x="20" y="90" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
-        <text x="80" y="118" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Lab APIs</text>
-        <rect x="20" y="160" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
-        <text x="80" y="188" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Wearables</text>
-        <rect x="20" y="230" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
-        <text x="80" y="258" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Billing</text>
-        <rect x="20" y="300" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
-        <text x="80" y="328" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Imaging</text>
+        {/* TALL Stack layers */}
+        <rect x="20" y="20" width="120" height="50" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
+        <text x="80" y="48" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Tailwind CSS</text>
+        <rect x="20" y="90" width="120" height="50" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
+        <text x="80" y="118" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Alpine.js</text>
+        <rect x="20" y="160" width="120" height="50" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
+        <text x="80" y="188" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Laravel</text>
+        <rect x="20" y="230" width="120" height="50" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
+        <text x="80" y="258" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Livewire</text>
+        <rect x="20" y="300" width="120" height="50" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
+        <text x="80" y="328" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">FilamentPHP</text>
 
-        <rect x="200" y="100" width="120" height="80" rx="8" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" />
-        <text x="260" y="140" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Ingestion</text>
+        {/* Application layer */}
+        <rect x="200" y="100" width="140" height="80" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />
+        <text x="270" y="140" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Application</text>
+        <text x="270" y="158" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">POS | Procurement | Inventory | Service | HR</text>
 
-        <rect x="380" y="20" width="100" height="50" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
-        <text x="430" y="48" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="9" fontWeight="600">Validation</text>
-        <rect x="380" y="90" width="100" height="50" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
-        <text x="430" y="118" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="9" fontWeight="600">Transform</text>
-        <rect x="380" y="160" width="100" height="50" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
-        <text x="430" y="188" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="9" fontWeight="600">Warehouse</text>
-        <rect x="380" y="230" width="100" height="50" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
-        <text x="430" y="258" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="9" fontWeight="600">Analytics</text>
-        <rect x="380" y="300" width="100" height="50" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
-        <text x="430" y="328" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="9" fontWeight="600">ML Pipeline</text>
+        {/* Business Logic layer */}
+        <rect x="400" y="60" width="140" height="60" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
+        <text x="470" y="95" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Service Classes</text>
+        <rect x="400" y="150" width="140" height="60" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
+        <text x="470" y="185" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Action Classes</text>
+        <rect x="400" y="240" width="140" height="60" rx="8" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.3)" />
+        <text x="470" y="275" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Laravel Policies (RBAC)</text>
 
-        <rect x="540" y="100" width="120" height="80" rx="8" fill="rgba(254,188,46,0.12)" stroke="rgba(254,188,46,0.3)" />
-        <text x="600" y="140" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">API Layer</text>
+        {/* Data layer */}
+        <rect x="600" y="100" width="120" height="80" rx="8" fill="rgba(254,188,46,0.12)" stroke="rgba(254,188,46,0.3)" />
+        <text x="660" y="140" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">MySQL</text>
+        <text x="660" y="158" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Eloquent Models</text>
+        <rect x="600" y="210" width="120" height="60" rx="8" fill="rgba(254,188,46,0.12)" stroke="rgba(254,188,46,0.3)" />
+        <text x="660" y="245" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Redis</text>
+        <text x="660" y="260" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Caching</text>
 
-        <rect x="720" y="20" width="120" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
-        <text x="780" y="48" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Dashboard</text>
-        <rect x="720" y="90" width="120" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
-        <text x="780" y="118" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Alerts</text>
-        <rect x="720" y="160" width="120" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
-        <text x="780" y="188" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Exports</text>
-        <rect x="720" y="230" width="120" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
-        <text x="780" y="258" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Audit Logs</text>
-        <rect x="720" y="300" width="120" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
-        <text x="780" y="328" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Compliance</text>
+        {/* Infrastructure */}
+        <rect x="780" y="100" width="100" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
+        <text x="830" y="128" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Docker</text>
+        <rect x="780" y="170" width="100" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
+        <text x="830" y="198" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">Vite</text>
+        <rect x="780" y="240" width="100" height="50" rx="8" fill="rgba(96,165,250,0.12)" stroke="rgba(96,165,250,0.3)" />
+        <text x="830" y="268" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" fontWeight="600">PWA</text>
 
-        <line x1="140" y1="45" x2="200" y2="130" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="140" y1="115" x2="200" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="140" y1="185" x2="200" y2="150" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="140" y1="255" x2="200" y2="160" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="140" y1="325" x2="200" y2="170" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="320" y1="140" x2="380" y2="45" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="320" y1="150" x2="380" y2="115" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="320" y1="160" x2="380" y2="185" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="320" y1="170" x2="380" y2="255" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="320" y1="180" x2="380" y2="325" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="480" y1="45" x2="540" y2="130" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="480" y1="115" x2="540" y2="140" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="480" y1="185" x2="540" y2="150" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="480" y1="255" x2="540" y2="160" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="480" y1="325" x2="540" y2="170" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="660" y1="130" x2="720" y2="45" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="660" y1="140" x2="720" y2="115" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="660" y1="150" x2="720" y2="185" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="660" y1="160" x2="720" y2="255" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-        <line x1="660" y1="170" x2="720" y2="325" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        {/* Arrows */}
+        <line x1="140" y1="45" x2="200" y2="130" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" />
+        <line x1="140" y1="115" x2="200" y2="150" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" />
+        <line x1="140" y1="185" x2="200" y2="170" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" />
+        <line x1="140" y1="255" x2="200" y2="190" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" />
+        <line x1="140" y1="325" x2="200" y2="210" stroke="rgba(16,185,129,0.3)" strokeWidth="1.5" />
+        <line x1="340" y1="140" x2="400" y2="90" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="340" y1="150" x2="400" y2="180" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="340" y1="170" x2="400" y2="270" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="540" y1="90" x2="600" y2="130" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="540" y1="180" x2="600" y2="240" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="720" y1="130" x2="780" y2="125" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="720" y1="170" x2="780" y2="195" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+        <line x1="720" y1="240" x2="780" y2="265" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
       </svg>
     );
   }
 
-  // Generic fallback
   return (
     <svg width="100%" height="360" viewBox="0 0 900 360" fill="none" aria-hidden="true" style={{ maxWidth: "900px", margin: "0 auto", display: "block" }}>
       <rect x="20" y="20" width="120" height="50" rx="8" fill="rgba(79,110,247,0.12)" stroke="rgba(79,110,247,0.3)" />

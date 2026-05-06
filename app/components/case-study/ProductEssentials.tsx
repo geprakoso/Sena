@@ -298,4 +298,67 @@ function ProductUIMockup({ type }: { type: string }) {
       <rect x="630" y="284" width="120" height="6" rx="3" fill="rgba(255,255,255,0.1)" />
     </svg>
   );
+
+  if (type === "tall-stack-erp") {
+    return (
+      <svg width="100%" height="320" viewBox="0 0 900 320" fill="none" aria-hidden="true" style={{ maxWidth: "900px", margin: "0 auto", display: "block" }}>
+        {/* Sidebar */}
+        <rect x="0" y="0" width="160" height="320" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+        <rect x="16" y="16" width="60" height="8" rx="4" fill="rgba(16,185,129,0.35)" />
+        <rect x="16" y="36" width="128" height="6" rx="3" fill="rgba(16,185,129,0.2)" />
+        <rect x="16" y="52" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="68" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="84" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="100" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="124" width="128" height="6" rx="3" fill="rgba(79,110,247,0.2)" />
+        <rect x="16" y="140" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="156" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="180" width="128" height="6" rx="3" fill="rgba(167,139,250,0.2)" />
+        <rect x="16" y="196" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="212" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="236" width="128" height="6" rx="3" fill="rgba(254,188,46,0.2)" />
+        <rect x="16" y="252" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="268" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="16" y="284" width="128" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+
+        {/* Main content - table */}
+        <rect x="176" y="0" width="500" height="320" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+        <rect x="192" y="16" width="100" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+        <rect x="480" y="16" width="80" height="24" rx="6" fill="rgba(16,185,129,0.2)" stroke="rgba(16,185,129,0.3)" />
+        <rect x="494" y="26" width="52" height="6" rx="3" fill="rgba(255,255,255,0.8)" />
+        <rect x="192" y="52" width="468" height="1" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="68" width="468" height="6" rx="3" fill="rgba(79,110,247,0.18)" />
+        <rect x="192" y="84" width="440" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="100" width="420" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="116" width="450" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="132" width="400" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="148" width="430" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="164" width="380" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="188" width="100" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+        <rect x="192" y="210" width="468" height="40" rx="6" fill="rgba(16,185,129,0.06)" stroke="rgba(16,185,129,0.15)" />
+        <rect x="206" y="226" width="120" height="6" rx="3" fill="rgba(255,255,255,0.1)" />
+        <rect x="340" y="226" width="160" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="192" y="264" width="468" height="40" rx="6" fill="rgba(254,188,46,0.06)" stroke="rgba(254,188,46,0.15)" />
+        <rect x="206" y="280" width="100" height="6" rx="3" fill="rgba(255,255,255,0.1)" />
+        <rect x="320" y="280" width="180" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+
+        {/* Right panel - metrics */}
+        <rect x="692" y="0" width="208" height="320" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+        <rect x="708" y="16" width="80" height="8" rx="4" fill="rgba(255,255,255,0.12)" />
+        <circle cx="796" cy="80" r="40" fill="none" stroke="rgba(16,185,129,0.15)" strokeWidth="10" />
+        <circle cx="796" cy="80" r="40" fill="none" stroke="rgba(16,185,129,0.6)" strokeWidth="10" strokeDasharray="170 252" strokeLinecap="round" transform="rotate(-90 796 80)" />
+        <text x="796" y="78" textAnchor="middle" fill="rgba(255,255,255,0.85)" fontSize="14" fontWeight="700">40%</text>
+        <text x="796" y="94" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">Efficiency</text>
+        <rect x="708" y="140" width="176" height="40" rx="6" fill="rgba(79,110,247,0.08)" stroke="rgba(79,110,247,0.15)" />
+        <rect x="722" y="154" width="80" height="6" rx="3" fill="rgba(79,110,247,0.3)" />
+        <rect x="810" y="154" width="60" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="708" y="194" width="176" height="40" rx="6" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.15)" />
+        <rect x="722" y="208" width="80" height="6" rx="3" fill="rgba(16,185,129,0.3)" />
+        <rect x="810" y="208" width="60" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+        <rect x="708" y="248" width="176" height="40" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.15)" />
+        <rect x="722" y="262" width="80" height="6" rx="3" fill="rgba(167,139,250,0.3)" />
+        <rect x="810" y="262" width="60" height="6" rx="3" fill="rgba(255,255,255,0.06)" />
+      </svg>
+    );
+  }
 }

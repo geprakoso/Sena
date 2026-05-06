@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Changelog
+
+### 2026-05-04
+- **add env setup**
+  - Menambahkan konfigurasi environment variables (`.env.example`, `ENV_SETUP.md`, `lib/env.ts`).
+  - Memperbarui `next.config.ts` untuk mendukung environment variables.
+  - Menambahkan logo/icon baru (`public/images/logo/icon-only-resized.png`).
+  - Memperbarui `.gitignore` dan komponen `Navbar`.
+
+### 2026-05-03
+- **Studies Case**
+  - Menambahkan halaman detail studi kasus dinamis (`app/portfolio/[slug]/page.tsx`).
+  - Mengimplementasikan komponen UI untuk studi kasus: Hero, Business Challenge, Product Essentials, Architecture Section, Architecture Detail, Tech Stack, Dev Timeline, Results, Testimonial, dan CTA.
+  - Memperkaya data konten dan tipe data untuk mendukung studi kasus.
+
+- **add portfolio page**
+  - Menambahkan halaman utama (`app/(home)/page.tsx`) dan halaman portfolio (`app/portfolio/page.tsx`).
+  - Mengimplementasikan komponen UI utama: Hero Section, Services Section, Case Studies Section, Approach Section, CTA Section, dan Trusted By.
+  - Menambahkan komponen layout: Navbar dan Footer.
+  - Menambahkan fitur filter pada halaman portfolio (`PortfolioFilter`).
+  - Memperbarui styling global (`globals.css`) dan tipe data (`types/index.ts`).
+
+### 2026-05-02
+- **Initial commit from Create Next App**
+  - Setup awal project Next.js.
+  - Konfigurasi dasar termasuk TypeScript, ESLint, PostCSS, dan struktur aplikasi awal.

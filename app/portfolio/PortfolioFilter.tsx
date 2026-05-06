@@ -8,7 +8,7 @@ import type { PortfolioProject } from "@/app/types";
 const ALL_TAGS = ["All", ...Array.from(new Set(PORTFOLIO_PROJECTS.map((p) => p.tag)))];
 
 const TAG_GRADIENTS: Record<string, string> = {
-  FinTech: "linear-gradient(135deg, #1e2a5a 0%, #1a3a6a 100%)",
+  Retail: "linear-gradient(135deg, #0e4a3a 0%, #1a6a50 100%)",
   Healthcare: "linear-gradient(135deg, #1a3060 0%, #0e4a6a 100%)",
   SaaS: "linear-gradient(135deg, #2d1a5e 0%, #4a1a7a 100%)",
   "E-Commerce": "linear-gradient(135deg, #1a3a2a 0%, #0e5a3a 100%)",
@@ -291,19 +291,29 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
 
 /** Inline SVG illustrations per project ID — no placeholder images needed */
 function ProjectIllustration({ id }: { id: string }) {
-  if (id === "fintech") {
+  if (id === "haen-komputer") {
     return (
       <svg width="130" height="88" viewBox="0 0 130 88" fill="none" aria-hidden="true">
-        <rect x="8" y="12" width="54" height="60" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
-        <rect x="14" y="20" width="42" height="7" rx="2" fill="rgba(255,255,255,0.14)" />
-        <rect x="14" y="32" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
-        <rect x="14" y="39" width="36" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
-        <polyline points="70,72 82,60 94,66 106,50 118,56" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="118" cy="56" r="3.5" fill="#60a5fa" />
-        <rect x="70" y="16" width="50" height="34" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
-        <rect x="76" y="24" width="18" height="3" rx="1.5" fill="rgba(255,255,255,0.18)" />
-        <rect x="76" y="31" width="38" height="2" rx="1" fill="rgba(99,102,241,0.45)" />
-        <rect x="76" y="37" width="28" height="2" rx="1" fill="rgba(99,102,241,0.28)" />
+        <rect x="4" y="8" width="44" height="36" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
+        <rect x="10" y="16" width="32" height="5" rx="2" fill="rgba(16,185,129,0.4)" />
+        <rect x="10" y="25" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="10" y="31" width="26" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="54" y="8" width="44" height="36" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
+        <rect x="60" y="16" width="32" height="5" rx="2" fill="rgba(79,110,247,0.4)" />
+        <rect x="60" y="25" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="60" y="31" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="4" y="52" width="94" height="28" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+        <rect x="12" y="59" width="36" height="4" rx="2" fill="rgba(255,255,255,0.18)" />
+        <rect x="12" y="67" width="50" height="3" rx="1.5" fill="rgba(16,185,129,0.3)" />
+        <rect x="12" y="73" width="40" height="3" rx="1.5" fill="rgba(79,110,247,0.25)" />
+        <rect x="104" y="8" width="22" height="72" rx="4" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" />
+        <rect x="108" y="16" width="14" height="3" rx="1.5" fill="rgba(16,185,129,0.35)" />
+        <rect x="108" y="24" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="108" y="32" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="108" y="40" width="14" height="3" rx="1.5" fill="rgba(16,185,129,0.25)" />
+        <rect x="108" y="48" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="108" y="56" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
+        <rect x="108" y="64" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.07)" />
       </svg>
     );
   }
