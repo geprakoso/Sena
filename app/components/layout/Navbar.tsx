@@ -35,7 +35,7 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "background 0.3s, box-shadow 0.3s",
-        background: scrolled ? "rgba(6, 11, 24, 0.71)" : "transparent",
+        background: scrolled ? "rgba(6, 17, 28, 0.71)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled
           ? "1px solid var(--color-border)"
@@ -151,7 +151,7 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(6, 11, 24, 0.97)",
+            background: "rgba(6, 17, 28, 0.97)",
             borderTop: "1px solid var(--color-border)",
             padding: "1rem 1.5rem 1.5rem",
           }}

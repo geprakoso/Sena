@@ -71,7 +71,7 @@ export default function DevTimeline({ study }: { study: CaseStudyDetail }) {
                       fontSize: "0.75rem",
                       fontWeight: 700,
                       color: "#fff",
-                      boxShadow: "0 0 20px rgba(79,110,247,0.25)",
+                      boxShadow: "0 0 20px rgba(255,107,74,0.25)",
                       zIndex: 2,
                     }}
                   >
@@ -82,7 +82,7 @@ export default function DevTimeline({ study }: { study: CaseStudyDetail }) {
                       style={{
                         width: "2px",
                         flex: 1,
-                        background: "linear-gradient(180deg, var(--color-accent) 0%, rgba(79,110,247,0.1) 100%)",
+                        background: "linear-gradient(180deg, var(--color-accent) 0%, rgba(255,107,74,0.1) 100%)",
                         marginTop: "8px",
                         minHeight: "60px",
                       }}
@@ -121,10 +121,10 @@ export default function DevTimeline({ study }: { study: CaseStudyDetail }) {
                         fontSize: "0.75rem",
                         fontWeight: 600,
                         color: "var(--color-accent)",
-                        background: "rgba(79,110,247,0.08)",
+                        background: "rgba(255,107,74,0.08)",
                         padding: "0.25rem 0.625rem",
                         borderRadius: "999px",
-                        border: "1px solid rgba(79,110,247,0.2)",
+                        border: "1px solid rgba(255,107,74,0.2)",
                       }}
                     >
                       {step.duration}

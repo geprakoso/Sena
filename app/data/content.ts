@@ -242,16 +242,70 @@ export const CASE_STUDY_DETAILS: CaseStudyDetail[] = [
     architectureIntro:
       "We structured the system around Haen Komputer's core business domains: Sales, Procurement, Inventory, Service, and Accounting. Each domain is connected through a centralized platform, enabling real-time data synchronization across transactions, stock movements, and financial records. This unified approach ensures consistent data flow and improved operational visibility across all departments.",
     architectureType: "tall-stack-erp",
-    businessArchitectureImage: "/images/case-studies/haen-komputer/business-architecture.png",
-    systemArchitectureImage: "/images/case-studies/haen-komputer/system-architecture.png",
-    heroImage: "/images/case-studies/haen-komputer/hero-1.png",
+    businessArchitectureImage: "/images/case-studies/haen-komputer/Arabica Business Structure.png",
+    systemArchitectureImages: [
+      "/images/case-studies/haen-komputer/Carrousel/Haen Komputer Dashboard.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 2.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 3.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 4.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 5.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 6.png",
+      "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 7.png",
+    ],
+    heroImage: "/images/case-studies/haen-komputer/hero-1c.png",
+    productImage: "/images/case-studies/haen-komputer/Widget Dashboard.png",
     productFeatures: [
-      "**Procurement & Purchasing** — Purchase Order Management: Full lifecycle of purchase orders with suppliers. Finalized Data Protection: Implementation of an edit lock on historical purchase data (PO details, items, and grand totals) to ensure data integrity. Supplier Management: Centralized database for managing vendor information and performance. Purchasing Reports: Detailed reporting on procurement activities and expenses.",
-      "**Sales & Point of Sale** — POS System: Specialized interface for direct sales and transaction processing. Tukar Tambah (Trade-in): Complex logic for handling product trade-ins within the sales flow. Member Management: Loyalty or customer database management. Sales Reporting: Comprehensive dashboards for sales performance and revenue tracking.",
-      "**Inventory & Warehouse Management** — Unified Inventory: Real-time tracking of stock across multiple warehouses (Gudang). Stock Adjustment & Opname: Tools for manual stock corrections and periodic physical inventory checks. Product Catalog: Management of products, brands, and categories. Batch Tracking Logic: Advanced stock management using batch identifiers for inventory precision.",
-      "**Human Resources & Finance** — Attendance (Absensi): Employee check-in/out and attendance tracking. Payroll (Gaji Karyawan): Salary calculation and management. Leave Management: Automated reporting and approval flow for employee leave requests. Accounting Integration: Chart of accounts (Kode Akun) and transaction mapping for financial transparency.",
-      "**System Integrity & Support** — Validation Logs: System for tracking and resolving operational discrepancies. Role-Based Access Control (RBAC): Specific restrictions (e.g., restricting Validation Log resolution to Manager roles). RMA (Return Merchandise Authorization): Handling product returns and warranty claims. Notification System: Real-time alerts for critical system events.",
-      "**Database Optimization** — Seeder Cleanup: Streamlined database initialization by retaining only essential master data seeders (Karyawan and Kode Akun).",
+      {
+        title: "Procurement & Purchasing",
+        items: [
+          "Purchase Order Management: Full lifecycle of purchase orders with suppliers",
+          "Finalized Data Protection: Edit lock on historical purchase data (PO details, items, and grand totals) to ensure data integrity",
+          "Supplier Management: Centralized database for managing vendor information and performance",
+          "Purchasing Reports: Detailed reporting on procurement activities and expenses",
+        ],
+      },
+      {
+        title: "Sales & Point of Sale",
+        items: [
+          "POS System: Specialized interface for direct sales and transaction processing",
+          "Tukar Tambah (Trade-in): Complex logic for handling product trade-ins within the sales flow",
+          "Member Management: Loyalty or customer database management",
+          "Sales Reporting: Comprehensive dashboards for sales performance and revenue tracking",
+        ],
+      },
+      {
+        title: "Inventory & Warehouse Management",
+        items: [
+          "Unified Inventory: Real-time tracking of stock across multiple warehouses (Gudang)",
+          "Stock Adjustment & Opname: Tools for manual stock corrections and periodic physical inventory checks",
+          "Product Catalog: Management of products, brands, and categories",
+          "Batch Tracking Logic: Advanced stock management using batch identifiers for inventory precision",
+        ],
+      },
+      {
+        title: "Human Resources & Finance",
+        items: [
+          "Attendance (Absensi): Employee check-in/out and attendance tracking",
+          "Payroll (Gaji Karyawan): Salary calculation and management",
+          "Leave Management: Automated reporting and approval flow for employee leave requests",
+          "Accounting Integration: Chart of accounts (Kode Akun) and transaction mapping for financial transparency",
+        ],
+      },
+      {
+        title: "System Integrity & Support",
+        items: [
+          "Validation Logs: System for tracking and resolving operational discrepancies",
+          "Role-Based Access Control (RBAC): Specific restrictions (e.g., restricting Validation Log resolution to Manager roles)",
+          "RMA (Return Merchandise Authorization): Handling product returns and warranty claims",
+          "Notification System: Real-time alerts for critical system events",
+        ],
+      },
+      {
+        title: "Database Optimization",
+        items: [
+          "Seeder Cleanup: Streamlined database initialization by retaining only essential master data seeders (Karyawan and Kode Akun)",
+        ],
+      },
     ],
     devTimeline: [
       {

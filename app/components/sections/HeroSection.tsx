@@ -24,7 +24,7 @@ export default function HeroSection() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(79,110,247,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,107,74,0.12) 0%, transparent 70%)",
           top: "10%",
           right: "5%",
           filter: "blur(40px)",
@@ -34,7 +34,7 @@ export default function HeroSection() {
           width: "350px",
           height: "350px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,55,200,0.1) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(38,205,235,0.1) 0%, transparent 70%)",
           bottom: "15%",
           left: "0%",
           filter: "blur(50px)",
@@ -50,10 +50,10 @@ export default function HeroSection() {
             alignItems: "center",
             gap: "0.5rem",
             padding: "0.375rem 0.875rem",
-            border: "1px solid rgba(79,110,247,0.35)",
+            border: "1px solid rgba(255,107,74,0.35)",
             borderRadius: "999px",
             marginBottom: "1.75rem",
-            background: "rgba(79,110,247,0.08)",
+            background: "rgba(255,107,74,0.08)",
           }}>
             <span style={{
               width: "7px",
@@ -176,7 +176,7 @@ export default function HeroSection() {
 function DashboardMockup() {
   return (
     <div style={{
-      background: "rgba(13, 21, 38, 0.85)",
+      background: "rgba(12, 26, 44, 0.85)",
       border: "1px solid rgba(255,255,255,0.10)",
       borderRadius: "1rem",
       overflow: "hidden",
@@ -212,7 +212,7 @@ function DashboardMockup() {
               padding: "0.5rem 1rem",
               fontSize: "0.75rem",
               color: i === 0 ? "var(--color-accent-light)" : "rgba(255,255,255,0.4)",
-              background: i === 0 ? "rgba(79,110,247,0.12)" : "transparent",
+              background: i === 0 ? "rgba(255,107,74,0.12)" : "transparent",
               borderLeft: i === 0 ? "2px solid var(--color-accent)" : "2px solid transparent",
               cursor: "default",
             }}>
@@ -225,9 +225,9 @@ function DashboardMockup() {
         <div style={{ padding: "1rem" }}>
           {/* Stats row */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.625rem", marginBottom: "0.875rem" }}>
-            <StatCard label="Performance" value="+24.5%" color="#10b981" mini />
-            <StatCard label="Users" value="12,675" color="#60a5fa" mini />
-            <StatCard label="Revenue" value="$98,540" color="#a78bfa" mini />
+            <StatCard label="Performance" value="+24.5%" color="#34D399" mini />
+            <StatCard label="Users" value="12,675" color="#22D3EE" mini />
+            <StatCard label="Revenue" value="$98,540" color="#FB7185" mini />
           </div>
 
           {/* Charts area */}

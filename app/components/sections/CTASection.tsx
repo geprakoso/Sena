@@ -19,7 +19,7 @@ export default function CTASection() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(79,110,247,0.14) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(255,107,74,0.14) 0%, transparent 65%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -30,7 +30,7 @@ export default function CTASection() {
           width: "300px",
           height: "300px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,55,200,0.10) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(38,205,235,0.10) 0%, transparent 70%)",
           top: "20%",
           right: "10%",
           filter: "blur(40px)",
@@ -40,7 +40,7 @@ export default function CTASection() {
           width: "250px",
           height: "250px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,107,74,0.08) 0%, transparent 70%)",
           bottom: "15%",
           left: "8%",
           filter: "blur(36px)",
@@ -55,7 +55,7 @@ export default function CTASection() {
         transform: "translateX(-50%)",
         width: "560px",
         height: "1px",
-        background: "linear-gradient(90deg, transparent, rgba(79,110,247,0.4), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(255,107,74,0.4), transparent)",
       }} />
 
       <div
@@ -75,9 +75,9 @@ export default function CTASection() {
           alignItems: "center",
           gap: "0.5rem",
           padding: "0.375rem 0.875rem",
-          border: "1px solid rgba(79,110,247,0.3)",
+          border: "1px solid rgba(255,107,74,0.3)",
           borderRadius: "999px",
-          background: "rgba(79,110,247,0.07)",
+          background: "rgba(255,107,74,0.07)",
           marginBottom: "1.75rem",
         }}>
           <span style={{
@@ -114,7 +114,7 @@ export default function CTASection() {
         >
           Ready to build something{" "}
           <span style={{
-            background: "linear-gradient(135deg, var(--color-accent-light) 0%, #a78bfa 100%)",
+            background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -206,8 +206,8 @@ export default function CTASection() {
                 width: "32px",
                 height: "32px",
                 borderRadius: "0.5rem",
-                background: "rgba(79,110,247,0.1)",
-                border: "1px solid rgba(79,110,247,0.2)",
+                background: "rgba(255,107,74,0.1)",
+                border: "1px solid rgba(255,107,74,0.2)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

@@ -109,7 +109,7 @@ function ServiceCard({ service }: { service: Service }) {
         width: "48px",
         height: "48px",
         borderRadius: "0.75rem",
-        background: "rgba(79,110,247,0.08)",
+        background: "rgba(255,107,74,0.08)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -164,8 +164,8 @@ function ServiceCard({ service }: { service: Service }) {
 
       <style>{`
         .service-card:hover {
-          border-color: rgba(79,110,247,0.3) !important;
-          box-shadow: 0 8px 32px rgba(79,110,247,0.10) !important;
+          border-color: rgba(255,107,74,0.3) !important;
+          box-shadow: 0 8px 32px rgba(255,107,74,0.10) !important;
           transform: translateY(-3px);
         }
         .service-link:hover { gap: 0.6rem !important; }

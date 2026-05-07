@@ -104,9 +104,9 @@ export default function CaseStudiesSection() {
 
 function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
   const gradients: Record<string, string> = {
-    fintech: "linear-gradient(135deg, #1e2a5a 0%, #1a3a6a 100%)",
-    healthcare: "linear-gradient(135deg, #1a3060 0%, #0e4a6a 100%)",
-    saas: "linear-gradient(135deg, #2d1a5e 0%, #4a1a7a 100%)",
+    fintech: "linear-gradient(135deg, #2a1a18 0%, #3d2a20 100%)",
+    healthcare: "linear-gradient(135deg, #0e3a4a 0%, #0a5060 100%)",
+    saas: "linear-gradient(135deg, #1a2a3a 0%, #2a3a50 100%)",
   };
 
   return (
@@ -139,7 +139,7 @@ function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
             width: "120px",
             height: "120px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(79,110,247,0.25) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(255,107,74,0.25) 0%, transparent 70%)",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -213,12 +213,12 @@ function CaseIllustration({ id }: { id: string }) {
         <rect x="16" y="22" width="38" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
         <rect x="16" y="32" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.08)" />
         <rect x="16" y="38" width="32" height="3" rx="1.5" fill="rgba(255,255,255,0.08)" />
-        <polyline points="65,65 75,55 85,60 95,45 105,50" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="105" cy="50" r="3" fill="#60a5fa" />
+        <polyline points="65,65 75,55 85,60 95,45 105,50" stroke="#22D3EE" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="105" cy="50" r="3" fill="#22D3EE" />
         <rect x="65" y="20" width="48" height="32" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" />
         <rect x="70" y="26" width="16" height="3" rx="1.5" fill="rgba(255,255,255,0.2)" />
-        <rect x="70" y="33" width="36" height="2" rx="1" fill="rgba(99,102,241,0.5)" />
-        <rect x="70" y="38" width="28" height="2" rx="1" fill="rgba(99,102,241,0.3)" />
+        <rect x="70" y="33" width="36" height="2" rx="1" fill="rgba(255,107,74,0.5)" />
+        <rect x="70" y="38" width="28" height="2" rx="1" fill="rgba(255,107,74,0.3)" />
       </svg>
     );
   }
@@ -226,27 +226,27 @@ function CaseIllustration({ id }: { id: string }) {
     return (
       <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
         <circle cx="60" cy="38" r="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" />
-        <path d="M60 24V52M46 38H74" stroke="#60a5fa" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="60" cy="38" r="18" fill="none" stroke="rgba(96,165,250,0.2)" strokeWidth="1" />
-        <circle cx="60" cy="38" r="8" fill="none" stroke="rgba(96,165,250,0.15)" strokeWidth="1" />
+        <path d="M60 24V52M46 38H74" stroke="#22D3EE" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="60" cy="38" r="18" fill="none" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+        <circle cx="60" cy="38" r="8" fill="none" stroke="rgba(34,211,238,0.15)" strokeWidth="1" />
         <circle cx="88" cy="18" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
-        <path d="M88 13V23M83 18H93" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M88 13V23M83 18H93" stroke="#FB7185" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     );
   }
   // saas
   return (
     <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
-      <circle cx="60" cy="38" r="22" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.2)" />
-      <circle cx="60" cy="38" r="14" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.15)" />
-      <circle cx="60" cy="38" r="6" fill="rgba(167,139,250,0.3)" />
-      <ellipse cx="60" cy="38" rx="22" ry="8" fill="none" stroke="rgba(167,139,250,0.15)" strokeWidth="1" />
-      <circle cx="82" cy="38" r="3" fill="#a78bfa" />
-      <circle cx="38" cy="38" r="2" fill="rgba(167,139,250,0.5)" />
+      <circle cx="60" cy="38" r="22" fill="rgba(251,113,133,0.12)" stroke="rgba(251,113,133,0.2)" />
+      <circle cx="60" cy="38" r="14" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.15)" />
+      <circle cx="60" cy="38" r="6" fill="rgba(251,113,133,0.3)" />
+      <ellipse cx="60" cy="38" rx="22" ry="8" fill="none" stroke="rgba(251,113,133,0.15)" strokeWidth="1" />
+      <circle cx="82" cy="38" r="3" fill="#FB7185" />
+      <circle cx="38" cy="38" r="2" fill="rgba(251,113,133,0.5)" />
       <circle cx="30" cy="20" r="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
       <circle cx="90" cy="56" r="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
-      <line x1="36" y1="23" x2="48" y2="32" stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
-      <line x1="72" y1="44" x2="84" y2="53" stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
+      <line x1="36" y1="23" x2="48" y2="32" stroke="rgba(251,113,133,0.3)" strokeWidth="1" />
+      <line x1="72" y1="44" x2="84" y2="53" stroke="rgba(251,113,133,0.3)" strokeWidth="1" />
     </svg>
   );
 }

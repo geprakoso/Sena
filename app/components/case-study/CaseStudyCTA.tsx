@@ -19,7 +19,7 @@ export default function CaseStudyCTA() {
             width: "600px",
             height: "600px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(79,110,247,0.14) 0%, transparent 65%)",
+            background: "radial-gradient(circle, rgba(255,107,74,0.14) 0%, transparent 65%)",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -32,7 +32,7 @@ export default function CaseStudyCTA() {
             width: "300px",
             height: "300px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(99,55,200,0.10) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(38,205,235,0.10) 0%, transparent 70%)",
             top: "20%",
             right: "10%",
             filter: "blur(40px)",
@@ -50,7 +50,7 @@ export default function CaseStudyCTA() {
           transform: "translateX(-50%)",
           width: "560px",
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(79,110,247,0.4), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(255,107,74,0.4), transparent)",
         }}
       />
 
@@ -80,7 +80,7 @@ export default function CaseStudyCTA() {
           Ready to build something{" "}
           <span
             style={{
-              background: "linear-gradient(135deg, var(--color-accent-light) 0%, #a78bfa 100%)",
+              background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

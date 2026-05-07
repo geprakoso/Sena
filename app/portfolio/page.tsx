@@ -46,7 +46,7 @@ export default function PortfolioPage() {
                 width: "520px",
                 height: "520px",
                 borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(79,110,247,0.13) 0%, transparent 65%)",
+                background: "radial-gradient(circle, rgba(255,107,74,0.13) 0%, transparent 65%)",
                 top: "-10%",
                 right: "0%",
                 filter: "blur(48px)",
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
                 width: "360px",
                 height: "360px",
                 borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(99,55,200,0.1) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(38,205,235,0.1) 0%, transparent 70%)",
                 bottom: "0%",
                 left: "-5%",
                 filter: "blur(52px)",
@@ -84,10 +84,10 @@ export default function PortfolioPage() {
                 alignItems: "center",
                 gap: "0.5rem",
                 padding: "0.375rem 0.875rem",
-                border: "1px solid rgba(79,110,247,0.35)",
+                border: "1px solid rgba(255,107,74,0.35)",
                 borderRadius: "999px",
                 marginBottom: "1.75rem",
-                background: "rgba(79,110,247,0.08)",
+                background: "rgba(255,107,74,0.08)",
               }}
             >
               <span
@@ -129,7 +129,7 @@ export default function PortfolioPage() {
               Real problems.{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, var(--color-accent-light) 0%, #a78bfa 100%)",
+                  background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -158,7 +158,7 @@ export default function PortfolioPage() {
           aria-hidden="true"
           style={{
             height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(79,110,247,0.3), transparent)",
+            background: "linear-gradient(90deg, transparent, rgba(255,107,74,0.3), transparent)",
             maxWidth: "640px",
             margin: "0 auto",
           }}
@@ -198,7 +198,7 @@ export default function PortfolioPage() {
               width: "500px",
               height: "500px",
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(79,110,247,0.1) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(255,107,74,0.1) 0%, transparent 65%)",
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",

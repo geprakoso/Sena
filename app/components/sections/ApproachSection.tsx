@@ -98,7 +98,7 @@ function StepCard({ step, index }: { step: ApproachStep; index: number }) {
         width: "40px",
         height: "40px",
         borderRadius: "0.625rem",
-        background: "rgba(79,110,247,0.08)",
+        background: "rgba(255,107,74,0.08)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -135,8 +135,8 @@ function StepCard({ step, index }: { step: ApproachStep; index: number }) {
 
       <style>{`
         .step-card:hover {
-          border-color: rgba(79,110,247,0.25) !important;
-          box-shadow: 0 6px 24px rgba(79,110,247,0.08) !important;
+          border-color: rgba(255,107,74,0.25) !important;
+          box-shadow: 0 6px 24px rgba(255,107,74,0.08) !important;
           transform: translateY(-2px);
         }
       `}</style>
