@@ -244,6 +244,7 @@ export const CASE_STUDY_DETAILS: CaseStudyDetail[] = [
     architectureType: "tall-stack-erp",
     businessArchitectureImage: "/images/case-studies/haen-komputer/business-architecture.png",
     systemArchitectureImage: "/images/case-studies/haen-komputer/system-architecture.png",
+    heroImage: "/images/case-studies/haen-komputer/hero-1.png",
     productFeatures: [
       "**Procurement & Purchasing** — Purchase Order Management: Full lifecycle of purchase orders with suppliers. Finalized Data Protection: Implementation of an edit lock on historical purchase data (PO details, items, and grand totals) to ensure data integrity. Supplier Management: Centralized database for managing vendor information and performance. Purchasing Reports: Detailed reporting on procurement activities and expenses.",
       "**Sales & Point of Sale** — POS System: Specialized interface for direct sales and transaction processing. Tukar Tambah (Trade-in): Complex logic for handling product trade-ins within the sales flow. Member Management: Loyalty or customer database management. Sales Reporting: Comprehensive dashboards for sales performance and revenue tracking.",

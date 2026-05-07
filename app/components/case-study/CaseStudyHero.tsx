@@ -165,7 +165,22 @@ export default function CaseStudyHero({ study }: { study: CaseStudyDetail }) {
             animation: "fadeInUp 0.8s ease-out 0.2s forwards",
           }}
         >
-          <FeaturedImage type={study.architectureType} />
+          {study.heroImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={study.heroImage}
+              alt={`${study.title} screenshot`}
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "1rem",
+                border: "none",
+                display: "block",
+              }}
+            />
+          ) : (
+            <FeaturedImage type={study.architectureType} />
+          )}
         </div>
       </div>
 
