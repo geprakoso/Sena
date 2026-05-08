@@ -40,6 +40,7 @@ export interface PortfolioProject {
   outcome: string;
   year: string;
   href: string;
+  featuredImage?: string;
 }
 
 export interface Stat {

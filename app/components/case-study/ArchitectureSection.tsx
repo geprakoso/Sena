@@ -8,16 +8,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const PARALLAX_FACTOR = 0.1;
 
+const EMBLA_OPTIONS = {
+  loop: true,
+  align: "center" as const,
+  slidesToScroll: 1,
+  containScroll: false,
+  watchSlides: true,
+};
+
 function ImageCarousel({ images, title }: { images: string[]; title: string }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "center",
-      slidesToScroll: 1,
-      containScroll: false,
-    },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })],
-  );
+  const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const [emblaRef, emblaApi] = useEmblaCarousel(EMBLA_OPTIONS, [autoplay.current]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -104,7 +105,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
             <div
               key={i}
               style={{
-                flex: "0 0 calc(clamp(280px, 45vw, 520px) * 1.7142857)",
+                flex: "0 0 calc(clamp(280px, 45vw, 520px) * 1.5397)",
                 minWidth: 0,
                 paddingRight: "16px",
                 boxSizing: "content-box",
@@ -136,16 +137,16 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
                   <Image
                     src={src}
                     alt={`${title} screenshot ${i + 1}`}
-                    width={1560}
-                    height={910}
+                    width={1512}
+                    height={982}
                     style={{
                       display: "block",
-                      width: "120%",
-                      maxWidth: "120%",
+                      width: "110%",
+                      maxWidth: "110%",
                       height: "100%",
                       position: "absolute",
                       top: "0",
-                      left: "-10%",
+                      left: "-5%",
                       objectFit: "cover",
                     }}
                     priority={i < 2}

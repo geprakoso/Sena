@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { PORTFOLIO_PROJECTS } from "@/app/data/content";
 import type { PortfolioProject } from "@/app/types";
 
@@ -137,7 +138,17 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
           }}
           className="portfolio-card-image"
         >
-          <ProjectIllustration id={project.id} />
+          {project.featuredImage ? (
+            <Image
+              src={project.featuredImage}
+              alt={project.title}
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="500px"
+            />
+          ) : (
+            <ProjectIllustration id={project.id} />
+          )}
           {/* Glow orb */}
           <div
             style={{

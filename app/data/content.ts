@@ -130,6 +130,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     outcome: "40% efficiency gain",
     year: "2024",
     href: "/portfolio/haen-komputer",
+    featuredImage: "/images/case-studies/haen-komputer/Carrousel/Haen Komputer Dashboard.png",
   },
   {
     id: "healthcare",
