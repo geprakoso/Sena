@@ -1,15 +1,20 @@
 import Link from "next/link";
-import { CASE_STUDIES } from "@/app/data/content";
-import type { CaseStudy } from "@/app/types";
+import { PORTFOLIO_PROJECTS } from "@/app/data/content";
+import { ProjectCard } from "@/app/components/case-study/ProjectCard";
 
 export default function CaseStudiesSection() {
+  // Display only top 3 or specific featured projects on homepage if needed, 
+  // but here we follow the request to display the list.
+  const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
+
   return (
     <section
       id="case-studies"
       aria-labelledby="case-studies-heading"
       style={{
-        background: "#fff",
+        background: "#ffffff",
         padding: "var(--section-padding-y) 0",
+        position: "relative",
       }}
     >
       <div className="container-base">
@@ -19,36 +24,41 @@ export default function CaseStudiesSection() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
-            marginBottom: "3rem",
+            marginBottom: "4rem",
             flexWrap: "wrap",
-            gap: "1rem",
+            gap: "1.5rem",
           }}
         >
-          <div>
+          <div style={{ maxWidth: "600px" }}>
             <p
               style={{
-                fontSize: "0.7rem",
+                fontSize: "0.75rem",
                 fontWeight: 700,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.15em",
                 color: "var(--color-accent)",
                 textTransform: "uppercase",
-                margin: "0 0 0.75rem",
+                margin: "0 0 1rem",
               }}
             >
-              Case Studies
+              Featured Work
             </p>
             <h2
               id="case-studies-heading"
               style={{
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
                 fontWeight: 800,
                 lineHeight: 1.1,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.04em",
                 color: "var(--color-text-dark)",
                 margin: 0,
               }}
             >
-              Real problems.<br />Real impact.
+              Real problems.<br />
+              <span style={{ 
+                color: "var(--color-accent)"
+              }}>
+                Real impact.
+              </span>
             </h2>
           </div>
 
@@ -57,196 +67,76 @@ export default function CaseStudiesSection() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.375rem",
-              fontSize: "0.875rem",
-              fontWeight: 600,
-              color: "var(--color-accent)",
+              gap: "0.5rem",
+              fontSize: "0.9375rem",
+              fontWeight: 700,
+              color: "var(--color-text-dark)",
               textDecoration: "none",
-              transition: "gap 0.2s",
-              paddingBottom: "0.5rem",
+              transition: "all 0.2s",
+              padding: "0.75rem 1.5rem",
+              background: "rgba(0,0,0,0.04)",
+              border: "1px solid rgba(0,0,0,0.08)",
+              borderRadius: "0.75rem",
             }}
             className="view-all-link"
           >
             View all cases
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
         </div>
 
-        {/* Cards */}
+        {/* Vertical List Layout */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "3.5rem",
           }}
-          className="case-grid"
+          className="case-list"
         >
-          {CASE_STUDIES.map((cs) => (
-            <CaseStudyCard key={cs.id} caseStudy={cs} />
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} lightMode={true} />
           ))}
+        </div>
+        
+        {/* Mobile View All button (visible only on small screens) */}
+        <div style={{ marginTop: '3rem', textAlign: 'center', display: 'none' }} className="mobile-view-all">
+           <Link
+            href="/portfolio"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              fontSize: "0.9375rem",
+              fontWeight: 700,
+              color: "var(--color-text-dark)",
+              textDecoration: "none",
+              padding: "0.875rem 2rem",
+              background: "rgba(0,0,0,0.05)",
+              border: "1px solid rgba(0,0,0,0.1)",
+              borderRadius: "0.75rem",
+              width: '100%',
+              justifyContent: 'center'
+            }}
+          >
+            View all cases
+          </Link>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .case-grid { grid-template-columns: 1fr 1fr !important; }
+        .view-all-link:hover { 
+          background: rgba(0,0,0,0.08) !important;
+          border-color: rgba(0,0,0,0.2) !important;
+          transform: translateY(-2px);
         }
-        @media (max-width: 560px) {
-          .case-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 640px) {
+          .view-all-link { display: none !important; }
+          .mobile-view-all { display: block !important; }
         }
-        .view-all-link:hover { gap: 0.625rem !important; }
       `}</style>
     </section>
-  );
-}
-
-function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
-  const gradients: Record<string, string> = {
-    fintech: "linear-gradient(135deg, #2a1a18 0%, #3d2a20 100%)",
-    healthcare: "linear-gradient(135deg, #0e3a4a 0%, #0a5060 100%)",
-    saas: "linear-gradient(135deg, #1a2a3a 0%, #2a3a50 100%)",
-  };
-
-  return (
-    <article
-      style={{
-        borderRadius: "0.875rem",
-        overflow: "hidden",
-        border: "1.5px solid var(--color-border-light)",
-        transition: "box-shadow 0.25s, transform 0.2s",
-        background: "#fff",
-      }}
-      className="case-card"
-    >
-      {/* Illustration area */}
-      <div
-        style={{
-          height: "140px",
-          background: gradients[caseStudy.id] ?? gradients.fintech,
-          position: "relative",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <CaseIllustration id={caseStudy.id} />
-        <div
-          style={{
-            position: "absolute",
-            width: "120px",
-            height: "120px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(255,107,74,0.25) 0%, transparent 70%)",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Content */}
-      <div style={{ padding: "1.5rem" }}>
-        <h3
-          style={{
-            fontSize: "0.9375rem",
-            fontWeight: 700,
-            color: "var(--color-text-dark)",
-            margin: "0 0 0.5rem",
-            lineHeight: 1.3,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {caseStudy.title}
-        </h3>
-        <p
-          style={{
-            fontSize: "0.8125rem",
-            color: "var(--color-text-dark-secondary)",
-            lineHeight: 1.6,
-            margin: "0 0 1rem",
-          }}
-        >
-          {caseStudy.description}
-        </p>
-        <Link
-          href={caseStudy.href}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.35rem",
-            fontSize: "0.8125rem",
-            fontWeight: 600,
-            color: "var(--color-accent)",
-            textDecoration: "none",
-            transition: "gap 0.2s",
-          }}
-          className="case-link"
-          aria-label={`Read case study: ${caseStudy.title}`}
-        >
-          Read case study
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-            <path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </Link>
-      </div>
-
-      <style>{`
-        .case-card:hover {
-          box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
-          transform: translateY(-4px);
-        }
-        .case-link:hover { gap: 0.6rem !important; }
-      `}</style>
-    </article>
-  );
-}
-
-function CaseIllustration({ id }: { id: string }) {
-  if (id === "fintech") {
-    return (
-      <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
-        <rect x="10" y="15" width="50" height="55" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" />
-        <rect x="16" y="22" width="38" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
-        <rect x="16" y="32" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.08)" />
-        <rect x="16" y="38" width="32" height="3" rx="1.5" fill="rgba(255,255,255,0.08)" />
-        <polyline points="65,65 75,55 85,60 95,45 105,50" stroke="#22D3EE" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="105" cy="50" r="3" fill="#22D3EE" />
-        <rect x="65" y="20" width="48" height="32" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" />
-        <rect x="70" y="26" width="16" height="3" rx="1.5" fill="rgba(255,255,255,0.2)" />
-        <rect x="70" y="33" width="36" height="2" rx="1" fill="rgba(255,107,74,0.5)" />
-        <rect x="70" y="38" width="28" height="2" rx="1" fill="rgba(255,107,74,0.3)" />
-      </svg>
-    );
-  }
-  if (id === "healthcare") {
-    return (
-      <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
-        <circle cx="60" cy="38" r="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" />
-        <path d="M60 24V52M46 38H74" stroke="#22D3EE" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="60" cy="38" r="18" fill="none" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-        <circle cx="60" cy="38" r="8" fill="none" stroke="rgba(34,211,238,0.15)" strokeWidth="1" />
-        <circle cx="88" cy="18" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
-        <path d="M88 13V23M83 18H93" stroke="#FB7185" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  // saas
-  return (
-    <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
-      <circle cx="60" cy="38" r="22" fill="rgba(251,113,133,0.12)" stroke="rgba(251,113,133,0.2)" />
-      <circle cx="60" cy="38" r="14" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.15)" />
-      <circle cx="60" cy="38" r="6" fill="rgba(251,113,133,0.3)" />
-      <ellipse cx="60" cy="38" rx="22" ry="8" fill="none" stroke="rgba(251,113,133,0.15)" strokeWidth="1" />
-      <circle cx="82" cy="38" r="3" fill="#FB7185" />
-      <circle cx="38" cy="38" r="2" fill="rgba(251,113,133,0.5)" />
-      <circle cx="30" cy="20" r="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
-      <circle cx="90" cy="56" r="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" />
-      <line x1="36" y1="23" x2="48" y2="32" stroke="rgba(251,113,133,0.3)" strokeWidth="1" />
-      <line x1="72" y1="44" x2="84" y2="53" stroke="rgba(251,113,133,0.3)" strokeWidth="1" />
-    </svg>
   );
 }
