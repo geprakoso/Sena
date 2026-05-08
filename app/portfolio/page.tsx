@@ -6,11 +6,11 @@ import PortfolioFilter from "./PortfolioFilter";
 export const metadata: Metadata = {
   title: "Portfolio — SolveCore",
   description:
-    "Explore SolveCore's portfolio of real-world software projects — from custom ERP systems to SaaS scaling, each delivering measurable business impact.",
+    "Explore SolveCore's portfolio — including our custom ERP system for Haen Komputer, delivering measurable business efficiency.",
   openGraph: {
     title: "Portfolio — SolveCore",
     description:
-      "Real problems. Real impact. Browse our portfolio of custom software projects across Retail, Healthcare, SaaS, Logistics and more.",
+      "Real problems. Real impact. Browse our portfolio of custom software projects focusing on operational efficiency.",
     type: "website",
     locale: "en_US",
   },
