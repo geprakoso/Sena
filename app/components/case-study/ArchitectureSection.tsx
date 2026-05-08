@@ -6,12 +6,17 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const PARALLAX_FACTOR = 0.3;
+const PARALLAX_FACTOR = 0.1;
 
 function ImageCarousel({ images, title }: { images: string[]; title: string }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "center", slidesToScroll: 1 },
-    [Autoplay({ delay: 4000, stopOnInteraction: true })],
+    {
+      loop: true,
+      align: "center",
+      slidesToScroll: 1,
+      containScroll: false,
+    },
+    [Autoplay({ delay: 4000, stopOnInteraction: false })],
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -22,26 +27,45 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
   const onParallax = useCallback(() => {
     if (!emblaApi) return;
     const slides = emblaApi.slideNodes();
-    const total = slides.length;
     const progress = emblaApi.scrollProgress();
+    const snaps = emblaApi.scrollSnapList();
+    const slidesInView = emblaApi.slidesInView();
 
-    slides.forEach((slide, i) => {
-      const slideCenter = total > 1 ? i / (total - 1) : 0;
-      const distance = progress - slideCenter;
-      const absDist = Math.abs(distance);
+    // Clear transforms for slides not in view (optional but good for performance)
+    slides.forEach((_, i) => {
+      if (!slidesInView.includes(i)) {
+        const inner = slideRefs.current[i];
+        if (inner) {
+          inner.style.transform = '';
+          inner.style.opacity = '1';
+        }
+        return;
+      }
 
+      if (snaps[i] === undefined) return;
+
+      let distance = progress - snaps[i];
+      const loop = emblaApi.internalEngine().options.loop;
+
+      if (loop) {
+        if (distance > 0.5) distance -= 1;
+        if (distance < -0.5) distance += 1;
+      }
+
+      const absDist = Math.min(1, Math.abs(distance));
       const inner = slideRefs.current[i];
       if (inner) {
         const offset = distance * PARALLAX_FACTOR * 100;
-        inner.style.transform = `translateX(${offset}%)`;
-      }
+        const scale = 1 - absDist * 0.08;
+        const opacity = 1 - absDist * 0.5;
 
-      const scale = Math.max(0.94, 1 - absDist * 0.1);
-      const opacity = Math.max(0.6, 1 - absDist * 0.6);
-      slide.style.transform = `scale(${scale})`;
-      slide.style.opacity = `${opacity}`;
+        inner.style.transform = `translateX(${offset}%) scale(${scale})`;
+        inner.style.opacity = `${opacity}`;
+      }
     });
   }, [emblaApi]);
+
+  const [snapCount, setSnapCount] = useState(0);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -50,54 +74,83 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
-    onParallax();
+
+    const updateSnaps = () => {
+      const currentSnaps = emblaApi.scrollSnapList();
+      setSnapCount(currentSnaps.length);
+      onSelect();
+      onParallax();
+    };
+
+    updateSnaps();
     emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+    emblaApi.on("reInit", updateSnaps);
     emblaApi.on("scroll", onParallax);
-    emblaApi.on("resize", onParallax);
+    emblaApi.on("resize", updateSnaps);
+    
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", updateSnaps);
       emblaApi.off("scroll", onParallax);
+      emblaApi.off("resize", updateSnaps);
     };
   }, [emblaApi, onSelect, onParallax]);
 
   return (
     <div style={{ position: "relative", width: "100%", padding: "0 clamp(1rem, 3vw, 4rem)" }}>
       <div ref={emblaRef} style={{ overflow: "hidden", borderRadius: "1rem" }}>
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: "flex", userSelect: "none" }}>
           {images.map((src, i) => (
             <div
               key={i}
               style={{
-                flex: "0 0 calc(80% - 8px)",
+                flex: "0 0 calc(clamp(280px, 45vw, 520px) * 1.7142857)",
                 minWidth: 0,
+                paddingRight: "16px",
+                boxSizing: "content-box",
                 overflow: "hidden",
-                borderRadius: "0.75rem",
-                border: "1px solid rgba(0,0,0,0.06)",
-                transition: "transform 0.3s ease, opacity 0.3s ease",
                 height: "clamp(280px, 45vw, 520px)",
               }}
             >
               <div
-                ref={(el) => { slideRefs.current[i] = el; }}
-                style={{ willChange: "transform", height: "100%" }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: "0.75rem",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  overflow: "hidden",
+                  position: "relative",
+                }}
               >
-                <Image
-                  src={src}
-                  alt={`${title} screenshot ${i + 1}`}
-                  width={1560}
-                  height={910}
-                  style={{
-                    display: "block",
-                    width: "130%",
-                    maxWidth: "130%",
-                    marginLeft: "-15%",
-                    height: "100%",
-                    objectFit: "cover",
+                <div
+                  ref={(el) => {
+                    slideRefs.current[i] = el;
                   }}
-                  priority={i === 0}
-                />
+                  style={{
+                    willChange: "transform",
+                    height: "100%",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Image
+                    src={src}
+                    alt={`${title} screenshot ${i + 1}`}
+                    width={1560}
+                    height={910}
+                    style={{
+                      display: "block",
+                      width: "120%",
+                      maxWidth: "120%",
+                      height: "100%",
+                      position: "absolute",
+                      top: "0",
+                      left: "-10%",
+                      objectFit: "cover",
+                    }}
+                    priority={i < 2}
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -155,28 +208,28 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
         </svg>
       </button>
 
-      {images.length > 1 && (
+      {snapCount > 1 && (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: "6px",
-            padding: "16px 0 0",
+            gap: "8px",
+            padding: "20px 0 0",
           }}
         >
-          {images.map((_, i) => (
+          {Array.from({ length: snapCount }).map((_, i) => (
             <button
               key={i}
               onClick={() => emblaApi?.scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               style={{
-                width: selectedIndex === i ? "20px" : "8px",
+                width: selectedIndex === i ? "24px" : "8px",
                 height: "8px",
                 borderRadius: "4px",
                 background: selectedIndex === i ? "var(--color-accent)" : "rgba(0,0,0,0.15)",
                 border: "none",
                 cursor: "pointer",
-                transition: "all 0.3s",
+                transition: "width 0.3s ease, background-color 0.3s ease",
                 padding: 0,
               }}
             />
