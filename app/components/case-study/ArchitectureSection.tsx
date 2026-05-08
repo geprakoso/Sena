@@ -1,6 +1,7 @@
 "use client";
 
 import type { CaseStudyDetail } from "@/app/types";
+import Image from "next/image";
 
 export default function ArchitectureSection({ study }: { study: CaseStudyDetail }) {
   return (
@@ -55,16 +56,34 @@ export default function ArchitectureSection({ study }: { study: CaseStudyDetail 
         <div
           style={{
             width: "100%",
-            background: "var(--color-bg-primary)",
-            borderRadius: "1rem",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: study.systemArchitectureMainImage ? "transparent" : "var(--color-bg-primary)",
+            borderRadius: "1.5rem",
+            border: study.systemArchitectureMainImage ? "none" : "1px solid rgba(255,255,255,0.08)",
             overflow: "hidden",
-            boxShadow: "0 24px 80px rgba(0,0,0,0.35)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.25)",
           }}
         >
-          <div style={{ padding: "2rem" }}>
-            <SystemArchitectureDiagram type={study.architectureType} />
-          </div>
+          {study.systemArchitectureMainImage ? (
+            <div style={{ width: "100%" }}>
+              <Image
+                src={study.systemArchitectureMainImage}
+                alt={`${study.title} system architecture`}
+                width={1400}
+                height={800}
+                style={{ 
+                  width: "100%", 
+                  height: "auto", 
+                  display: "block",
+                  borderRadius: "1.5rem",
+                }}
+                priority
+              />
+            </div>
+          ) : (
+            <div style={{ padding: "2rem" }}>
+              <SystemArchitectureDiagram type={study.architectureType} />
+            </div>
+          )}
         </div>
       </div>
     </section>

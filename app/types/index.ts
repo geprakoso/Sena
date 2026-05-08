@@ -75,6 +75,7 @@ export interface CaseStudyDetail {
   architectureIntro: string;
   architectureType: string;
   businessArchitectureImage?: string;
+  systemArchitectureMainImage?: string;
   systemArchitectureImages?: string[];
   heroImage?: string;
   productImage?: string;

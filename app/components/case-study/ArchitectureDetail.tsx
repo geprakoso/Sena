@@ -52,28 +52,34 @@ export default function ArchitectureDetail({ study }: { study: CaseStudyDetail }
         <div
           style={{
             width: "100%",
-            background: "var(--color-bg-primary)",
-            borderRadius: "1rem",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: study.businessArchitectureImage ? "transparent" : "var(--color-bg-primary)",
+            borderRadius: "1.5rem",
+            border: study.businessArchitectureImage ? "none" : "1px solid rgba(255,255,255,0.08)",
             overflow: "hidden",
-            boxShadow: "0 24px 80px rgba(0,0,0,0.35)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.25)",
           }}
         >
-          <div style={{ padding: "2rem" }}>
-            {study.businessArchitectureImage ? (
-              <div style={{ position: "relative", width: "100%", maxWidth: "900px", margin: "0 auto" }}>
-                <Image
-                  src={study.businessArchitectureImage}
-                  alt={`${study.title} business architecture`}
-                  width={900}
-                  height={340}
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-            ) : (
+          {study.businessArchitectureImage ? (
+            <div style={{ width: "100%" }}>
+              <Image
+                src={study.businessArchitectureImage}
+                alt={`${study.title} business architecture`}
+                width={1400}
+                height={800}
+                style={{ 
+                  width: "100%", 
+                  height: "auto", 
+                  display: "block",
+                  borderRadius: "1.5rem",
+                }}
+                priority
+              />
+            </div>
+          ) : (
+            <div style={{ padding: "2rem" }}>
               <BusinessArchitectureDiagram type={study.architectureType} />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

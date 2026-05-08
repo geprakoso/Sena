@@ -244,6 +244,7 @@ export const CASE_STUDY_DETAILS: CaseStudyDetail[] = [
       "We structured the system around Haen Komputer's core business domains: Sales, Procurement, Inventory, Service, and Accounting. Each domain is connected through a centralized platform, enabling real-time data synchronization across transactions, stock movements, and financial records. This unified approach ensures consistent data flow and improved operational visibility across all departments.",
     architectureType: "tall-stack-erp",
     businessArchitectureImage: "/images/case-studies/haen-komputer/Arabica Business Structure.png",
+    systemArchitectureMainImage: "/images/case-studies/haen-komputer/System Structure landscape bg.png",
     systemArchitectureImages: [
       "/images/case-studies/haen-komputer/Carrousel/Haen Komputer Dashboard.png",
       "/images/case-studies/haen-komputer/Carrousel/MacBook Pro 14_ - 2.png",
