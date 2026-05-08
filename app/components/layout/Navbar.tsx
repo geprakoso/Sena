@@ -39,14 +39,15 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "background 0.3s, box-shadow 0.3s",
+        transition: "background 0.3s, box-shadow 0.3s, border-color 0.3s",
         background: scrolled 
-          ? (useLightNav ? "rgba(255, 255, 255, 0.85)" : "rgba(6, 17, 28, 0.71)") 
+          ? "rgba(255, 255, 255, 0.9)" 
           : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled
-          ? "1px solid var(--color-border)"
+          ? "1px solid rgba(0,0,0,0.08)"
           : "1px solid transparent",
+        boxShadow: scrolled ? "0 4px 12px rgba(0,0,0,0.05)" : "none",
       }}
     >
       <div
@@ -70,8 +71,9 @@ export default function Navbar() {
             style={{
               fontWeight: 700,
               fontSize: "1.125rem",
-              color: useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-primary)",
+              color: scrolled || useLightNav ? "var(--color-text-dark)" : "var(--color-text-primary)",
               letterSpacing: "-0.02em",
+              transition: "color 0.3s",
             }}
           >
             {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena Logo"}
@@ -99,14 +101,14 @@ export default function Navbar() {
                   padding: "0.375rem 0.875rem",
                   fontSize: "0.9rem",
                   color: active
-                    ? "var(--color-accent-light)"
-                    : (useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
-                  fontWeight: active ? 500 : 400,
+                    ? "var(--color-accent)"
+                    : (scrolled || useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
+                  fontWeight: active ? 600 : 400,
                   textDecoration: "none",
                   borderRadius: "0.375rem",
-                  transition: "color 0.2s",
+                  transition: "all 0.2s",
                 }}
-                className={`nav-link ${useLightNav && !scrolled ? 'nav-link-light' : ''}`}
+                className={`nav-link ${(scrolled || useLightNav) ? 'nav-link-light' : ''}`}
                 aria-current={active ? "page" : undefined}
               >
                 {item.label}
@@ -117,7 +119,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <Link
-          href="#contact"
+          href="/contact"
           style={{
             padding: "0.5rem 1.25rem",
             background: "var(--color-accent)",
@@ -146,7 +148,7 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "0.5rem",
-            color: useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-primary)",
+            color: scrolled || useLightNav ? "var(--color-text-dark)" : "var(--color-text-primary)",
           }}
           className="hamburger-btn"
         >
@@ -178,9 +180,9 @@ export default function Navbar() {
                   style={{
                     padding: "0.75rem 1rem",
                     color: active
-                      ? "var(--color-accent-light)"
-                      : (useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
-                    fontWeight: active ? 500 : 400,
+                      ? "var(--color-accent)"
+                      : (scrolled || useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
+                    fontWeight: active ? 600 : 400,
                     textDecoration: "none",
                     borderRadius: "0.5rem",
                     fontSize: "1rem",
@@ -193,7 +195,7 @@ export default function Navbar() {
               );
             })}
             <Link
-              href="#contact"
+              href="/contact"
               onClick={() => setMenuOpen(false)}
               style={{
                 marginTop: "0.75rem",
@@ -220,6 +222,7 @@ export default function Navbar() {
         }
         .nav-link:hover { color: var(--color-text-primary) !important; }
         .nav-link-light:hover { color: var(--color-accent) !important; }
+        .nav-link-light.active { color: var(--color-accent) !important; }
         .cta-btn:hover { background: var(--color-accent-hover) !important; transform: translateY(-1px); }
       `}</style>
     </header>

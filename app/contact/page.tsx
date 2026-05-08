@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Contact Us — Haen Software",
   description: "Get in touch with Haen Software. We're here to help you solve your business challenges with custom software solutions.",
 };
+
+import ContactForm from "./ContactForm";
 
 export default function ContactPage() {
   return (
@@ -68,7 +69,7 @@ export default function ContactPage() {
               <div style={cardStyle}>
                 <h3 style={cardTitleStyle}>Working Hours</h3>
                 <p style={cardInfoStyle}>Monday - Saturday</p>
-                <p style={cardInfoStyle}>9 AM - 5 AM</p>
+                <p style={cardInfoStyle}>9 AM - 5 PM</p>
                 <p style={cardDescStyle}>Available for support and consultations.</p>
               </div>
 
@@ -93,19 +94,7 @@ export default function ContactPage() {
           }}
         >
           <div className="container-base" style={{ maxWidth: "1000px" }}>
-            <div 
-              style={{ 
-                width: "100%", 
-                height: "600px", 
-                borderRadius: "1rem", 
-                overflow: "hidden",
-                border: "1px solid rgba(0,0,0,0.05)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.05)"
-              }}
-            >
-              <div data-tf-live="01KR3FD6K30EDCQJHARZXWDQJP"></div>
-              <Script src="//embed.typeform.com/next/embed.js" strategy="afterInteractive" />
-            </div>
+            <ContactForm />
           </div>
         </section>
       </main>

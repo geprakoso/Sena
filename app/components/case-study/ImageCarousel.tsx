@@ -11,7 +11,7 @@ const EMBLA_OPTIONS = {
   loop: true,
   align: "center" as const,
   slidesToScroll: 1,
-  containScroll: false,
+  containScroll: false as const,
   watchSlides: true,
 };
 
