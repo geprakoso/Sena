@@ -149,20 +149,6 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
           ) : (
             <ProjectIllustration id={project.id} />
           )}
-          {/* Glow orb */}
-          <div
-            style={{
-              position: "absolute",
-              width: "180px",
-              height: "180px",
-              borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(255,107,74,0.22) 0%, transparent 70%)",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-            aria-hidden="true"
-          />
         </div>
 
         {/* Right: Content */}

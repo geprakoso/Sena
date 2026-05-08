@@ -1,4 +1,5 @@
 import type { CaseStudyDetail } from "@/app/types";
+import ImageCarousel from "./ImageCarousel";
 
 export default function AboutProject({ study }: { study: CaseStudyDetail }) {
   return (
@@ -62,6 +63,12 @@ export default function AboutProject({ study }: { study: CaseStudyDetail }) {
           />
         </div>
       </div>
+
+      {study.systemArchitectureImages && study.systemArchitectureImages.length > 0 && (
+        <div style={{ marginTop: "5rem" }}>
+          <ImageCarousel images={study.systemArchitectureImages} title={study.title} />
+        </div>
+      )}
     </section>
   );
 }
