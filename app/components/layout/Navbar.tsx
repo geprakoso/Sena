@@ -20,10 +20,15 @@ export default function Navbar() {
   function isActive(href: string): boolean {
     // exact-match for real routes (e.g. /portfolio)
     if (!href.startsWith("/#") && href !== "/") return pathname === href;
+    // contact route
+    if (href === "/contact") return pathname === "/contact";
     // home route
     if (href === "/") return pathname === "/";
     return false;
   }
+
+  const isContactPage = pathname === "/contact";
+  const useLightNav = isContactPage;
 
   return (
     <header
@@ -35,7 +40,9 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "background 0.3s, box-shadow 0.3s",
-        background: scrolled ? "rgba(6, 17, 28, 0.71)" : "transparent",
+        background: scrolled 
+          ? (useLightNav ? "rgba(255, 255, 255, 0.85)" : "rgba(6, 17, 28, 0.71)") 
+          : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled
           ? "1px solid var(--color-border)"
@@ -63,7 +70,7 @@ export default function Navbar() {
             style={{
               fontWeight: 700,
               fontSize: "1.125rem",
-              color: "var(--color-text-primary)",
+              color: useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-primary)",
               letterSpacing: "-0.02em",
             }}
           >
@@ -93,13 +100,13 @@ export default function Navbar() {
                   fontSize: "0.9rem",
                   color: active
                     ? "var(--color-accent-light)"
-                    : "var(--color-text-secondary)",
+                    : (useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
                   fontWeight: active ? 500 : 400,
                   textDecoration: "none",
                   borderRadius: "0.375rem",
                   transition: "color 0.2s",
                 }}
-                className="nav-link"
+                className={`nav-link ${useLightNav && !scrolled ? 'nav-link-light' : ''}`}
                 aria-current={active ? "page" : undefined}
               >
                 {item.label}
@@ -139,7 +146,7 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "0.5rem",
-            color: "var(--color-text-primary)",
+            color: useLightNav && !scrolled ? "var(--color-text-dark)" : "var(--color-text-primary)",
           }}
           className="hamburger-btn"
         >
@@ -151,7 +158,7 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(6, 17, 28, 0.97)",
+            background: useLightNav ? "rgba(255, 255, 255, 0.98)" : "rgba(6, 17, 28, 0.97)",
             borderTop: "1px solid var(--color-border)",
             padding: "1rem 1.5rem 1.5rem",
           }}
@@ -172,7 +179,7 @@ export default function Navbar() {
                     padding: "0.75rem 1rem",
                     color: active
                       ? "var(--color-accent-light)"
-                      : "var(--color-text-secondary)",
+                      : (useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
                     fontWeight: active ? 500 : 400,
                     textDecoration: "none",
                     borderRadius: "0.5rem",
@@ -212,6 +219,7 @@ export default function Navbar() {
           .hamburger-btn { display: flex !important; }
         }
         .nav-link:hover { color: var(--color-text-primary) !important; }
+        .nav-link-light:hover { color: var(--color-accent) !important; }
         .cta-btn:hover { background: var(--color-accent-hover) !important; transform: translateY(-1px); }
       `}</style>
     </header>

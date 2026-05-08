@@ -143,7 +143,7 @@ export default function CTASection() {
           marginBottom: "3.5rem",
         }}>
           <Link
-            href="mailto:hello@haensoftware.io"
+            href="/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",
