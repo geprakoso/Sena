@@ -25,15 +25,28 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              aria-label="SolveCore home"
+              aria-label={`${process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"} home`}
               style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", textDecoration: "none", marginBottom: "1rem" }}
             >
-              <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                <rect width="28" height="28" rx="7" fill="var(--color-accent)" />
-                <path d="M8 14L12 10L16 14L20 10" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M8 18L12 14L16 18L20 14" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
-              </svg>
-              <span style={{ fontWeight: 700, fontSize: "1.0625rem", color: "var(--color-text-primary)", letterSpacing: "-0.02em" }}>SolveCore</span>
+              {process.env.NEXT_PUBLIC_LOGO_URL ? (
+                <img
+                  src={process.env.NEXT_PUBLIC_LOGO_URL}
+                  alt=""
+                  width={26}
+                  height={26}
+                  style={{ objectFit: "contain" }}
+                  aria-hidden="true"
+                />
+              ) : (
+                <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                  <rect width="28" height="28" rx="7" fill="var(--color-accent)" />
+                  <path d="M8 14L12 10L16 14L20 10" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8 18L12 14L16 18L20 14" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+                </svg>
+              )}
+              <span style={{ fontWeight: 700, fontSize: "1.0625rem", color: "var(--color-text-primary)", letterSpacing: "-0.02em" }}>
+                {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"}
+              </span>
             </Link>
             <p style={{
               fontSize: "0.875rem",
@@ -49,7 +62,7 @@ export default function Footer() {
                 <a
                   key={platform}
                   href={`#${platform}`}
-                  aria-label={`SolveCore on ${platform}`}
+                  aria-label={`${process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"} on ${platform}`}
                   style={{
                     width: "36px",
                     height: "36px",
@@ -80,13 +93,12 @@ export default function Footer() {
             { label: "About Us", href: "#about" },
             { label: "Case Studies", href: "#case-studies" },
             { label: "Blog", href: "#blog" },
-            { label: "Careers", href: "#careers" },
           ]} />
 
           <FooterColumn title="Contact" links={[
             { label: "hello@solvecore.io", href: "mailto:hello@solvecore.io" },
-            { label: "+1 (555) 000-0000", href: "tel:+15550000000" },
-            { label: "San Francisco, CA", href: "#contact" },
+            { label: "+62 (816) 111-9046", href: "tel:+628161119046" },
+            { label: "Perum Muria Indah 377B, Bae, Kudus", href: "#contact" },
           ]} />
         </div>
 
@@ -101,7 +113,7 @@ export default function Footer() {
           gap: "0.75rem",
         }}>
           <p style={{ fontSize: "0.8125rem", color: "var(--color-text-muted)", margin: 0 }}>
-            &copy; {year} SolveCore. All rights reserved.
+            &copy; {year} {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"}. All rights reserved.
           </p>
           <div style={{ display: "flex", gap: "1.5rem" }}>
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((text) => (

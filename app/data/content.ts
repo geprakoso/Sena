@@ -13,7 +13,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "About Us", href: "/#about" },
   { label: "Blog", href: "/#blog" },
-  { label: "Careers", href: "/#careers" },
 ];
 
 export const TRUSTED_COMPANIES = [
