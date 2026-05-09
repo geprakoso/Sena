@@ -96,9 +96,9 @@ export default function Footer() {
           ]} />
 
           <FooterColumn title="Contact" links={[
-            { label: "hello@solvecore.io", href: "mailto:hello@solvecore.io" },
-            { label: "+62 (816) 111-9046", href: "tel:+628161119046" },
-            { label: "Perum Muria Indah 377B, Bae, Kudus", href: "#contact" },
+            { label: "haensoftware@gmail.com", href: "mailto:haensoftware@gmail.com" },
+            { label: "+62 816 111 9046", href: "tel:+628161119046" },
+            { label: "Perum Muria Indah 377B, Bae, Kudus", href: "/contact" },
           ]} />
         </div>
 

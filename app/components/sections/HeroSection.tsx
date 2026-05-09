@@ -96,7 +96,7 @@ export default function HeroSection() {
           {/* CTAs */}
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link
-              href="#contact"
+              href="/contact"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

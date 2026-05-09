@@ -111,7 +111,7 @@ export default function CaseStudyCTA() {
           }}
         >
           <Link
-            href="mailto:hello@solvecore.io"
+            href="/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",

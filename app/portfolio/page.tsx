@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/layout/Navbar";
+import Link from "next/link";
 import Footer from "@/app/components/layout/Footer";
 import PortfolioFilter from "./PortfolioFilter";
 
@@ -240,8 +241,8 @@ export default function PortfolioPage() {
             >
               Tell us about your challenge. We&apos;ll map out a clear path to a solution that delivers real impact.
             </p>
-            <a
-              href="mailto:hello@solvecore.io"
+            <Link
+              href="/contact"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -263,7 +264,7 @@ export default function PortfolioPage() {
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </Link>
           </div>
           <style>{`
             .portfolio-cta-btn:hover {
