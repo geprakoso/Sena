@@ -195,6 +195,7 @@ export default function ProductEssentials({ study }: { study: CaseStudyDetail })
             <img
               src={study.productImage}
               alt={`${study.title} dashboard`}
+              className="case-study-image-hover"
               style={{
                 display: "block",
                 width: "100%",

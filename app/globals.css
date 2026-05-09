@@ -144,28 +144,44 @@ body {
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 
-/* ─── Case Study Image Effects ─────────────────────────────────────────── */
-@keyframes image-float {
-  0%, 100% { transform: translateY(-15px) scale(1.02); }
-  50% { transform: translateY(-22px) scale(1.02); }
-}
-
-.haen-komputer-page section:not(.hero-gradient) img {
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+/* ─── Case Study Image Hover Effects ─────────────────────────────────────── */
+/* Base class for explicit application */
+.case-study-image-hover {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.5s ease, 
+              filter 0.5s ease !important;
+  will-change: transform;
   cursor: pointer;
+  display: block;
   position: relative;
   z-index: 1;
 }
 
-.haen-komputer-page section:not(.hero-gradient) img:hover {
-  animation: image-float 4s ease-in-out infinite;
-  filter: brightness(1.05);
-  box-shadow: 0 30px 60px rgba(255, 107, 74, 0.3), 
-              0 0 30px rgba(255, 107, 74, 0.2);
+.case-study-image-hover:hover {
+  transform: translateY(-20px) !important;
+  filter: drop-shadow(0 15px 30px rgba(255, 107, 74, 0.4)) !important;
   z-index: 10;
 }
 
-/* Ensure parents don't clip the glow/float */
-.haen-komputer-page section:not(.hero-gradient) .container-base > div {
-  overflow: visible !important;
+/* Automatic targeting for the case study content */
+[data-case-study="haen-komputer"] .case-study-content img {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.5s ease, 
+              filter 0.5s ease !important;
+  will-change: transform;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+[data-case-study="haen-komputer"] .case-study-content img:hover {
+  transform: translateY(-20px) !important;
+  filter: drop-shadow(0 15px 30px rgba(255, 107, 74, 0.45)) !important;
+  z-index: 10;
+}
+
+/* Specific fix for carousel images which are deeply nested */
+[data-case-study="haen-komputer"] .case-study-content [class*="embla"] img {
+  transform-origin: center bottom;
 }

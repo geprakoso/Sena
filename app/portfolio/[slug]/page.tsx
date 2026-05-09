@@ -65,18 +65,20 @@ export default async function CaseStudyPage({
   return (
     <>
       <Navbar />
-      <main id="main-content" tabIndex={-1} className={slug === "haen-komputer" ? "haen-komputer-page" : ""}>
+      <main id="main-content" tabIndex={-1} data-case-study={slug}>
         <CaseStudyHero study={study} />
-        <AboutProject study={study} />
-        <BusinessChallenge study={study} />
-        <ArchitectureDetail study={study} />
-        <ProductEssentials study={study} />
-        <DevTimeline study={study} />
-        <TechStack study={study} />
-        <ArchitectureSection study={study} />
-        <ResultsSection study={study} />
-        <Testimonial study={study} />
-        <CaseStudyCTA />
+        <div className="case-study-content">
+          <AboutProject study={study} />
+          <BusinessChallenge study={study} />
+          <ArchitectureDetail study={study} />
+          <ProductEssentials study={study} />
+          <DevTimeline study={study} />
+          <TechStack study={study} />
+          <ArchitectureSection study={study} />
+          <ResultsSection study={study} />
+          <Testimonial study={study} />
+          <CaseStudyCTA />
+        </div>
       </main>
       <Footer />
     </>

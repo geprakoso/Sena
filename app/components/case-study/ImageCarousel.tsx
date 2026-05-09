@@ -115,6 +115,7 @@ export default function ImageCarousel({ images, title }: { images: string[]; tit
               }}
             >
               <div
+                className="case-study-image-hover"
                 style={{
                   height: "100%",
                   width: "100%",

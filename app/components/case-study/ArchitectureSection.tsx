@@ -70,6 +70,7 @@ export default function ArchitectureSection({ study }: { study: CaseStudyDetail 
                 alt={`${study.title} system architecture`}
                 width={1400}
                 height={800}
+                className="case-study-image-hover"
                 style={{ 
                   width: "100%", 
                   height: "auto", 
