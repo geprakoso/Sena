@@ -143,3 +143,29 @@ body {
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
+
+/* ─── Case Study Image Effects ─────────────────────────────────────────── */
+@keyframes image-float {
+  0%, 100% { transform: translateY(-15px) scale(1.02); }
+  50% { transform: translateY(-22px) scale(1.02); }
+}
+
+.haen-komputer-page section:not(.hero-gradient) img {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.haen-komputer-page section:not(.hero-gradient) img:hover {
+  animation: image-float 4s ease-in-out infinite;
+  filter: brightness(1.05);
+  box-shadow: 0 30px 60px rgba(255, 107, 74, 0.3), 
+              0 0 30px rgba(255, 107, 74, 0.2);
+  z-index: 10;
+}
+
+/* Ensure parents don't clip the glow/float */
+.haen-komputer-page section:not(.hero-gradient) .container-base > div {
+  overflow: visible !important;
+}

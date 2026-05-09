@@ -65,7 +65,7 @@ export default async function CaseStudyPage({
   return (
     <>
       <Navbar />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className={slug === "haen-komputer" ? "haen-komputer-page" : ""}>
         <CaseStudyHero study={study} />
         <AboutProject study={study} />
         <BusinessChallenge study={study} />
