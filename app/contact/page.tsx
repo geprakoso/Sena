@@ -59,11 +59,16 @@ export default function ContactPage() {
               }}
             >
               <div style={cardStyle}>
-                <h3 style={cardTitleStyle}>Email Us</h3>
+                <h3 style={cardTitleStyle}>Contact Us</h3>
                 <a href="mailto:haensoftware@gmail.com" style={cardLinkStyle}>
                   haensoftware@gmail.com
                 </a>
                 <p style={cardDescStyle}>For general inquiries and project requests.</p>
+                < br />
+                <a href="tel:(+62) 816-111-9046" style={cardLinkStyle}>
+                  (+62) 816-111-9046
+                </a>
+                <p style={cardDescStyle}>For quick response and warm chat.</p>
               </div>
 
               <div style={cardStyle}>
