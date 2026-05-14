@@ -13,7 +13,7 @@ export const TAG_GRADIENTS: Record<string, string> = {
   EdTech: "linear-gradient(135deg, #1a2a3a 0%, #0e4a5a 100%)",
 };
 
-export function ProjectCard({ project, lightMode = false }: { project: PortfolioProject, lightMode?: boolean }) {
+export function ProjectCard({ project, lightMode = false, dict = {} }: { project: PortfolioProject, lightMode?: boolean, dict?: any }) {
   return (
     <article
       style={{
@@ -172,7 +172,7 @@ export function ProjectCard({ project, lightMode = false }: { project: Portfolio
               className="portfolio-card-link"
               aria-label={`View case study: ${project.title}`}
             >
-              View Case Study
+              {dict?.case_studies_section?.view_case_study || "View Case Study"}
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
                 <path
                   d="M3 7.5h9M8.5 3l4.5 4.5-4.5 4.5"

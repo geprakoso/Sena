@@ -7,25 +7,30 @@ import CaseStudiesSection from "@/app/components/sections/CaseStudiesSection";
 import CTASection from "@/app/components/sections/CTASection";
 import Footer from "@/app/components/layout/Footer";
 
+import { getDictionary, getCurrentLang } from "@/lib/i18n";
+
 /**
  * Home page — SolveCore landing page.
  *
  * All sections are Server Components by default.
  * Only Navbar uses "use client" for the scroll listener + pathname detection.
  */
-export default function Home() {
+export default async function Home() {
+  const dict = await getDictionary();
+  const currentLang = await getCurrentLang();
+
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict} currentLang={currentLang} />
       <main id="main-content" tabIndex={-1}>
-        <HeroSection />
+        <HeroSection dict={dict} />
         <TrustedBy />
-        <ServicesSection />
-        <ApproachSection />
-        <CaseStudiesSection />
-        <CTASection />
+        <ServicesSection dict={dict} />
+        <ApproachSection dict={dict} />
+        <CaseStudiesSection dict={dict} />
+        <CTASection dict={dict} />
       </main>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

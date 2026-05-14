@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { PORTFOLIO_PROJECTS } from "@/app/data/content";
+import { getPortfolioProjects } from "@/app/data/content";
 import { ProjectCard } from "@/app/components/case-study/ProjectCard";
 
-export default function CaseStudiesSection() {
+export default function CaseStudiesSection({ dict = {} }: { dict?: any }) {
   // Display only top 3 or specific featured projects on homepage if needed, 
   // but here we follow the request to display the list.
-  const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
+  const featuredProjects = getPortfolioProjects(dict).slice(0, 3);
 
   return (
     <section
@@ -40,7 +40,7 @@ export default function CaseStudiesSection() {
                 margin: "0 0 1rem",
               }}
             >
-              Featured Work
+              {dict?.case_studies_section?.featured_work || "Featured Work"}
             </p>
             <h2
               id="case-studies-heading"
@@ -53,11 +53,11 @@ export default function CaseStudiesSection() {
                 margin: 0,
               }}
             >
-              Real problems.<br />
+              {dict?.case_studies_section?.real_problems || "Real problems."}<br />
               <span style={{ 
                 color: "var(--color-accent)"
               }}>
-                Real impact.
+                {dict?.case_studies_section?.real_impact || "Real impact."}
               </span>
             </h2>
           </div>
@@ -80,7 +80,7 @@ export default function CaseStudiesSection() {
             }}
             className="view-all-link"
           >
-            View all cases
+            {dict?.case_studies_section?.view_all || "View all cases"}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -97,7 +97,7 @@ export default function CaseStudiesSection() {
           className="case-list"
         >
           {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} lightMode={true} />
+            <ProjectCard key={project.id} project={project} lightMode={true} dict={dict} />
           ))}
         </div>
         
@@ -121,7 +121,7 @@ export default function CaseStudiesSection() {
               justifyContent: 'center'
             }}
           >
-            View all cases
+            {dict?.case_studies_section?.view_all || "View all cases"}
           </Link>
         </div>
       </div>

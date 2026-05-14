@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ dict = {} }: { dict?: any }) {
   const year = new Date().getFullYear();
 
   return (
@@ -55,7 +55,7 @@ export default function Footer() {
               maxWidth: "280px",
               margin: "0 0 1.5rem",
             }}>
-              A software development agency that combines engineering excellence with problem-solving mindset.
+              {dict?.footer?.description || "A software development agency that combines engineering excellence with problem-solving mindset."}
             </p>
             <div style={{ display: "flex", gap: "0.75rem" }}>
               {["twitter", "linkedin", "github"].map((platform) => (
@@ -82,20 +82,20 @@ export default function Footer() {
             </div>
           </div>
 
-          <FooterColumn title="Services" links={[
-            { label: "Custom Software", href: "#services" },
-            { label: "Problem Solving", href: "#services" },
-            { label: "Cloud & DevOps", href: "#services" },
-            { label: "Product Development", href: "#services" },
+          <FooterColumn title={dict?.footer?.services || "Services"} links={[
+            { label: dict?.footer?.custom_software || "Custom Software", href: "#services" },
+            { label: dict?.footer?.problem_solving || "Problem Solving", href: "#services" },
+            { label: dict?.footer?.cloud_devops || "Cloud & DevOps", href: "#services" },
+            { label: dict?.footer?.product_development || "Product Development", href: "#services" },
           ]} />
 
-          <FooterColumn title="Company" links={[
-            { label: "About Us", href: "#about" },
-            { label: "Case Studies", href: "#case-studies" },
-            { label: "Blog", href: "#blog" },
+          <FooterColumn title={dict?.footer?.company || "Company"} links={[
+            { label: dict?.footer?.about_us || "About Us", href: "#about" },
+            { label: dict?.footer?.case_studies || "Case Studies", href: "#case-studies" },
+            { label: dict?.footer?.blog || "Blog", href: "#blog" },
           ]} />
 
-          <FooterColumn title="Contact" links={[
+          <FooterColumn title={dict?.footer?.contact || "Contact"} links={[
             { label: "haensoftware@gmail.com", href: "mailto:haensoftware@gmail.com" },
             { label: "+62 816 111 9046", href: "tel:+628161119046" },
             { label: "Perum Muria Indah 377B, Bae, Kudus", href: "/contact" },
@@ -113,10 +113,14 @@ export default function Footer() {
           gap: "0.75rem",
         }}>
           <p style={{ fontSize: "0.8125rem", color: "var(--color-text-muted)", margin: 0 }}>
-            &copy; {year} {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"}. All rights reserved.
+            &copy; {year} {process.env.NEXT_PUBLIC_LOGO_NAME || "Sena"}. {dict?.footer?.all_rights_reserved || "All rights reserved."}
           </p>
           <div style={{ display: "flex", gap: "1.5rem" }}>
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((text) => (
+            {[
+              dict?.footer?.privacy_policy || "Privacy Policy",
+              dict?.footer?.terms_of_service || "Terms of Service",
+              dict?.footer?.cookie_policy || "Cookie Policy"
+            ].map((text) => (
               <Link
                 key={text}
                 href="#"

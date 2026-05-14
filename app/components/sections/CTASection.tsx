@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function CTASection() {
+export default function CTASection({ dict = {} }: { dict?: any }) {
+  const TRUST_SIGNALS = [
+    { icon: "shield", label: dict?.cta_section?.trust_shield || "No long-term lock-in" },
+    { icon: "clock", label: dict?.cta_section?.trust_clock || "Response within 24h" },
+    { icon: "star", label: dict?.cta_section?.trust_star || "Trusted by 30+ companies" },
+  ];
+
   return (
     <section
       id="contact"
@@ -95,7 +101,7 @@ export default function CTASection() {
             color: "var(--color-accent-light)",
             textTransform: "uppercase",
           }}>
-            Let&apos;s Work Together
+            {dict?.cta_section?.badge || "Let's Work Together"}
           </span>
         </div>
 
@@ -112,14 +118,14 @@ export default function CTASection() {
             maxWidth: "680px",
           }}
         >
-          Ready to build something{" "}
+          {dict?.cta_section?.heading_1 || "Ready to build something"} {" "}
           <span style={{
             background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            that matters?
+            {dict?.cta_section?.heading_2 || "that matters?"}
           </span>
         </h2>
 
@@ -131,7 +137,7 @@ export default function CTASection() {
           maxWidth: "520px",
           margin: "0 0 2.75rem",
         }}>
-          Tell us about your challenge. We&apos;ll bring clarity, the right technology, and a team that genuinely cares about your outcome.
+          {dict?.cta_section?.subtext || "Tell us about your challenge. We'll bring clarity, the right technology, and a team that genuinely cares about your outcome."}
         </p>
 
         {/* Action buttons */}
@@ -160,7 +166,7 @@ export default function CTASection() {
             }}
             className="cta-primary-btn"
           >
-            Start a Project
+            {dict?.cta_section?.start_project || "Start a Project"}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -184,7 +190,7 @@ export default function CTASection() {
             }}
             className="cta-secondary-btn"
           >
-            View Our Work
+            {dict?.cta_section?.view_work || "View Our Work"}
           </Link>
         </div>
 
@@ -242,11 +248,7 @@ export default function CTASection() {
   );
 }
 
-const TRUST_SIGNALS = [
-  { icon: "shield", label: "No long-term lock-in" },
-  { icon: "clock", label: "Response within 24h" },
-  { icon: "star", label: "Trusted by 30+ companies" },
-];
+
 
 function TrustIcon({ name }: { name: string }) {
   const stroke = "var(--color-accent-light)";

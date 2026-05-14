@@ -7,12 +7,15 @@ export const metadata: Metadata = {
   description: "Get in touch with Haen Software. We're here to help you solve your business challenges with custom software solutions.",
 };
 
+import { getDictionary, getCurrentLang } from "@/lib/i18n";
 import ContactForm from "./ContactForm";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const dict = await getDictionary();
+  const currentLang = await getCurrentLang();
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict} currentLang={currentLang} />
       <main id="main-content" style={{ background: "#ffffff", minHeight: "100vh" }}>
         {/* ── Hero Section ────────────────────────────────── */}
         <section
@@ -33,8 +36,8 @@ export default function ContactPage() {
                 marginBottom: "1.5rem",
               }}
             >
-              Let&apos;s build something <br />
-              <span style={{ color: "var(--color-accent)" }}>extraordinary</span> together.
+              {dict?.contact_page?.heading_1 || "Let's build something"} <br />
+              <span style={{ color: "var(--color-accent)" }}>{dict?.contact_page?.heading_2 || "extraordinary"}</span> {dict?.contact_page?.heading_3 || "together."}
             </h1>
             <p
               style={{
@@ -45,7 +48,7 @@ export default function ContactPage() {
                 lineHeight: 1.6,
               }}
             >
-              Have a project in mind? Or just want to say hello? We&apos;d love to hear from you and see how we can help.
+              {dict?.contact_page?.subtext || "Have a project in mind? Or just want to say hello? We'd love to hear from you and see how we can help."}
             </p>
 
             {/* Contact Info Cards */}
@@ -59,33 +62,33 @@ export default function ContactPage() {
               }}
             >
               <div style={cardStyle}>
-                <h3 style={cardTitleStyle}>Contact Us</h3>
+                <h3 style={cardTitleStyle}>{dict?.contact_page?.contact_us || "Contact Us"}</h3>
                 <a href="mailto:haensoftware@gmail.com" style={cardLinkStyle}>
                   haensoftware@gmail.com
                 </a>
-                <p style={cardDescStyle}>For general inquiries and project requests.</p>
+                <p style={cardDescStyle}>{dict?.contact_page?.contact_email_desc || "For general inquiries and project requests."}</p>
                 < br />
                 <a href="tel:(+62) 816-111-9046" style={cardLinkStyle}>
                   (+62) 816-111-9046
                 </a>
-                <p style={cardDescStyle}>For quick response and warm chat.</p>
+                <p style={cardDescStyle}>{dict?.contact_page?.contact_phone_desc || "For quick response and warm chat."}</p>
               </div>
 
               <div style={cardStyle}>
-                <h3 style={cardTitleStyle}>Working Hours</h3>
-                <p style={cardInfoStyle}>Monday - Saturday</p>
-                <p style={cardInfoStyle}>9 AM - 5 PM</p>
-                <p style={cardDescStyle}>Available for support and consultations.</p>
+                <h3 style={cardTitleStyle}>{dict?.contact_page?.working_hours || "Working Hours"}</h3>
+                <p style={cardInfoStyle}>{dict?.contact_page?.working_days || "Monday - Saturday"}</p>
+                <p style={cardInfoStyle}>{dict?.contact_page?.working_time || "9 AM - 5 PM"}</p>
+                <p style={cardDescStyle}>{dict?.contact_page?.working_desc || "Available for support and consultations."}</p>
               </div>
 
               <div style={cardStyle}>
-                <h3 style={cardTitleStyle}>Visit Us</h3>
+                <h3 style={cardTitleStyle}>{dict?.contact_page?.visit_us || "Visit Us"}</h3>
                 <p style={cardInfoStyle}>
                   Jl. Muria Raya No.377 Blok B, RT.06/RW.07, <br />
                   Kayuapu Kulon, Gondangmanis, Kec. Bae, <br />
                   Kabupaten Kudus, Jawa Tengah 59327
                 </p>
-                <p style={cardDescStyle}>Our headquarters in Indonesia.</p>
+                <p style={cardDescStyle}>{dict?.contact_page?.visit_desc || "Our headquarters in Indonesia."}</p>
               </div>
             </div>
           </div>
@@ -103,7 +106,7 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

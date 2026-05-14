@@ -2,13 +2,23 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { NAV_ITEMS } from "@/app/data/content";
+import { useRouter, usePathname } from "next/navigation";
+import { getNavItems } from "@/app/data/content";
 
-export default function Navbar() {
+export default function Navbar({ dict = {}, currentLang = "en" }: { dict?: any, currentLang?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLang] = useState(currentLang.toUpperCase());
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLangChange = (newLang: string) => {
+    setLang(newLang);
+    document.cookie = `lang=${newLang.toLowerCase()}; path=/; max-age=31536000`;
+    router.refresh();
+  };
+
+  const navItems = getNavItems(dict);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -91,7 +101,7 @@ export default function Navbar() {
             justifyContent: "center",
           }}
         >
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const active = isActive(item.href);
             return (
               <Link
@@ -134,8 +144,43 @@ export default function Navbar() {
           }}
           className="cta-btn"
         >
-          Let&apos;s Talk
+          {dict?.nav?.lets_talk || "Let's Talk"}
         </Link>
+
+        {/* Language Switcher */}
+        <div 
+          className="lang-switcher"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            background: scrolled || useLightNav ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.08)",
+            padding: "2px",
+            borderRadius: "999px",
+            marginLeft: "0.5rem",
+            border: `1px solid ${scrolled || useLightNav ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.15)"}`,
+            flexShrink: 0,
+          }}
+        >
+          {["EN", "ID"].map((l) => (
+            <button
+              key={l}
+              onClick={() => handleLangChange(l)}
+              style={{
+                background: lang === l ? "var(--color-accent)" : "transparent",
+                color: lang === l ? "#fff" : (scrolled || useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
+                border: "none",
+                padding: "0.25rem 0.6rem",
+                borderRadius: "999px",
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -170,7 +215,7 @@ export default function Navbar() {
             aria-label="Mobile navigation"
             style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}
           >
-            {NAV_ITEMS.map((item) => {
+            {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
@@ -208,8 +253,42 @@ export default function Navbar() {
                 textAlign: "center",
               }}
             >
-              Let&apos;s Talk
+              {dict?.nav?.lets_talk || "Let's Talk"}
             </Link>
+
+            {/* Mobile Language Switcher */}
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "0.75rem",
+              marginTop: "1.5rem",
+              paddingTop: "1.5rem",
+              borderTop: "1px solid var(--color-border)",
+            }}>
+              {["EN", "ID"].map((l) => (
+                <button
+                  key={l}
+                  onClick={() => {
+                    handleLangChange(l);
+                    setMenuOpen(false);
+                  }}
+                  style={{
+                    background: lang === l ? "var(--color-accent)" : "transparent",
+                    color: lang === l ? "#fff" : (useLightNav ? "var(--color-text-dark)" : "var(--color-text-secondary)"),
+                    border: lang === l ? "none" : "1px solid var(--color-border)",
+                    padding: "0.6rem",
+                    borderRadius: "0.5rem",
+                    fontSize: "0.875rem",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    flex: 1,
+                    transition: "all 0.2s",
+                  }}
+                >
+                  {l === "EN" ? (dict?.nav?.english || "English") : (dict?.nav?.indonesia || "Indonesia")}
+                </button>
+              ))}
+            </div>
           </nav>
         </div>
       )}
@@ -217,7 +296,8 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 768px) {
           nav[aria-label="Primary navigation"],
-          .cta-btn { display: none !important; }
+          .cta-btn,
+          .lang-switcher { display: none !important; }
           .hamburger-btn { display: flex !important; }
         }
         .nav-link:hover { color: var(--color-text-primary) !important; }

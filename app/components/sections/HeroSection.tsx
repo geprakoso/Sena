@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function HeroSection() {
+export default function HeroSection({ dict = {} }: { dict?: any }) {
   return (
     <section
       id="home"
@@ -63,7 +63,7 @@ export default function HeroSection() {
               animation: "pulse-dot 2s ease-in-out infinite",
             }} />
             <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", color: "var(--color-accent-light)", textTransform: "uppercase" }}>
-              Software Development &amp; Problem Solving
+              {dict?.hero?.badge || "Software Development & Problem Solving"}
             </span>
           </div>
 
@@ -79,7 +79,7 @@ export default function HeroSection() {
               margin: "0 0 1.5rem",
             }}
           >
-            We build software that solves real business problems.
+            {dict?.hero?.heading || "We build software that solves real business problems."}
           </h1>
 
           {/* Subtext */}
@@ -90,7 +90,7 @@ export default function HeroSection() {
             maxWidth: "480px",
             margin: "0 0 2.5rem",
           }}>
-            HaenSoftware is a software development agency that combines engineering excellence with problem-solving mindset to deliver custom solutions that drive measurable impact.
+            {dict?.hero?.subtext || "HaenSoftware is a software development agency that combines engineering excellence with problem-solving mindset to deliver custom solutions that drive measurable impact."}
           </p>
 
           {/* CTAs */}
@@ -113,7 +113,7 @@ export default function HeroSection() {
               }}
               className="hero-cta-primary"
             >
-              Start a Project
+              {dict?.hero?.cta_primary || "Start a Project"}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -136,7 +136,7 @@ export default function HeroSection() {
               }}
               className="hero-cta-secondary"
             >
-              Our Work
+              {dict?.hero?.cta_secondary || "Our Work"}
             </Link>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function HeroSection() {
           }}
           aria-hidden="true"
         >
-          <DashboardMockup />
+          <DashboardMockup dict={dict} />
         </div>
       </div>
 
@@ -173,7 +173,7 @@ export default function HeroSection() {
   );
 }
 
-function DashboardMockup() {
+function DashboardMockup({ dict }: { dict?: any }) {
   return (
     <div style={{
       background: "rgba(12, 26, 44, 0.85)",
@@ -196,7 +196,7 @@ function DashboardMockup() {
         <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#febc2e" }} />
         <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#28c840" }} />
         <span style={{ marginLeft: "0.75rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", fontWeight: 500 }}>
-          Overview
+          {dict?.dashboard?.overview || "Overview"}
         </span>
       </div>
 
@@ -207,7 +207,14 @@ function DashboardMockup() {
           padding: "1rem 0",
           background: "rgba(255,255,255,0.02)",
         }}>
-          {["Overview", "Analytics", "Projects", "Users", "Billing", "Settings"].map((item, i) => (
+          {[
+            dict?.dashboard?.overview || "Overview",
+            dict?.dashboard?.analytics || "Analytics",
+            dict?.dashboard?.projects || "Projects",
+            dict?.dashboard?.users || "Users",
+            dict?.dashboard?.billing || "Billing",
+            dict?.dashboard?.settings || "Settings",
+          ].map((item, i) => (
             <div key={item} style={{
               padding: "0.5rem 1rem",
               fontSize: "0.75rem",
@@ -225,9 +232,9 @@ function DashboardMockup() {
         <div style={{ padding: "1rem" }}>
           {/* Stats row */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.625rem", marginBottom: "0.875rem" }}>
-            <StatCard label="Performance" value="+24.5%" color="#34D399" mini />
-            <StatCard label="Users" value="12,675" color="#22D3EE" mini />
-            <StatCard label="Revenue" value="$98,540" color="#FB7185" mini />
+            <StatCard label={dict?.dashboard?.performance || "Performance"} value="+24.5%" color="#34D399" mini />
+            <StatCard label={dict?.dashboard?.users || "Users"} value="12,675" color="#22D3EE" mini />
+            <StatCard label={dict?.dashboard?.revenue || "Revenue"} value="$98,540" color="#FB7185" mini />
           </div>
 
           {/* Charts area */}
@@ -238,11 +245,16 @@ function DashboardMockup() {
               padding: "0.75rem",
               border: "1px solid rgba(255,255,255,0.06)",
             }}>
-              <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", margin: "0 0 0.5rem" }}>Recent Activity</p>
-              {["New user registered", "Payment received", "Subscription updated", "Report generated"].map((t, i) => (
+              <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", margin: "0 0 0.5rem" }}>{dict?.dashboard?.recent_activity || "Recent Activity"}</p>
+              {[
+                dict?.dashboard?.activity_registered || "New user registered",
+                dict?.dashboard?.activity_payment || "Payment received",
+                dict?.dashboard?.activity_subscription || "Subscription updated",
+                dict?.dashboard?.activity_report || "Report generated"
+              ].map((t, i) => (
                 <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
                   <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.55)" }}>{t}</span>
-                  <span style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.25)" }}>{i + 1}h ago</span>
+                  <span style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.25)" }}>{i + 1}{dict?.dashboard?.ago || "h ago"}</span>
                 </div>
               ))}
             </div>
@@ -256,8 +268,8 @@ function DashboardMockup() {
               alignItems: "center",
               justifyContent: "center",
             }}>
-              <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", margin: "0 0 0.5rem" }}>System Stability</p>
-              <DonutChart value={99.9} />
+              <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", margin: "0 0 0.5rem" }}>{dict?.dashboard?.system_stability || "System Stability"}</p>
+              <DonutChart value={99.9} dict={dict} />
             </div>
           </div>
         </div>
@@ -290,7 +302,7 @@ function MiniSparkline({ color }: { color: string }) {
   );
 }
 
-function DonutChart({ value }: { value: number }) {
+function DonutChart({ value, dict }: { value: number, dict?: any }) {
   const r = 28;
   const circ = 2 * Math.PI * r;
   const dash = (value / 100) * circ;
@@ -317,7 +329,7 @@ function DonutChart({ value }: { value: number }) {
         justifyContent: "center",
       }}>
         <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--color-text-primary)" }}>{value}%</span>
-        <span style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.35)" }}>Uptime</span>
+        <span style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.35)" }}>{dict?.dashboard?.uptime || "Uptime"}</span>
       </div>
     </div>
   );

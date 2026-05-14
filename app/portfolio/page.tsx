@@ -22,10 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PortfolioPage() {
+import { getDictionary, getCurrentLang } from "@/lib/i18n";
+
+export default async function PortfolioPage() {
+  const dict = await getDictionary();
+  const currentLang = await getCurrentLang();
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict} currentLang={currentLang} />
       <main id="main-content" tabIndex={-1}>
         {/* ── Hero ─────────────────────────────────────────── */}
         <section
@@ -110,7 +114,7 @@ export default function PortfolioPage() {
                   textTransform: "uppercase",
                 }}
               >
-                Our Work
+                {dict?.portfolio_page?.our_work || "Our Work"}
               </span>
             </div>
 
@@ -127,7 +131,7 @@ export default function PortfolioPage() {
                 maxWidth: "700px",
               }}
             >
-              Real problems.{" "}
+              {dict?.portfolio_page?.real_problems || "Real problems."} {" "}
               <span
                 style={{
                   background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
@@ -136,7 +140,7 @@ export default function PortfolioPage() {
                   backgroundClip: "text",
                 }}
               >
-                Real impact.
+                {dict?.portfolio_page?.real_impact || "Real impact."}
               </span>
             </h1>
 
@@ -149,7 +153,7 @@ export default function PortfolioPage() {
                 margin: "0 0 0",
               }}
             >
-              Every project here started with a real business challenge. Explore how we turned those challenges into measurable outcomes.
+              {dict?.portfolio_page?.subtext || "Every project here started with a real business challenge. Explore how we turned those challenges into measurable outcomes."}
             </p>
           </div>
         </section>
@@ -176,7 +180,7 @@ export default function PortfolioPage() {
         >
           <div className="container-base">
             {/* Client component handles filter + cards */}
-            <PortfolioFilter />
+            <PortfolioFilter dict={dict} />
           </div>
         </section>
 
@@ -228,7 +232,7 @@ export default function PortfolioPage() {
                 margin: "0 0 1rem",
               }}
             >
-              Want results like these?
+              {dict?.portfolio_page?.cta_heading || "Want results like these?"}
             </h2>
             <p
               style={{
@@ -239,7 +243,7 @@ export default function PortfolioPage() {
                 margin: "0 0 2.25rem",
               }}
             >
-              Tell us about your challenge. We&apos;ll map out a clear path to a solution that delivers real impact.
+              {dict?.portfolio_page?.cta_subtext || "Tell us about your challenge. We'll map out a clear path to a solution that delivers real impact."}
             </p>
             <Link
               href="/contact"
@@ -260,7 +264,7 @@ export default function PortfolioPage() {
               }}
               className="portfolio-cta-btn"
             >
-              Start a Project
+              {dict?.portfolio_page?.start_project || "Start a Project"}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -275,7 +279,7 @@ export default function PortfolioPage() {
           `}</style>
         </section>
       </main>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

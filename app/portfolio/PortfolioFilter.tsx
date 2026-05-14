@@ -2,18 +2,18 @@
 
 import { useState, useMemo } from "react";
 import { ProjectCard } from "@/app/components/case-study/ProjectCard";
-import { PORTFOLIO_PROJECTS } from "@/app/data/content";
+import { getPortfolioProjects } from "@/app/data/content";
 
-const ALL_TAGS = ["All", ...Array.from(new Set(PORTFOLIO_PROJECTS.map((p) => p.tag)))];
-
-export default function PortfolioFilter() {
+export default function PortfolioFilter({ dict = {} }: { dict?: any }) {
   const [activeTag, setActiveTag] = useState("All");
+  const portfolioProjects = useMemo(() => getPortfolioProjects(dict), [dict]);
+  const ALL_TAGS = useMemo(() => ["All", ...Array.from(new Set(portfolioProjects.map((p) => p.tag)))], [portfolioProjects]);
 
   const filtered = useMemo(
     () =>
       activeTag === "All"
-        ? PORTFOLIO_PROJECTS
-        : PORTFOLIO_PROJECTS.filter((p) => p.tag === activeTag),
+        ? portfolioProjects
+        : portfolioProjects.filter((p) => p.tag === activeTag),
     [activeTag]
   );
 
@@ -72,7 +72,7 @@ export default function PortfolioFilter() {
         className="portfolio-list"
       >
         {filtered.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard key={project.id} project={project} dict={dict} />
         ))}
       </div>
 

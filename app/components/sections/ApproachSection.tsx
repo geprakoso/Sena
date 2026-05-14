@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import { APPROACH_STEPS } from "@/app/data/content";
+import { getApproachSteps } from "@/app/data/content";
 import type { ApproachStep } from "@/app/types";
 
-export default function ApproachSection() {
+export default function ApproachSection({ dict = {} }: { dict?: any }) {
   return (
     <section
       id="about"
@@ -28,7 +28,7 @@ export default function ApproachSection() {
             textTransform: "uppercase",
             margin: "0 0 0.75rem",
           }}>
-            Our Approach
+            {dict?.approach_section?.our_approach || "Our Approach"}
           </p>
           <h2
             id="approach-heading"
@@ -41,7 +41,7 @@ export default function ApproachSection() {
               margin: 0,
             }}
           >
-            We solve problems with clarity, collaboration and code.
+            {dict?.approach_section?.heading || "We solve problems with clarity, collaboration and code."}
           </h2>
         </div>
 
@@ -51,7 +51,7 @@ export default function ApproachSection() {
           gridTemplateColumns: "1fr 1fr",
           gap: "1.25rem",
         }}>
-          {APPROACH_STEPS.map((step, idx) => (
+          {getApproachSteps(dict).map((step, idx) => (
             <StepCard key={step.number} step={step} index={idx} />
           ))}
         </div>

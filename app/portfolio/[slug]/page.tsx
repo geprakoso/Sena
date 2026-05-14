@@ -13,10 +13,10 @@ import ArchitectureSection from "@/app/components/case-study/ArchitectureSection
 import ResultsSection from "@/app/components/case-study/ResultsSection";
 import Testimonial from "@/app/components/case-study/Testimonial";
 import CaseStudyCTA from "@/app/components/case-study/CaseStudyCTA";
-import { CASE_STUDY_DETAILS } from "@/app/data/content";
+import { getCaseStudyDetails } from "@/app/data/content";
 
 export async function generateStaticParams() {
-  return CASE_STUDY_DETAILS.map((study) => ({
+  return getCaseStudyDetails().map((study) => ({
     slug: study.slug,
   }));
 }
@@ -27,7 +27,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const study = CASE_STUDY_DETAILS.find((s) => s.slug === slug);
+  const study = getCaseStudyDetails().find((s) => s.slug === slug);
   if (!study) {
     return {
       title: "Case Study — SolveCore",
@@ -50,13 +50,17 @@ export async function generateMetadata({
   };
 }
 
+import { getDictionary, getCurrentLang } from "@/lib/i18n";
+
 export default async function CaseStudyPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const study = CASE_STUDY_DETAILS.find((s) => s.slug === slug);
+  const dict = await getDictionary();
+  const currentLang = await getCurrentLang();
+  const study = getCaseStudyDetails(dict).find((s) => s.slug === slug);
 
   if (!study) {
     notFound();
@@ -64,7 +68,7 @@ export default async function CaseStudyPage({
 
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict} currentLang={currentLang} />
       <main id="main-content" tabIndex={-1} data-case-study={slug}>
         <CaseStudyHero study={study} />
         <div className="case-study-content">
@@ -80,7 +84,7 @@ export default async function CaseStudyPage({
           <CaseStudyCTA />
         </div>
       </main>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { SERVICES } from "@/app/data/content";
+import { getServices } from "@/app/data/content";
 import type { Service } from "@/app/types";
 
-export default function ServicesSection() {
+export default function ServicesSection({ dict = {} }: { dict?: any }) {
   return (
     <section
       id="services"
@@ -33,7 +33,7 @@ export default function ServicesSection() {
               textTransform: "uppercase",
               margin: "0 0 0.75rem",
             }}>
-              What We Do
+              {dict?.services_section?.what_we_do || "What We Do"}
             </p>
             <h2
               id="services-heading"
@@ -46,7 +46,7 @@ export default function ServicesSection() {
                 margin: 0,
               }}
             >
-              End-to-end services to build, scale and optimize your software.
+              {dict?.services_section?.heading || "End-to-end services to build, scale and optimize your software."}
             </h2>
           </div>
 
@@ -57,7 +57,7 @@ export default function ServicesSection() {
               lineHeight: 1.7,
               margin: 0,
             }}>
-              From idea to launch and beyond, we help you turn challenges into reliable, scalable and future-ready digital solutions.
+              {dict?.services_section?.description || "From idea to launch and beyond, we help you turn challenges into reliable, scalable and future-ready digital solutions."}
             </p>
           </div>
         </div>
@@ -70,8 +70,8 @@ export default function ServicesSection() {
         }}
           className="services-grid"
         >
-          {SERVICES.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {getServices(dict).map((service) => (
+            <ServiceCard key={service.id} service={service} dict={dict} />
           ))}
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function ServicesSection() {
   );
 }
 
-function ServiceCard({ service }: { service: Service }) {
+function ServiceCard({ service, dict }: { service: Service, dict?: any }) {
   return (
     <article
       style={{
@@ -156,7 +156,7 @@ function ServiceCard({ service }: { service: Service }) {
         className="service-link"
         aria-label={`Learn more about ${service.title}`}
       >
-        Learn more
+        {dict?.services_section?.learn_more || "Learn more"}
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
