@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import { getApproachSteps } from "@/app/data/content";
-import type { ApproachStep } from "@/app/types";
+import { getApproachSteps } from "@/lib/content";
+import type { ApproachStep } from "@/types";
 
-export default function ApproachSection({ dict = {} }: { dict?: any }) {
+export default function ApproachSection({ dict = {} }: { dict?: Record<string, any> }) {
   return (
     <section
       id="about"
@@ -51,8 +51,8 @@ export default function ApproachSection({ dict = {} }: { dict?: any }) {
           gridTemplateColumns: "1fr 1fr",
           gap: "1.25rem",
         }}>
-          {getApproachSteps(dict).map((step, idx) => (
-            <StepCard key={step.number} step={step} index={idx} />
+          {getApproachSteps(dict).map((step) => (
+            <StepCard key={step.number} step={step} />
           ))}
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function ApproachSection({ dict = {} }: { dict?: any }) {
   );
 }
 
-function StepCard({ step, index }: { step: ApproachStep; index: number }) {
+function StepCard({ step }: { step: ApproachStep }) {
   return (
     <div
       style={{

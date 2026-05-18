@@ -5,9 +5,9 @@ import type {
   CaseStudy,
   PortfolioProject,
   CaseStudyDetail,
-} from "@/app/types";
+} from "@/types";
 
-export const getNavItems = (dict: any): NavItem[] => [
+export const getNavItems = (dict: Record<string, any>): NavItem[] => [
   { label: dict?.nav?.home || "Home", href: "/" },
   { label: dict?.nav?.services || "Services", href: "/#services" },
   { label: dict?.nav?.portfolio || "Portfolio", href: "/portfolio" },
@@ -25,7 +25,7 @@ export const TRUSTED_COMPANIES = [
   "Taskora",
 ];
 
-export const getServices = (dict: any): Service[] => [
+export const getServices = (dict: Record<string, any>): Service[] => [
   {
     id: "custom-software",
     icon: "code",
@@ -56,7 +56,7 @@ export const getServices = (dict: any): Service[] => [
   },
 ];
 
-export const getApproachSteps = (dict: any): ApproachStep[] => [
+export const getApproachSteps = (dict: Record<string, any>): ApproachStep[] => [
   {
     number: "1",
     label: dict?.approach_section?.discover_label || "Discover",
@@ -83,7 +83,7 @@ export const getApproachSteps = (dict: any): ApproachStep[] => [
   },
 ];
 
-export const getCaseStudies = (dict: any): CaseStudy[] => [
+export const getCaseStudies = (dict: Record<string, any>): CaseStudy[] => [
   {
     id: "haen-komputer",
     title: dict?.portfolio_page?.haen_komputer_title || "Haen Komputer Management System",
@@ -94,7 +94,7 @@ export const getCaseStudies = (dict: any): CaseStudy[] => [
   },
 ];
 
-export const getPortfolioProjects = (dict: any): PortfolioProject[] => [
+export const getPortfolioProjects = (dict: Record<string, any>): PortfolioProject[] => [
   {
     id: "haen-komputer",
     title: dict?.portfolio_page?.haen_komputer_title || "Haen Komputer Management System",
@@ -107,7 +107,7 @@ export const getPortfolioProjects = (dict: any): PortfolioProject[] => [
   },
 ];
 
-export const getCaseStudyDetails = (dict: any = {}): CaseStudyDetail[] => [
+export const getCaseStudyDetails = (dict: Record<string, any> = {}): CaseStudyDetail[] => [
   {
     id: "haen-komputer",
     slug: "haen-komputer",

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { getPortfolioProjects } from "@/app/data/content";
-import { ProjectCard } from "@/app/components/case-study/ProjectCard";
+import { getPortfolioProjects } from "@/lib/content";
+import { ProjectCard } from "@/components/case-study/ProjectCard";
 
-export default function CaseStudiesSection({ dict = {} }: { dict?: any }) {
+export default function CaseStudiesSection({ dict = {} }: { dict?: Record<string, any> }) {
   // Display only top 3 or specific featured projects on homepage if needed, 
   // but here we follow the request to display the list.
   const featuredProjects = getPortfolioProjects(dict).slice(0, 3);

@@ -1,4 +1,4 @@
-import type { CaseStudyDetail } from "@/app/types";
+import type { CaseStudyDetail } from "@/types";
 import Image from "next/image";
 
 export default function ArchitectureDetail({ study }: { study: CaseStudyDetail }) {

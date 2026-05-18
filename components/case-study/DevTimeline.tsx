@@ -1,4 +1,4 @@
-import type { CaseStudyDetail } from "@/app/types";
+import type { CaseStudyDetail } from "@/types";
 
 const STEPS = [
   { num: "01", title: "Discovery" },

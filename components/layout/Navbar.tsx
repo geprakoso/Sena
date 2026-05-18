@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { getNavItems } from "@/app/data/content";
+import { getNavItems } from "@/lib/content";
 
-export default function Navbar({ dict = {}, currentLang = "en" }: { dict?: any, currentLang?: string }) {
+export default function Navbar({ dict = {}, currentLang = "en" }: { dict?: Record<string, any>, currentLang?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState(currentLang.toUpperCase());
@@ -14,9 +14,12 @@ export default function Navbar({ dict = {}, currentLang = "en" }: { dict?: any, 
 
   const handleLangChange = (newLang: string) => {
     setLang(newLang);
-    document.cookie = `lang=${newLang.toLowerCase()}; path=/; max-age=31536000`;
     router.refresh();
   };
+
+  useEffect(() => {
+    document.cookie = `lang=${lang.toLowerCase()}; path=/; max-age=31536000`;
+  }, [lang]);
 
   const navItems = getNavItems(dict);
 

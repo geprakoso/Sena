@@ -1,4 +1,4 @@
-import type { CaseStudyDetail } from "@/app/types";
+import type { CaseStudyDetail } from "@/types";
 import ImageCarousel from "./ImageCarousel";
 
 export default function AboutProject({ study }: { study: CaseStudyDetail }) {

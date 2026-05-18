@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "@/app/components/layout/Navbar";
-import Footer from "@/app/components/layout/Footer";
-import CaseStudyHero from "@/app/components/case-study/CaseStudyHero";
-import AboutProject from "@/app/components/case-study/AboutProject";
-import BusinessChallenge from "@/app/components/case-study/BusinessChallenge";
-import ArchitectureDetail from "@/app/components/case-study/ArchitectureDetail";
-import ProductEssentials from "@/app/components/case-study/ProductEssentials";
-import DevTimeline from "@/app/components/case-study/DevTimeline";
-import TechStack from "@/app/components/case-study/TechStack";
-import ArchitectureSection from "@/app/components/case-study/ArchitectureSection";
-import ResultsSection from "@/app/components/case-study/ResultsSection";
-import Testimonial from "@/app/components/case-study/Testimonial";
-import CaseStudyCTA from "@/app/components/case-study/CaseStudyCTA";
-import { getCaseStudyDetails } from "@/app/data/content";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import CaseStudyHero from "@/components/case-study/CaseStudyHero";
+import AboutProject from "@/components/case-study/AboutProject";
+import BusinessChallenge from "@/components/case-study/BusinessChallenge";
+import ArchitectureDetail from "@/components/case-study/ArchitectureDetail";
+import ProductEssentials from "@/components/case-study/ProductEssentials";
+import DevTimeline from "@/components/case-study/DevTimeline";
+import TechStack from "@/components/case-study/TechStack";
+import ArchitectureSection from "@/components/case-study/ArchitectureSection";
+import ResultsSection from "@/components/case-study/ResultsSection";
+import Testimonial from "@/components/case-study/Testimonial";
+import CaseStudyCTA from "@/components/case-study/CaseStudyCTA";
+import { getCaseStudyDetails } from "@/lib/content";
 
 export async function generateStaticParams() {
   return getCaseStudyDetails().map((study) => ({

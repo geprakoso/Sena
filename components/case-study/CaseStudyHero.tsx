@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CaseStudyDetail } from "@/app/types";
+import type { CaseStudyDetail } from "@/types";
 
 export default function CaseStudyHero({ study }: { study: CaseStudyDetail }) {
   return (

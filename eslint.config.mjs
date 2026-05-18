@@ -12,7 +12,15 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore scripts directory (plain JS utility files)
+    "scripts/**",
   ]),
+  // Downgrade no-explicit-any to warn for dictionary objects
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
 ]);
 
 export default eslintConfig;

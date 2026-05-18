@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { getServices } from "@/app/data/content";
-import type { Service } from "@/app/types";
+import { getServices } from "@/lib/content";
+import type { Service } from "@/types";
 
-export default function ServicesSection({ dict = {} }: { dict?: any }) {
+export default function ServicesSection({ dict = {} }: { dict?: Record<string, any> }) {
   return (
     <section
       id="services"

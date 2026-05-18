@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "@/app/components/layout/Navbar";
-import Footer from "@/app/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Contact Us — Haen Software",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 import { getDictionary, getCurrentLang } from "@/lib/i18n";
-import ContactForm from "./ContactForm";
+import ContactForm from "@/components/ContactForm";
 
 export default async function ContactPage() {
   const dict = await getDictionary();

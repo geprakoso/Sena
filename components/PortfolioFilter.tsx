@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ProjectCard } from "@/app/components/case-study/ProjectCard";
-import { getPortfolioProjects } from "@/app/data/content";
+import { ProjectCard } from "@/components/case-study/ProjectCard";
+import { getPortfolioProjects } from "@/lib/content";
 
-export default function PortfolioFilter({ dict = {} }: { dict?: any }) {
+export default function PortfolioFilter({ dict = {} }: { dict?: Record<string, any> }) {
   const [activeTag, setActiveTag] = useState("All");
   const portfolioProjects = useMemo(() => getPortfolioProjects(dict), [dict]);
   const ALL_TAGS = useMemo(() => ["All", ...Array.from(new Set(portfolioProjects.map((p) => p.tag)))], [portfolioProjects]);
@@ -14,7 +14,7 @@ export default function PortfolioFilter({ dict = {} }: { dict?: any }) {
       activeTag === "All"
         ? portfolioProjects
         : portfolioProjects.filter((p) => p.tag === activeTag),
-    [activeTag]
+    [activeTag, portfolioProjects]
   );
 
   return (

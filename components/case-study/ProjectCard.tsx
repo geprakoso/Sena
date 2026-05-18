@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import type { PortfolioProject } from "@/app/types";
+import type { PortfolioProject } from "@/types";
 
 export const TAG_GRADIENTS: Record<string, string> = {
   Retail: "linear-gradient(135deg, #0e4a3a 0%, #1a6a50 100%)",
@@ -13,7 +13,7 @@ export const TAG_GRADIENTS: Record<string, string> = {
   EdTech: "linear-gradient(135deg, #1a2a3a 0%, #0e4a5a 100%)",
 };
 
-export function ProjectCard({ project, lightMode = false, dict = {} }: { project: PortfolioProject, lightMode?: boolean, dict?: any }) {
+export function ProjectCard({ project, lightMode = false, dict = {} }: { project: PortfolioProject, lightMode?: boolean, dict?: Record<string, any> }) {
   return (
     <article
       style={{

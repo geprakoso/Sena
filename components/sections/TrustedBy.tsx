@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { TRUSTED_COMPANIES } from "@/app/data/content";
+import { TRUSTED_COMPANIES } from "@/lib/content";
 
 export default function TrustedBy() {
   return (

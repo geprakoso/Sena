@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function CTASection({ dict = {} }: { dict?: any }) {
+export default function CTASection({ dict = {} }: { dict?: Record<string, any> }) {
   const TRUST_SIGNALS = [
     { icon: "shield", label: dict?.cta_section?.trust_shield || "No long-term lock-in" },
     { icon: "clock", label: dict?.cta_section?.trust_clock || "Response within 24h" },

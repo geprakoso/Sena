@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Navbar from "@/app/components/layout/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Link from "next/link";
-import Footer from "@/app/components/layout/Footer";
-import PortfolioFilter from "./PortfolioFilter";
+import Footer from "@/components/layout/Footer";
+import PortfolioFilter from "@/components/PortfolioFilter";
 
 export const metadata: Metadata = {
   title: "Portfolio — SolveCore",

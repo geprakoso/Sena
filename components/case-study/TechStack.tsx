@@ -1,4 +1,4 @@
-import type { CaseStudyDetail } from "@/app/types";
+import type { CaseStudyDetail } from "@/types";
 
 export default function TechStack({ study }: { study: CaseStudyDetail }) {
   return (

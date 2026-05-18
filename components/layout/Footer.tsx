@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Footer({ dict = {} }: { dict?: any }) {
+export default function Footer({ dict = {} }: { dict?: Record<string, any> }) {
   const year = new Date().getFullYear();
 
   return (

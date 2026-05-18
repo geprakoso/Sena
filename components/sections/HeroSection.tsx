@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function HeroSection({ dict = {} }: { dict?: any }) {
+export default function HeroSection({ dict = {} }: { dict?: Record<string, any> }) {
   return (
     <section
       id="home"
@@ -173,7 +173,7 @@ export default function HeroSection({ dict = {} }: { dict?: any }) {
   );
 }
 
-function DashboardMockup({ dict }: { dict?: any }) {
+function DashboardMockup({ dict }: { dict?: Record<string, any> }) {
   return (
     <div style={{
       background: "rgba(12, 26, 44, 0.85)",

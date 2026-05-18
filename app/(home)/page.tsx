@@ -1,11 +1,11 @@
-import Navbar from "@/app/components/layout/Navbar";
-import HeroSection from "@/app/components/sections/HeroSection";
-import TrustedBy from "@/app/components/sections/TrustedBy";
-import ServicesSection from "@/app/components/sections/ServicesSection";
-import ApproachSection from "@/app/components/sections/ApproachSection";
-import CaseStudiesSection from "@/app/components/sections/CaseStudiesSection";
-import CTASection from "@/app/components/sections/CTASection";
-import Footer from "@/app/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import HeroSection from "@/components/sections/HeroSection";
+import TrustedBy from "@/components/sections/TrustedBy";
+import ServicesSection from "@/components/sections/ServicesSection";
+import ApproachSection from "@/components/sections/ApproachSection";
+import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
+import CTASection from "@/components/sections/CTASection";
+import Footer from "@/components/layout/Footer";
 
 import { getDictionary, getCurrentLang } from "@/lib/i18n";
 
