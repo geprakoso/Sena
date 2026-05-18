@@ -12,8 +12,6 @@ export const getNavItems = (dict: Record<string, any>): NavItem[] => [
   { label: dict?.nav?.services || "Services", href: "/#services" },
   { label: dict?.nav?.portfolio || "Portfolio", href: "/portfolio" },
   { label: dict?.nav?.about_us || "About Us", href: "/#about" },
-  // { label: dict?.nav?.blog || "Blog", href: "/#blog" },
-  // { label: dict?.nav?.contact || "Contact", href: "/contact" },
 ];
 
 export const TRUSTED_COMPANIES = [

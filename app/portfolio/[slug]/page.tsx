@@ -14,9 +14,11 @@ import ResultsSection from "@/components/case-study/ResultsSection";
 import Testimonial from "@/components/case-study/Testimonial";
 import CaseStudyCTA from "@/components/case-study/CaseStudyCTA";
 import { getCaseStudyDetails } from "@/lib/content";
+import { getCaseStudyDetailBySlugFromDb } from "@/lib/case-studies-server";
 
 export async function generateStaticParams() {
-  return getCaseStudyDetails().map((study) => ({
+  const studies = getCaseStudyDetails();
+  return studies.map((study) => ({
     slug: study.slug,
   }));
 }
@@ -27,7 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const study = getCaseStudyDetails().find((s) => s.slug === slug);
+  const study = getCaseStudyDetailBySlugFromDb(slug) || getCaseStudyDetails().find((s) => s.slug === slug);
   if (!study) {
     return {
       title: "Case Study — SolveCore",
@@ -60,7 +62,7 @@ export default async function CaseStudyPage({
   const { slug } = await params;
   const dict = await getDictionary();
   const currentLang = await getCurrentLang();
-  const study = getCaseStudyDetails(dict).find((s) => s.slug === slug);
+  const study = getCaseStudyDetailBySlugFromDb(slug) || getCaseStudyDetails(dict).find((s) => s.slug === slug);
 
   if (!study) {
     notFound();
