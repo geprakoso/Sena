@@ -3,23 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sena App Flow</title>
+    <title>Sena App Flow Interactive</title>
     <style>
       :root {
-        --bg: #08111c;
-        --panel: rgba(10, 19, 31, 0.88);
-        --panel-soft: rgba(255, 255, 255, 0.04);
-        --panel-strong: rgba(255, 255, 255, 0.08);
-        --text: #edf4ff;
-        --muted: #9fb2c8;
-        --line: rgba(255, 255, 255, 0.09);
-        --accent: #ff6b4a;
-        --accent-soft: rgba(255, 107, 74, 0.16);
-        --accent-2: #26cdeb;
-        --good: #34d399;
-        --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-        --radius: 20px;
-        --radius-sm: 14px;
+        --bg: #071018;
+        --surface: rgba(12, 22, 32, 0.88);
+        --surface-2: rgba(255, 255, 255, 0.055);
+        --surface-3: rgba(255, 255, 255, 0.09);
+        --line: rgba(226, 232, 240, 0.12);
+        --line-strong: rgba(226, 232, 240, 0.22);
+        --text: #eef6ff;
+        --muted: #9fb1c4;
+        --soft: #c9d8e8;
+        --route: #ff704d;
+        --client: #28c7e8;
+        --data: #31d08a;
+        --external: #b794f6;
+        --warn: #f5c451;
+        --risk: #ff6b73;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.36);
+        --radius: 8px;
       }
 
       * {
@@ -32,12 +35,23 @@
 
       body {
         margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
+        min-height: 100vh;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background:
-          radial-gradient(circle at top right, rgba(255, 107, 74, 0.12), transparent 28%),
-          radial-gradient(circle at left center, rgba(38, 205, 235, 0.08), transparent 26%),
-          linear-gradient(180deg, #08111c 0%, #091521 100%);
+          linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+          radial-gradient(circle at 84% 12%, rgba(255, 112, 77, 0.2), transparent 28%),
+          radial-gradient(circle at 10% 52%, rgba(40, 199, 232, 0.12), transparent 30%),
+          linear-gradient(180deg, #071018 0%, #091521 54%, #08111c 100%);
+        background-size: 34px 34px, 34px 34px, auto, auto, auto;
         color: var(--text);
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
       }
 
       a {
@@ -45,205 +59,395 @@
       }
 
       .shell {
-        max-width: 1440px;
+        width: min(1500px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 32px 20px 56px;
+        padding: 28px 0 52px;
       }
 
       .hero {
-        padding: 28px;
+        min-height: 420px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+        gap: 30px;
+        align-items: stretch;
+        padding: 30px;
         border: 1px solid var(--line);
-        border-radius: 28px;
+        border-radius: var(--radius);
         background:
-          linear-gradient(135deg, rgba(255, 107, 74, 0.08), transparent 36%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+          linear-gradient(135deg, rgba(255, 112, 77, 0.14), transparent 36%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.026));
         box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
       .eyebrow {
         display: inline-flex;
+        width: fit-content;
         align-items: center;
         gap: 10px;
-        padding: 8px 14px;
-        border: 1px solid rgba(255, 107, 74, 0.35);
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 112, 77, 0.34);
         border-radius: 999px;
-        background: rgba(255, 107, 74, 0.08);
-        color: #ffd6cd;
+        background: rgba(255, 112, 77, 0.11);
+        color: #ffd9cf;
         font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-weight: 800;
+        letter-spacing: 0;
         text-transform: uppercase;
       }
 
       .eyebrow::before {
         content: "";
-        width: 8px;
-        height: 8px;
+        width: 9px;
+        height: 9px;
         border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 0 8px rgba(255, 107, 74, 0.14);
+        background: var(--route);
+        box-shadow: 0 0 0 7px rgba(255, 112, 77, 0.13);
       }
 
       h1 {
-        margin: 18px 0 12px;
-        font-size: clamp(32px, 5vw, 56px);
-        line-height: 1.03;
-        letter-spacing: -0.04em;
+        max-width: 920px;
+        margin: 18px 0 14px;
+        font-size: clamp(36px, 5.4vw, 72px);
+        line-height: 0.98;
+        letter-spacing: 0;
       }
 
       .lead {
-        max-width: 880px;
+        max-width: 840px;
+        margin: 0;
+        color: var(--soft);
+        font-size: clamp(16px, 2vw, 19px);
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .action {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface-2);
+        color: var(--text);
+        cursor: pointer;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .action:hover,
+      .action.active {
+        transform: translateY(-1px);
+        border-color: rgba(255, 112, 77, 0.48);
+        background: rgba(255, 112, 77, 0.14);
+      }
+
+      .action.primary {
+        border-color: rgba(255, 112, 77, 0.5);
+        background: var(--route);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 360px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          rgba(6, 14, 23, 0.46);
+        background-size: 26px 26px;
+        overflow: hidden;
+      }
+
+      .orbit {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 240px;
+        height: 240px;
+        border: 1px solid rgba(226, 232, 240, 0.15);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: rotate 18s linear infinite;
+      }
+
+      .orbit:nth-child(2) {
+        width: 330px;
+        height: 330px;
+        animation-duration: 26s;
+        animation-direction: reverse;
+      }
+
+      .orbit:nth-child(3) {
+        width: 420px;
+        height: 420px;
+        animation-duration: 34s;
+      }
+
+      .satellite {
+        position: absolute;
+        left: 50%;
+        top: -8px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background: var(--route);
+        box-shadow: 0 0 28px rgba(255, 112, 77, 0.9);
+      }
+
+      .satellite.client {
+        background: var(--client);
+        box-shadow: 0 0 28px rgba(40, 199, 232, 0.9);
+      }
+
+      .satellite.data {
+        background: var(--data);
+        box-shadow: 0 0 28px rgba(49, 208, 138, 0.85);
+      }
+
+      .core-card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: min(290px, calc(100% - 36px));
+        transform: translate(-50%, -50%);
+        padding: 18px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius);
+        background: rgba(8, 17, 28, 0.88);
+        box-shadow: 0 18px 70px rgba(0, 0, 0, 0.32);
+      }
+
+      .core-card strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .core-card p {
         margin: 0;
         color: var(--muted);
-        font-size: 18px;
-        line-height: 1.7;
+        font-size: 13px;
+        line-height: 1.6;
       }
 
       .stats {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 24px;
+        gap: 10px;
+        margin: 16px 0 22px;
       }
 
       .stat {
-        padding: 16px;
-        border-radius: var(--radius-sm);
-        background: var(--panel-soft);
+        min-height: 92px;
+        padding: 14px;
         border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
       }
 
       .stat b {
         display: block;
-        font-size: 22px;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
+        font-size: 24px;
       }
 
       .stat span {
         color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 12px;
+        line-height: 1.45;
       }
 
-      .layout {
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         display: grid;
-        grid-template-columns: 320px minmax(0, 1fr);
-        gap: 20px;
-        margin-top: 22px;
+        grid-template-columns: minmax(220px, 1fr) auto auto;
+        gap: 10px;
+        align-items: center;
+        margin: 0 0 16px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(7, 16, 24, 0.88);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 14px 50px rgba(0, 0, 0, 0.24);
+      }
+
+      .search {
+        width: 100%;
+        min-height: 42px;
+        padding: 0 13px;
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.055);
+        outline: none;
+      }
+
+      .search:focus {
+        border-color: rgba(40, 199, 232, 0.56);
+        box-shadow: 0 0 0 3px rgba(40, 199, 232, 0.13);
+      }
+
+      .main {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr) 330px;
+        gap: 16px;
+        align-items: start;
       }
 
       .panel {
-        background: var(--panel);
         border: 1px solid var(--line);
         border-radius: var(--radius);
+        background: var(--surface);
         box-shadow: var(--shadow);
       }
 
       .panel-head {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding: 18px 20px 0;
+        gap: 14px;
+        padding: 16px 16px 0;
       }
 
       .panel-head h2,
       .panel-head h3 {
         margin: 0;
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .panel-head span {
         color: var(--muted);
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.5;
       }
 
       .flow-list {
-        padding: 16px;
+        display: grid;
+        gap: 8px;
+        padding: 14px;
       }
 
       .flow-button {
+        position: relative;
         width: 100%;
+        min-height: 76px;
+        padding: 12px 12px 12px 15px;
         text-align: left;
-        margin-bottom: 10px;
-        padding: 14px 14px 14px 16px;
-        background: transparent;
-        color: var(--text);
         border: 1px solid var(--line);
-        border-radius: 14px;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--text);
         cursor: pointer;
-        transition: 0.2s ease;
+        overflow: hidden;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .flow-button::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4px;
+        background: var(--route);
+        opacity: 0;
+        transition: opacity 0.18s ease;
       }
 
       .flow-button:hover,
       .flow-button.active {
-        background: linear-gradient(135deg, rgba(255, 107, 74, 0.14), rgba(255, 255, 255, 0.02));
-        border-color: rgba(255, 107, 74, 0.35);
-        transform: translateY(-1px);
+        transform: translateX(2px);
+        border-color: rgba(255, 112, 77, 0.48);
+        background: rgba(255, 112, 77, 0.1);
+      }
+
+      .flow-button.active::before {
+        opacity: 1;
       }
 
       .flow-button strong {
         display: block;
-        margin-bottom: 6px;
-        font-size: 15px;
+        margin-bottom: 5px;
+        font-size: 14px;
       }
 
       .flow-button small {
         display: block;
         color: var(--muted);
-        line-height: 1.5;
+        line-height: 1.45;
       }
 
-      .workspace {
-        display: grid;
-        grid-template-rows: auto auto;
-        gap: 20px;
-      }
-
-      .graph-wrap {
-        padding: 18px;
+      .graph-panel {
+        min-width: 0;
       }
 
       .legend {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 8px;
-        color: var(--muted);
-        font-size: 12px;
+        gap: 8px;
+        padding: 12px 16px 0;
       }
 
       .legend span {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 7px 10px;
-        border-radius: 999px;
-        background: var(--panel-soft);
+        padding: 7px 9px;
         border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        font-size: 12px;
       }
 
       .dot {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
         border-radius: 999px;
-        display: inline-block;
+      }
+
+      .graph-stage {
+        padding: 16px;
+      }
+
+      .graph-viewport {
+        position: relative;
+        height: 690px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+          rgba(5, 13, 22, 0.52);
+        background-size: 28px 28px;
+        overflow: auto;
       }
 
       .graph {
         position: relative;
-        min-height: 620px;
-        margin-top: 16px;
-        border-radius: 18px;
-        background:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 28px 28px;
-        border: 1px solid var(--line);
-        overflow: auto;
+        transform-origin: 0 0;
+        transition: transform 0.25s ease;
       }
 
-      #edge-layer {
+      .edge-layer {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -252,86 +456,54 @@
       }
 
       .edge {
-        stroke: rgba(159, 178, 200, 0.34);
-        stroke-width: 2;
         fill: none;
+        stroke: rgba(159, 177, 196, 0.35);
+        stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
-        stroke-dasharray: 7 7;
+        stroke-dasharray: 8 9;
+        transition: stroke 0.2s ease, stroke-width 0.2s ease, opacity 0.2s ease;
       }
 
-      .edge.active {
-        stroke: rgba(255, 107, 74, 0.9);
+      .edge.is-lit {
+        stroke: var(--route);
         stroke-width: 3;
-        stroke-dasharray: none;
+        stroke-dasharray: 10 10;
+        animation: dash 0.9s linear infinite;
       }
 
-      .node {
-        position: absolute;
-        width: 190px;
-        min-height: 90px;
-        padding: 14px;
-        border-radius: 16px;
-        border: 1px solid var(--line);
-        background: rgba(9, 19, 31, 0.9);
-        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
-        transition: 0.2s ease;
+      .edge.is-muted {
+        opacity: 0.15;
       }
 
-      .node.active {
-        transform: translateY(-2px) scale(1.02);
-        border-color: rgba(255, 107, 74, 0.45);
-        box-shadow: 0 18px 40px rgba(255, 107, 74, 0.2);
-      }
-
-      .node-type {
-        display: inline-block;
-        margin-bottom: 8px;
-        padding: 4px 8px;
-        border-radius: 999px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .node h4 {
-        margin: 0 0 6px;
-        font-size: 14px;
-      }
-
-      .node p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.5;
+      .packet {
+        fill: #fff;
+        filter: drop-shadow(0 0 10px rgba(255, 112, 77, 0.9));
       }
 
       .lane {
         position: absolute;
-        top: 14px;
-        bottom: 14px;
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+        border: 1px solid rgba(255, 255, 255, 0.075);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
         pointer-events: none;
       }
 
       .lane-label {
         position: absolute;
-        top: 12px;
-        left: 12px;
+        top: 10px;
+        left: 10px;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 6px 10px;
+        gap: 7px;
+        padding: 6px 9px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 999px;
-        background: rgba(7, 14, 24, 0.82);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(5, 13, 22, 0.78);
         color: #dce8f8;
         font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
+        font-weight: 800;
+        letter-spacing: 0;
         text-transform: uppercase;
       }
 
@@ -340,188 +512,362 @@
         width: 8px;
         height: 8px;
         border-radius: 999px;
-        background: var(--lane-color, rgba(255, 255, 255, 0.4));
+        background: var(--lane-color);
       }
 
-      .type-entry .node-type,
-      .dot-entry {
-        background: rgba(255, 255, 255, 0.06);
+      .node {
+        position: absolute;
+        width: 190px;
+        min-height: 96px;
+        padding: 13px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(9, 18, 29, 0.94);
+        color: var(--text);
+        box-shadow: 0 14px 42px rgba(0, 0, 0, 0.26);
+        cursor: pointer;
+        transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .type-entry {
-        border-color: rgba(255, 255, 255, 0.1);
+      .node:hover,
+      .node.is-active {
+        transform: translateY(-3px);
+        border-color: rgba(255, 112, 77, 0.62);
+        box-shadow: 0 18px 48px rgba(255, 112, 77, 0.2);
       }
 
-      .type-route .node-type {
-        background: rgba(255, 107, 74, 0.14);
-        color: #ffd6cd;
+      .node.is-muted {
+        opacity: 0.23;
+      }
+
+      .node.is-playing {
+        animation: pulseNode 0.85s ease both;
+      }
+
+      .node-type {
+        display: inline-flex;
+        margin-bottom: 8px;
+        padding: 4px 7px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .node h4 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        line-height: 1.25;
+      }
+
+      .node p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.42;
       }
 
       .type-route {
-        border-color: rgba(255, 107, 74, 0.18);
+        border-color: rgba(255, 112, 77, 0.22);
       }
 
-      .type-client .node-type {
-        background: rgba(38, 205, 235, 0.14);
-        color: #c9f7ff;
+      .type-route .node-type {
+        color: #ffd9cf;
+        background: rgba(255, 112, 77, 0.16);
       }
 
       .type-client {
-        border-color: rgba(38, 205, 235, 0.18);
+        border-color: rgba(40, 199, 232, 0.22);
       }
 
-      .type-data .node-type {
-        background: rgba(52, 211, 153, 0.14);
-        color: #d2ffe8;
+      .type-client .node-type {
+        color: #cdf7ff;
+        background: rgba(40, 199, 232, 0.16);
       }
 
       .type-data {
-        border-color: rgba(52, 211, 153, 0.18);
+        border-color: rgba(49, 208, 138, 0.22);
       }
 
-      .type-external .node-type {
-        background: rgba(167, 139, 250, 0.14);
-        color: #ece3ff;
+      .type-data .node-type {
+        color: #d6ffe9;
+        background: rgba(49, 208, 138, 0.16);
       }
 
       .type-external {
-        border-color: rgba(167, 139, 250, 0.2);
+        border-color: rgba(183, 148, 246, 0.24);
       }
 
-      .details {
+      .type-external .node-type {
+        color: #efe6ff;
+        background: rgba(183, 148, 246, 0.16);
+      }
+
+      .inspector {
+        position: sticky;
+        top: 74px;
+      }
+
+      .inspector-body {
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 20px;
-        padding: 0 18px 18px;
+        gap: 12px;
+        padding: 14px;
       }
 
       .detail-card {
-        padding: 18px;
-        border-radius: 16px;
+        padding: 14px;
         border: 1px solid var(--line);
-        background: var(--panel-soft);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .detail-card h3 {
-        margin: 0 0 12px;
-        font-size: 16px;
+        margin: 0 0 9px;
+        font-size: 14px;
       }
 
       .detail-card p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .stack {
-        display: grid;
-        gap: 12px;
+        font-size: 13px;
+        line-height: 1.6;
       }
 
       .list {
         margin: 0;
         padding-left: 18px;
         color: var(--muted);
-        line-height: 1.7;
+        font-size: 13px;
+        line-height: 1.58;
       }
 
       .list li + li {
-        margin-top: 8px;
+        margin-top: 7px;
       }
 
-      .route-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 22px;
-      }
-
-      .route-card {
-        padding: 18px;
-        border-radius: 18px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      }
-
-      .route-card code,
-      .detail-card code {
-        color: #ffd3c9;
-        font-size: 13px;
-      }
-
-      .route-card h3 {
-        margin: 0 0 8px;
-        font-size: 16px;
-      }
-
-      .route-card p {
-        margin: 0 0 14px;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .pill-row {
+      .kbd-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 7px;
       }
 
       .pill {
-        padding: 7px 10px;
-        border-radius: 999px;
-        background: var(--panel-soft);
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 30px;
+        padding: 0 9px;
         border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface-2);
         color: var(--muted);
         font-size: 12px;
       }
 
-      .footer-note {
-        margin-top: 22px;
-        padding: 18px;
-        border-radius: 18px;
-        border: 1px solid rgba(255, 107, 74, 0.2);
-        background: rgba(255, 107, 74, 0.08);
-        color: #ffd8cf;
-        line-height: 1.7;
+      .pill strong {
+        color: var(--text);
       }
 
-      @media (max-width: 1180px) {
-        .stats {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+      code {
+        color: #ffd6ce;
+        font-size: 0.95em;
+      }
+
+      .audit {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .audit-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .audit-card header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .audit-card h2 {
+        margin: 0;
+        font-size: 17px;
+      }
+
+      .audit-card .body {
+        padding: 16px;
+      }
+
+      .finding {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 11px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.08);
+      }
+
+      .finding:last-child {
+        border-bottom: 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 74px;
+        height: 28px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .badge.ok {
+        color: #d6ffe9;
+        background: rgba(49, 208, 138, 0.14);
+        border: 1px solid rgba(49, 208, 138, 0.28);
+      }
+
+      .badge.warn {
+        color: #fff0bd;
+        background: rgba(245, 196, 81, 0.14);
+        border: 1px solid rgba(245, 196, 81, 0.3);
+      }
+
+      .badge.risk {
+        color: #ffd3d6;
+        background: rgba(255, 107, 115, 0.14);
+        border: 1px solid rgba(255, 107, 115, 0.3);
+      }
+
+      .finding strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      .finding p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.58;
+      }
+
+      @keyframes rotate {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -38;
+        }
+      }
+
+      @keyframes pulseNode {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 112, 77, 0.45);
+        }
+        100% {
+          box-shadow: 0 0 0 18px rgba(255, 112, 77, 0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
+      @media (max-width: 1250px) {
+        .hero {
+          grid-template-columns: 1fr;
         }
 
-        .layout,
-        .details {
-          grid-template-columns: 1fr;
+        .main {
+          grid-template-columns: 270px minmax(0, 1fr);
+        }
+
+        .inspector {
+          grid-column: 1 / -1;
+          position: static;
+        }
+
+        .inspector-body {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .stats {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
 
       @media (max-width: 900px) {
-        .route-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 720px) {
         .shell {
-          padding: 18px 14px 40px;
+          width: min(100% - 20px, 1500px);
+          padding-top: 12px;
+        }
+
+        .hero,
+        .panel,
+        .audit-card,
+        .toolbar {
+          border-radius: var(--radius);
         }
 
         .hero {
-          padding: 20px;
-          border-radius: 22px;
+          padding: 18px;
+        }
+
+        .toolbar {
+          position: static;
+          grid-template-columns: 1fr;
+        }
+
+        .main,
+        .audit {
+          grid-template-columns: 1fr;
+        }
+
+        .inspector-body {
+          grid-template-columns: 1fr;
         }
 
         .stats {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .graph {
-          min-height: 980px;
+        .graph-viewport {
+          height: 620px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 36px;
         }
 
-        .node {
-          width: 170px;
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 310px;
         }
       }
     </style>
@@ -529,632 +875,649 @@
   <body>
     <div class="shell">
       <section class="hero">
-        <div class="eyebrow">Export HTML interaktif</div>
-        <h1>Flow aplikasi dan relasi project Sena</h1>
-        <p class="lead">
-          Dokumen ini memetakan alur aplikasi berdasarkan implementasi di codebase:
-          routing App Router Next 16, sumber data campuran (static content + SQLite database),
-          i18n berbasis cookie, relasi antar halaman, komponen client/server, admin CRUD panel,
-          dan conversion flow menuju halaman contact.
-        </p>
-        <div class="stats">
-          <div class="stat"><b>7</b><span>route utama: `/`, `/portfolio`, `/portfolio/[slug]`, `/contact`, `/admin`, `/admin/new`, `/admin/[id]/edit`</span></div>
-          <div class="stat"><b>2</b><span>locale file: `en.lang` dan `id.lang`</span></div>
-          <div class="stat"><b>1</b><span>SQLite database: `data/case-studies.db` untuk case study dinamis</span></div>
-          <div class="stat"><b>24</b><span>komponen terorganisir: admin, case-study, layout, sections</span></div>
-          <div class="stat"><b>1</b><span>external conversion embed: Typeform live form</span></div>
-          <div class="stat"><b>2026-05-18</b><span>snapshot analisis project dengan struktur terkini</span></div>
+        <div class="hero-copy">
+          <div class="eyebrow">Interactive App Flow Audit</div>
+          <h1>Flow aplikasi Sena dengan graph animasi</h1>
+          <p class="lead">
+            Dokumen ini memetakan route, komponen client, server data layer, SQLite CRUD, i18n cookie,
+            dan conversion path. Gunakan playback, klik node, search, dan mode flow untuk melihat relasi
+            aktual dari codebase per 18 Mei 2026.
+          </p>
+          <div class="hero-actions">
+            <button class="action primary" type="button" data-scroll="#workspace">Mulai eksplorasi</button>
+            <button class="action" type="button" data-scroll="#audit">Lihat missing flow</button>
+            <button class="action" type="button" data-scroll="#routes">Route inventory</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit"><span class="satellite"></span></div>
+          <div class="orbit"><span class="satellite client"></span></div>
+          <div class="orbit"><span class="satellite data"></span></div>
+          <div class="core-card">
+            <strong>Next 16 App Router + SQLite</strong>
+            <p>
+              Public site memakai server pages dan dictionary file. Admin menulis case study ke SQLite,
+              lalu halaman detail membaca DB dengan fallback static content.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section class="layout">
+      <section class="stats" id="routes" aria-label="Project summary">
+        <div class="stat"><b>7</b><span>route utama: public, portfolio, detail slug, contact, dan admin CRUD</span></div>
+        <div class="stat"><b>2</b><span>dictionary file: <code>en.lang</code> dan <code>id.lang</code></span></div>
+        <div class="stat"><b>1</b><span>SQLite source: <code>data/case-studies.db</code></span></div>
+        <div class="stat"><b>24</b><span>komponen UI terbagi ke layout, section, case-study, dan admin</span></div>
+        <div class="stat"><b>1</b><span>external lead capture: Typeform embed</span></div>
+        <div class="stat"><b>5</b><span>temuan flow audit dicatat di bawah graph</span></div>
+      </section>
+
+      <section class="toolbar" aria-label="Graph controls">
+        <input class="search" id="search" type="search" placeholder="Cari node, file, route, atau relasi..." />
+        <button class="action primary" id="play" type="button">Play flow</button>
+        <button class="action" id="reset" type="button">Reset focus</button>
+      </section>
+
+      <section class="main" id="workspace">
         <aside class="panel">
           <div class="panel-head">
-            <h2>Mode Flow</h2>
-            <span>Pilih area relasi</span>
+            <div>
+              <h2>Mode Flow</h2>
+              <span>Pilih area untuk redraw graph</span>
+            </div>
           </div>
           <div id="flow-list" class="flow-list"></div>
         </aside>
 
-        <div class="workspace">
-          <section class="panel graph-wrap">
-            <div class="panel-head">
-              <div>
-                <h2 id="graph-title">Graph</h2>
-                <span id="graph-subtitle">Relasi halaman, data, dan interaksi</span>
+        <section class="panel graph-panel">
+          <div class="panel-head">
+            <div>
+              <h2 id="graph-title">Graph</h2>
+              <span id="graph-subtitle">Relasi halaman, data, dan interaksi</span>
+            </div>
+          </div>
+          <div class="legend">
+            <span><i class="dot" style="background: var(--route)"></i>Route / Server page</span>
+            <span><i class="dot" style="background: var(--client)"></i>Client interaction</span>
+            <span><i class="dot" style="background: var(--data)"></i>Data / server layer</span>
+            <span><i class="dot" style="background: var(--external)"></i>External / browser state</span>
+          </div>
+          <div class="graph-stage">
+            <div class="graph-viewport" id="viewport">
+              <div class="graph" id="graph">
+                <svg class="edge-layer" id="edge-layer"></svg>
               </div>
             </div>
-            <div class="legend">
-              <span><i class="dot" style="background:#ff6b4a"></i>Route / Server page</span>
-              <span><i class="dot" style="background:#26cdeb"></i>Client interaction</span>
-              <span><i class="dot" style="background:#34d399"></i>Data / content</span>
-              <span><i class="dot" style="background:#a78bfa"></i>External / browser state</span>
-            </div>
-            <div class="graph" id="graph">
-              <svg id="edge-layer" viewBox="0 0 1100 620" preserveAspectRatio="none"></svg>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section class="panel">
-            <div class="panel-head">
-              <div>
-                <h2 id="detail-title">Detail Flow</h2>
-                <span id="detail-subtitle">Ringkasan perilaku aktual di codebase</span>
-              </div>
+        <aside class="panel inspector">
+          <div class="panel-head">
+            <div>
+              <h2 id="detail-title">Inspector</h2>
+              <span id="detail-subtitle">Klik node untuk fokus relasi</span>
             </div>
-            <div class="details">
-              <div class="stack">
-                <div class="detail-card">
-                  <h3>Summary</h3>
-                  <p id="summary"></p>
-                </div>
-                <div class="detail-card">
-                  <h3>Journey</h3>
-                  <ol id="journey" class="list"></ol>
-                </div>
-              </div>
-              <div class="stack">
-                <div class="detail-card">
-                  <h3>Relasi Kunci</h3>
-                  <ul id="relations" class="list"></ul>
-                </div>
-                <div class="detail-card">
-                  <h3>Source Files</h3>
-                  <ul id="files" class="list"></ul>
-                </div>
-              </div>
+          </div>
+          <div class="inspector-body">
+            <div class="detail-card">
+              <h3>Summary</h3>
+              <p id="summary"></p>
             </div>
-          </section>
-        </div>
+            <div class="detail-card">
+              <h3>Journey</h3>
+              <ol id="journey" class="list"></ol>
+            </div>
+            <div class="detail-card">
+              <h3>Relasi Kunci</h3>
+              <ul id="relations" class="list"></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Source Files</h3>
+              <ul id="files" class="list"></ul>
+            </div>
+          </div>
+        </aside>
       </section>
 
-      <section class="route-grid">
-        <article class="route-card">
-          <h3>Route map</h3>
-          <p>Routing mengikuti App Router. Homepage memecah konten ke section anchor, sedangkan case study detail digenerate dari data slug statis dan database SQLite.</p>
-          <div class="pill-row">
-            <span class="pill"><code>/</code> home landing</span>
-            <span class="pill"><code>/portfolio</code> listing + filter</span>
-            <span class="pill"><code>/portfolio/[slug]</code> static detail + DB</span>
-            <span class="pill"><code>/contact</code> conversion page</span>
-            <span class="pill"><code>/admin</code> case study management</span>
-            <span class="pill"><code>/admin/new</code> create new</span>
-            <span class="pill"><code>/admin/[id]/edit</code> edit existing</span>
+      <section class="audit" id="audit">
+        <article class="audit-card">
+          <header>
+            <h2>Flow Audit</h2>
+            <span class="pill"><strong>5</strong> catatan</span>
+          </header>
+          <div class="body">
+            <div class="finding">
+              <span class="badge warn">Warn</span>
+              <div>
+                <strong>Language switch timing tidak persis seperti dokumentasi lama</strong>
+                <p>
+                  Di <code>Navbar</code>, <code>handleLangChange()</code> memanggil <code>setLang()</code> lalu
+                  <code>router.refresh()</code>. Cookie baru ditulis di <code>useEffect</code> setelah state berubah,
+                  jadi refresh bisa terjadi sebelum cookie benar-benar tersimpan.
+                </p>
+              </div>
+            </div>
+            <div class="finding">
+              <span class="badge warn">Warn</span>
+              <div>
+                <strong>Slug DB baru tidak masuk <code>generateStaticParams()</code></strong>
+                <p>
+                  <code>/portfolio/[slug]</code> membangun static params dari <code>getCaseStudyDetails()</code>
+                  static content, sedangkan admin menulis data baru ke SQLite. Runtime lookup DB tetap ada,
+                  tetapi build-time slug list tidak mencakup case study dari admin.
+                </p>
+              </div>
+            </div>
+            <div class="finding">
+              <span class="badge warn">Warn</span>
+              <div>
+                <strong>Revalidation public detail belum dicatat di action</strong>
+                <p>
+                  Create/update/delete hanya memanggil <code>revalidatePath('/admin')</code> dan edit path.
+                  Kalau halaman public detail/listing menjadi cached atau static, flow invalidasi
+                  <code>/portfolio</code> dan <code>/portfolio/[slug]</code> perlu eksplisit.
+                </p>
+              </div>
+            </div>
+            <div class="finding">
+              <span class="badge ok">Added</span>
+              <div>
+                <strong>Admin “View” dan admin layout sudah ditambahkan ke graph</strong>
+                <p>
+                  Flow lama belum menonjolkan link dari row admin ke public detail dan link
+                  <code>View Site</code> di layout admin. Keduanya sekarang ada di mode Admin/Public Bridge.
+                </p>
+              </div>
+            </div>
+            <div class="finding">
+              <span class="badge ok">Added</span>
+              <div>
+                <strong>Root metadata, env logo, scroll state, dan mobile menu ikut dipetakan</strong>
+                <p>
+                  Ini bukan route baru, tetapi penting untuk struktur global karena memengaruhi SEO,
+                  branding, dan navigasi client di semua halaman publik.
+                </p>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="route-card">
-          <h3>Anchor di homepage</h3>
-          <p>Navigasi internal home memakai anchor section. CTA primer membawa user ke route contact, sedangkan CTA sekunder tetap di landing dan mendorong eksplorasi portofolio.</p>
-          <div class="pill-row">
-            <span class="pill"><code>#home</code></span>
-            <span class="pill"><code>#services</code></span>
-            <span class="pill"><code>#about</code></span>
-            <span class="pill"><code>#case-studies</code></span>
-            <span class="pill"><code>#contact</code></span>
-          </div>
-        </article>
-
-        <article class="route-card">
-          <h3>I18n dan state global</h3>
-          <p>Bahasa aktif dibaca dari cookie `lang`. `Navbar` mengubah cookie lewat browser, lalu `router.refresh()` memaksa server component memuat dictionary baru dari file `.lang`.</p>
-          <div class="pill-row">
-            <span class="pill"><code>cookies().get("lang")</code></span>
-            <span class="pill"><code>document.cookie = lang=...</code></span>
-            <span class="pill"><code>router.refresh()</code></span>
-            <span class="pill"><code>en.lang / id.lang</code></span>
-          </div>
-        </article>
-
-        <article class="route-card">
-          <h3>Data source utama</h3>
-          <p>Konten aplikasi berasal dari dua sumber: `lib/content.ts` untuk data statis (services, approach, nav items) dan SQLite database `data/case-studies.db` untuk case study dinamis yang dikelola via admin panel.</p>
-          <div class="pill-row">
-            <span class="pill"><code>getServices(dict)</code></span>
-            <span class="pill"><code>getApproachSteps(dict)</code></span>
-            <span class="pill"><code>getPortfolioProjects(dict)</code></span>
-            <span class="pill"><code>getCaseStudyDetailBySlugFromDb(slug)</code></span>
-            <span class="pill"><code>SQLite DB</code></span>
-          </div>
-        </article>
-
-        <article class="route-card">
-          <h3>Admin CRUD flow</h3>
-          <p>Admin panel memiliki layout terpisah (`app/admin/layout.tsx`) dengan dashboard untuk manage case studies. CRUD operations menggunakan server actions (`lib/actions.ts`) yang berkomunikasi langsung dengan SQLite via `lib/db.ts`.</p>
-          <div class="pill-row">
-            <span class="pill"><code>createCaseStudy()</code></span>
-            <span class="pill"><code>updateCaseStudyAction()</code></span>
-            <span class="pill"><code>deleteCaseStudyAction()</code></span>
-            <span class="pill"><code>revalidatePath()</code></span>
-            <span class="pill"><code>file upload</code></span>
-          </div>
-        </article>
-
-        <article class="route-card">
-          <h3>Component architecture</h3>
-          <p>Komponen terorganisir dalam 4 kategori: `admin/` (form, delete button), `case-study/` (13 components untuk detail page), `layout/` (Navbar, Footer), dan `sections/` (6 homepage sections). Semua ada di folder `components/` root.</p>
-          <div class="pill-row">
-            <span class="pill"><code>components/admin/</code> 3 files</span>
-            <span class="pill"><code>components/case-study/</code> 13 files</span>
-            <span class="pill"><code>components/layout/</code> 2 files</span>
-            <span class="pill"><code>components/sections/</code> 6 files</span>
+        <article class="audit-card">
+          <header>
+            <h2>Route Inventory</h2>
+            <span class="pill">Next App Router</span>
+          </header>
+          <div class="body">
+            <div class="kbd-row">
+              <span class="pill"><code>/</code> home landing</span>
+              <span class="pill"><code>/portfolio</code> listing + filter</span>
+              <span class="pill"><code>/portfolio/[slug]</code> DB + static fallback</span>
+              <span class="pill"><code>/contact</code> Typeform conversion</span>
+              <span class="pill"><code>/admin</code> CRUD dashboard</span>
+              <span class="pill"><code>/admin/new</code> create form</span>
+              <span class="pill"><code>/admin/[id]/edit</code> edit form</span>
+              <span class="pill"><code>#home</code> anchor</span>
+              <span class="pill"><code>#services</code> anchor</span>
+              <span class="pill"><code>#about</code> anchor</span>
+              <span class="pill"><code>#case-studies</code> anchor</span>
+              <span class="pill"><code>#contact</code> anchor</span>
+            </div>
           </div>
         </article>
       </section>
-
-      <div class="footer-note">
-        Contact page saat ini adalah titik conversion utama. Route ini tidak muncul di `getNavItems()`,
-        jadi akses utama ke `/contact` datang dari CTA di hero, CTA section, case study CTA, dan tombol
-        "Let's Talk" di navbar. Admin panel (`/admin`) memiliki layout terpisah dan mengelola case studies
-        via SQLite database dengan server actions untuk CRUD operations + file upload. Footer juga masih
-        berisi beberapa tautan placeholder seperti sosial `#twitter`, `#linkedin`, `#github`, serta legal links `#`.
-      </div>
     </div>
 
     <script>
       const nodeCatalog = {
-        browser: { type: "external", title: "Browser / User", desc: "Source interaksi klik, scroll, cookie, navigation." },
-        navbar: { type: "client", title: "Navbar", desc: "Client component: scroll state, mobile menu, switch language." },
-        home: { type: "route", title: "/", desc: "Home server page + section anchors." },
-        portfolio: { type: "route", title: "/portfolio", desc: "Portfolio listing dengan hero, filter, CTA." },
-        caseStudy: { type: "route", title: "/portfolio/[slug]", desc: "Case study detail berdasarkan slug (DB + static fallback)." },
-        contact: { type: "route", title: "/contact", desc: "Conversion page berisi info kontak + Typeform." },
-        adminDashboard: { type: "route", title: "/admin", desc: "Admin dashboard untuk manage case studies." },
-        adminNew: { type: "route", title: "/admin/new", desc: "Create new case study form." },
-        adminEdit: { type: "route", title: "/admin/[id]/edit", desc: "Edit existing case study form." },
-        footer: { type: "client", title: "Footer", desc: "Shared links, contact info, social placeholders." },
-        portfolioFilter: { type: "client", title: "PortfolioFilter", desc: "Client state `activeTag`, memfilter daftar project." },
-        contactForm: { type: "client", title: "ContactForm", desc: "Client wrapper untuk embed script Typeform." },
-        caseStudyForm: { type: "client", title: "CaseStudyForm", desc: "Admin form component untuk create/edit case study." },
-        deleteButton: { type: "client", title: "DeleteButton", desc: "Admin component untuk delete confirmation." },
-        content: { type: "data", title: "lib/content.ts", desc: "Source services, projects, nav items, approach steps." },
-        i18n: { type: "data", title: "lib/i18n.ts", desc: "Read cookie lang lalu load file dictionary." },
-        langFiles: { type: "data", title: "en.lang / id.lang", desc: "Konten terjemahan yang di-parse JSON." },
-        sqliteDB: { type: "data", title: "data/case-studies.db", desc: "SQLite database untuk case study dinamis." },
-        dbLib: { type: "data", title: "lib/db.ts", desc: "Database connection + CRUD operations." },
-        caseStudiesServer: { type: "data", title: "lib/case-studies-server.ts", desc: "Server-side case study retrieval dari DB." },
-        serverActions: { type: "data", title: "lib/actions.ts", desc: "Server actions: create, update, delete case study + file upload." },
-        slugParams: { type: "data", title: "generateStaticParams", desc: "Bangun slug statis dari data case study." },
-        metadata: { type: "data", title: "generateMetadata", desc: "SEO title/description per slug." },
-        typeform: { type: "external", title: "Typeform Embed", desc: "External script `embed.js` + live form id." },
-        types: { type: "data", title: "types/index.ts", desc: "Type definitions untuk semua data structures." }
+        browser: { type: "external", title: "Browser / User", desc: "Entry klik, scroll, navigation, cookie, dan form submission eksternal." },
+        rootLayout: { type: "route", title: "app/layout.tsx", desc: "Root HTML, Inter font, metadata global, dan body wrapper." },
+        metadataGlobal: { type: "data", title: "Global Metadata", desc: "SEO default: title, description, OpenGraph, Twitter card." },
+        envBrand: { type: "data", title: "Env Branding", desc: "NEXT_PUBLIC_LOGO_NAME dan NEXT_PUBLIC_LOGO_URL dipakai Navbar." },
+        navbar: { type: "client", title: "Navbar", desc: "Scroll state, active pathname, CTA, language switch, mobile menu." },
+        mobileMenu: { type: "client", title: "Mobile Menu", desc: "Hamburger state dan mobile nav link close behavior." },
+        footer: { type: "client", title: "Footer", desc: "Shared footer, contact info, dan beberapa placeholder social/legal." },
+        home: { type: "route", title: "/", desc: "Landing page: hero, trusted, services, approach, cases, CTA." },
+        portfolio: { type: "route", title: "/portfolio", desc: "Portfolio listing server page + client filter." },
+        caseStudy: { type: "route", title: "/portfolio/[slug]", desc: "Detail case study, DB-first dengan static fallback." },
+        contact: { type: "route", title: "/contact", desc: "Conversion page dengan contact info dan Typeform embed." },
+        adminLayout: { type: "route", title: "app/admin/layout.tsx", desc: "Layout admin terpisah dengan nav dashboard dan View Site." },
+        adminDashboard: { type: "route", title: "/admin", desc: "Dashboard table dari SQLite, action View/Edit/Delete." },
+        adminNew: { type: "route", title: "/admin/new", desc: "Create case study form." },
+        adminEdit: { type: "route", title: "/admin/[id]/edit", desc: "Edit case study berdasarkan id." },
+        adminView: { type: "route", title: "Admin View Link", desc: "Row admin membuka /portfolio/{slug} di tab baru." },
+        portfolioFilter: { type: "client", title: "PortfolioFilter", desc: "activeTag client state, filter project cards." },
+        projectCard: { type: "client", title: "ProjectCard", desc: "Card portfolio yang mengarah ke href detail slug." },
+        contactForm: { type: "client", title: "ContactForm", desc: "Client wrapper untuk next/script Typeform embed." },
+        caseStudyForm: { type: "client", title: "CaseStudyForm", desc: "Reusable create/edit form dengan field kompleks dan upload." },
+        deleteButton: { type: "client", title: "DeleteButton", desc: "Client confirmation sebelum delete action." },
+        content: { type: "data", title: "lib/content.ts", desc: "Nav, services, approach, portfolio project, static case detail." },
+        i18n: { type: "data", title: "lib/i18n.ts", desc: "cookies(), fs.readFileSync, JSON parse, fallback en.lang." },
+        langFiles: { type: "data", title: "en.lang / id.lang", desc: "Dictionary JSON untuk copy halaman." },
+        sqliteDB: { type: "data", title: "data/case-studies.db", desc: "SQLite database dan WAL files untuk dynamic cases." },
+        dbLib: { type: "data", title: "lib/db.ts", desc: "better-sqlite3 connection, schema init, CRUD primitives." },
+        caseStudiesServer: { type: "data", title: "case-studies-server.ts", desc: "Mapper row SQLite ke CaseStudyDetail." },
+        serverActions: { type: "data", title: "lib/actions.ts", desc: "create/update/delete, upload file, revalidate, redirect." },
+        uploadDir: { type: "data", title: "public/images/case-studies", desc: "Target upload image per slug dan subfolder architecture." },
+        slugParams: { type: "data", title: "generateStaticParams", desc: "Slug build-time dari static getCaseStudyDetails()." },
+        metadata: { type: "data", title: "generateMetadata", desc: "SEO detail slug, DB lookup dengan fallback static." },
+        notFound: { type: "route", title: "notFound()", desc: "Fallback route ketika id atau slug tidak ditemukan." },
+        typeform: { type: "external", title: "Typeform Embed", desc: "https://embed.typeform.com/next/embed.js + live form id." },
+        types: { type: "data", title: "types/index.ts", desc: "Contracts data untuk UI, content, DB mapper, dan form." },
+        revalidate: { type: "data", title: "revalidatePath()", desc: "Invalidasi route setelah server action." }
+      };
+
+      const baseLanes = {
+        entry: { label: "Entry", x: 20, y: 14, width: 190, height: 720, color: "var(--external)" },
+        shell: { label: "Global Shell", x: 230, y: 14, width: 210, height: 720, color: "var(--client)" },
+        route: { label: "Public Routes", x: 460, y: 14, width: 210, height: 720, color: "var(--route)" },
+        admin: { label: "Admin Routes", x: 690, y: 14, width: 210, height: 720, color: "var(--route)" },
+        data: { label: "Data Layer", x: 920, y: 14, width: 220, height: 720, color: "var(--data)" },
+        external: { label: "External / Output", x: 1160, y: 14, width: 220, height: 720, color: "var(--external)" }
       };
 
       const flows = {
         overview: {
           label: "Overview",
-          teaser: "Peta lengkap route, data, dan komponen global.",
-          title: "Overview aplikasi",
-          subtitle: "Semua relasi utama yang aktif di project",
-          summary: "Aplikasi ini adalah website company profile berbasis Next App Router dengan admin panel. Relasi utamanya berpusat pada shared layout parts (`Navbar`, `Footer`), server-rendered page routes, content statis dari `lib/content.ts`, case studies dinamis dari SQLite database `data/case-studies.db`, i18n berbasis cookie+file JSON, admin CRUD via server actions, lalu conversion akhir ke contact form eksternal.",
+          teaser: "Route, shared shell, data, admin, dan conversion.",
+          title: "Overview aplikasi Sena",
+          subtitle: "Peta utama berdasarkan struktur file terkini",
+          summary:
+            "Aplikasi adalah company profile Next 16 App Router dengan public pages, admin CRUD panel, i18n file-based, dan SQLite case studies. Public route memakai Navbar/Footer, dictionary dari cookie lang, content statis dari lib/content.ts, dan detail case study membaca SQLite lebih dulu lalu fallback ke static content.",
           journey: [
-            "User masuk dari browser ke salah satu route utama: `/`, `/portfolio`, `/portfolio/[slug]`, atau `/contact`.",
-            "Setiap page memuat `Navbar` dan `Footer`, sementara route server mengambil `dict` lewat `getDictionary()` dan bahasa aktif lewat `getCurrentLang()`.",
-            "Homepage mengarahkan user ke anchor section atau ke route contact; portfolio mengarahkan ke detail case study; detail case study mengarahkan balik ke portfolio atau ke contact.",
-            "Contact page memuat `ContactForm` yang menyisipkan Typeform embed script sebagai titik conversion.",
-            "Admin panel (`/admin`) memiliki layout terpisah, mengelola case studies via SQLite dengan server actions untuk CRUD + file upload."
+            "Browser masuk lewat public route atau admin route.",
+            "Root layout menyiapkan metadata global dan font, lalu tiap page memasang layout publik atau admin.",
+            "Public pages memuat Navbar/Footer, dictionary, dan content atau DB sesuai route.",
+            "Portfolio listing memakai client filter, detail slug memakai DB-first lookup, contact memuat Typeform.",
+            "Admin create/update/delete menulis SQLite dan upload image ke public folder."
           ],
           relations: [
-            "`Navbar` adalah pusat navigasi, switch language, CTA global, dan state scroll/mobile menu.",
-            "`lib/i18n.ts` membaca cookie `lang`, lalu load `${lang}.lang`, fallback ke `en.lang` bila gagal.",
-            "`lib/content.ts` memasok daftar service, approach, project portfolio, dan fallback case study.",
-            "`data/case-studies.db` adalah sumber utama untuk case study detail, dikelola via admin panel.",
-            "`/portfolio/[slug]` memakai `generateStaticParams()`, `generateMetadata()`, dan `notFound()` untuk slug tidak valid. Data prioritas dari DB, fallback ke content.ts.",
-            "Admin CRUD menggunakan `lib/actions.ts` (server actions) → `lib/db.ts` → SQLite database."
+            "Navbar mengikat nav item, CTA contact, language switch, mobile menu, env logo, dan active pathname.",
+            "Case study detail adalah titik temu static content, SQLite, metadata, static params, dan notFound().",
+            "Admin panel punya layout sendiri dan dapat membuka public detail melalui View link.",
+            "Typeform adalah terminal lead capture eksternal; tidak ada API submit lokal."
           ],
           files: [
-            "`app/layout.tsx`",
-            "`app/(home)/page.tsx`",
-            "`app/portfolio/page.tsx`",
-            "`app/portfolio/[slug]/page.tsx`",
-            "`app/contact/page.tsx`",
-            "`app/admin/page.tsx`",
-            "`app/admin/new/page.tsx`",
-            "`app/admin/[id]/edit/page.tsx`",
-            "`app/admin/layout.tsx`",
-            "`components/layout/Navbar.tsx`",
-            "`components/layout/Footer.tsx`",
-            "`lib/i18n.ts`",
-            "`lib/content.ts`",
-            "`lib/db.ts`",
-            "`lib/case-studies-server.ts`",
-            "`lib/actions.ts`",
-            "`data/case-studies.db`"
+            "`app/layout.tsx`", "`app/(home)/page.tsx`", "`app/portfolio/page.tsx`",
+            "`app/portfolio/[slug]/page.tsx`", "`app/contact/page.tsx`", "`app/admin/*`",
+            "`components/layout/Navbar.tsx`", "`lib/actions.ts`", "`lib/db.ts`", "`lib/i18n.ts`"
           ],
-          canvas: { width: 1380, height: 900 },
-          lanes: [
-            { label: "Entry", x: 20, y: 14, width: 200, height: 872, color: "#a78bfa" },
-            { label: "Shared Client", x: 240, y: 14, width: 220, height: 872, color: "#26cdeb" },
-            { label: "Routes", x: 480, y: 14, width: 220, height: 872, color: "#ff6b4a" },
-            { label: "Admin Routes", x: 720, y: 14, width: 220, height: 872, color: "#ff6b4a" },
-            { label: "Data Layer", x: 960, y: 14, width: 200, height: 872, color: "#34d399" },
-            { label: "External / Output", x: 1180, y: 14, width: 180, height: 872, color: "#a78bfa" }
-          ],
+          canvas: { width: 1400, height: 750 },
+          lanes: Object.values(baseLanes),
           positions: {
-            browser: { x: 36, y: 400 },
-            navbar: { x: 256, y: 80 },
-            portfolioFilter: { x: 256, y: 300 },
-            footer: { x: 256, y: 620 },
-            home: { x: 496, y: 52 },
-            portfolio: { x: 496, y: 220 },
-            caseStudy: { x: 496, y: 388 },
-            contact: { x: 496, y: 556 },
-            adminDashboard: { x: 736, y: 80 },
-            adminNew: { x: 736, y: 248 },
-            adminEdit: { x: 736, y: 416 },
-            caseStudyForm: { x: 736, y: 584 },
-            deleteButton: { x: 736, y: 752 },
-            content: { x: 976, y: 80 },
-            i18n: { x: 976, y: 248 },
-            sqliteDB: { x: 976, y: 416 },
-            dbLib: { x: 976, y: 584 },
-            caseStudiesServer: { x: 976, y: 752 },
-            langFiles: { x: 1196, y: 248 },
-            serverActions: { x: 1196, y: 416 },
-            slugParams: { x: 1196, y: 584 },
-            metadata: { x: 1196, y: 752 },
-            contactForm: { x: 1196, y: 80 },
-            typeform: { x: 1196, y: 148 },
-            types: { x: 976, y: 880 }
+            browser: { x: 36, y: 318 },
+            rootLayout: { x: 246, y: 68 },
+            navbar: { x: 246, y: 214 },
+            mobileMenu: { x: 246, y: 360 },
+            footer: { x: 246, y: 506 },
+            home: { x: 476, y: 76 },
+            portfolio: { x: 476, y: 222 },
+            caseStudy: { x: 476, y: 368 },
+            contact: { x: 476, y: 514 },
+            adminLayout: { x: 706, y: 64 },
+            adminDashboard: { x: 706, y: 210 },
+            adminNew: { x: 706, y: 356 },
+            adminEdit: { x: 706, y: 502 },
+            content: { x: 936, y: 54 },
+            i18n: { x: 936, y: 176 },
+            dbLib: { x: 936, y: 298 },
+            caseStudiesServer: { x: 936, y: 420 },
+            serverActions: { x: 936, y: 542 },
+            langFiles: { x: 1176, y: 176 },
+            sqliteDB: { x: 1176, y: 298 },
+            typeform: { x: 1176, y: 514 },
+            metadataGlobal: { x: 1176, y: 54 },
+            uploadDir: { x: 1176, y: 636 }
           },
-          nodes: ["browser", "navbar", "home", "portfolio", "caseStudy", "contact", "adminDashboard", "adminNew", "adminEdit", "footer", "portfolioFilter", "caseStudyForm", "deleteButton", "content", "i18n", "langFiles", "sqliteDB", "dbLib", "caseStudiesServer", "serverActions", "slugParams", "metadata", "contactForm", "typeform", "types"],
+          nodes: [
+            "browser", "rootLayout", "navbar", "mobileMenu", "footer", "home", "portfolio", "caseStudy", "contact",
+            "adminLayout", "adminDashboard", "adminNew", "adminEdit", "content", "i18n", "dbLib", "caseStudiesServer",
+            "serverActions", "langFiles", "sqliteDB", "typeform", "metadataGlobal", "uploadDir"
+          ],
           edges: [
-            ["browser", "navbar"], ["browser", "home"], ["browser", "portfolio"], ["browser", "caseStudy"], ["browser", "contact"],
-            ["browser", "adminDashboard"], ["browser", "adminNew"], ["browser", "adminEdit"],
-            ["navbar", "home"], ["navbar", "portfolio"], ["navbar", "caseStudy"], ["navbar", "contact"],
+            ["browser", "rootLayout"], ["rootLayout", "metadataGlobal"], ["rootLayout", "home"],
+            ["browser", "navbar"], ["navbar", "mobileMenu"], ["navbar", "home"], ["navbar", "portfolio"], ["navbar", "contact"],
             ["home", "footer"], ["portfolio", "footer"], ["caseStudy", "footer"], ["contact", "footer"],
-            ["home", "i18n"], ["portfolio", "i18n"], ["caseStudy", "i18n"], ["contact", "i18n"],
-            ["i18n", "langFiles"],
-            ["home", "content"], ["portfolio", "content"], ["caseStudy", "content"],
-            ["portfolio", "portfolioFilter"], ["portfolioFilter", "content"],
-            ["caseStudy", "slugParams"], ["caseStudy", "metadata"], ["slugParams", "content"], ["metadata", "content"],
-            ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "sqliteDB"], ["caseStudiesServer", "dbLib"],
-            ["contact", "contactForm"], ["contactForm", "typeform"],
-            ["adminDashboard", "dbLib"], ["adminDashboard", "deleteButton"],
-            ["adminNew", "caseStudyForm"], ["adminEdit", "caseStudyForm"],
-            ["caseStudyForm", "serverActions"], ["deleteButton", "serverActions"],
-            ["serverActions", "dbLib"], ["dbLib", "sqliteDB"],
-            ["serverActions", "content"], ["caseStudyForm", "types"], ["dbLib", "types"]
+            ["home", "content"], ["portfolio", "content"], ["caseStudy", "content"], ["home", "i18n"], ["portfolio", "i18n"], ["caseStudy", "i18n"], ["contact", "i18n"],
+            ["i18n", "langFiles"], ["portfolio", "caseStudy"], ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "dbLib"], ["dbLib", "sqliteDB"],
+            ["contact", "typeform"], ["browser", "adminLayout"], ["adminLayout", "adminDashboard"], ["adminDashboard", "adminNew"], ["adminDashboard", "adminEdit"],
+            ["adminNew", "serverActions"], ["adminEdit", "serverActions"], ["serverActions", "dbLib"], ["serverActions", "uploadDir"]
           ]
         },
-        landing: {
-          label: "Landing Page",
-          teaser: "Homepage sebagai jalur discovery utama.",
-          title: "Flow homepage `/`",
-          subtitle: "Hero -> section anchors -> CTA menuju portfolio/contact",
-          summary: "Homepage adalah entry point utama untuk discovery. Page server `app/(home)/page.tsx` menyusun `HeroSection`, `TrustedBy`, `ServicesSection`, `ApproachSection`, `CaseStudiesSection`, dan `CTASection`. Relasinya cenderung satu arah: user melihat value proposition, eksplorasi section, lalu pindah ke portfolio atau contact.",
+        public: {
+          label: "Public Journey",
+          teaser: "Discovery dari landing sampai contact.",
+          title: "Public journey",
+          subtitle: "Homepage -> portfolio -> detail -> contact",
+          summary:
+            "Public journey dimulai dari landing page, bergerak ke portfolio listing, masuk ke detail case study, lalu berakhir di contact page. Shared Navbar/Footer membuat navigasi konsisten, sementara semua route publik membaca dictionary dari cookie lang.",
           journey: [
-            "Server memanggil `getDictionary()` dan `getCurrentLang()` lalu render `Navbar` dan section homepage.",
-            "Hero CTA primer mengarahkan ke `/contact`, sedangkan CTA sekunder ke `#case-studies`.",
-            "Navbar item `Services` menuju `/#services`, `About Us` ke `/#about`, dan `Portfolio` ke `/portfolio`.",
-            "`CaseStudiesSection` menampilkan project dari `getPortfolioProjects(dict).slice(0, 3)` dan mendorong user ke listing penuh `/portfolio`."
+            "User masuk ke `/` dan melihat section landing.",
+            "Navbar atau CTA membawa user ke `/portfolio` atau langsung `/contact`.",
+            "PortfolioFilter memfilter ProjectCard dan ProjectCard membuka `/portfolio/haen-komputer`.",
+            "Detail case study menampilkan narasi panjang dan CTA akhir ke `/contact`.",
+            "ContactForm memuat Typeform external."
           ],
           relations: [
-            "Anchor homepage yang benar-benar ada: `#home`, `#services`, `#about`, `#case-studies`, `#contact`.",
-            "`CTASection` menutup halaman dengan CTA ganda ke `/contact` dan `#case-studies`.",
-            "Semua copy homepage bergantung pada `dict`, bukan hardcoded murni.",
-            "Relasi visual bersifat server-first; homepage hampir seluruhnya server component."
+            "Anchor homepage: `#home`, `#services`, `#about`, `#case-studies`, `#contact`.",
+            "`getPortfolioProjects(dict)` memasok card portfolio static.",
+            "`CaseStudyCTA` dan CTA strip portfolio sama-sama mengarah ke contact.",
+            "Contact submission tidak masuk backend repo ini."
           ],
           files: [
-            "`app/(home)/page.tsx`",
-            "`components/sections/HeroSection.tsx`",
-            "`components/sections/ServicesSection.tsx`",
-            "`components/sections/ApproachSection.tsx`",
-            "`components/sections/CaseStudiesSection.tsx`",
-            "`components/sections/CTASection.tsx`"
+            "`app/(home)/page.tsx`", "`app/portfolio/page.tsx`", "`app/portfolio/[slug]/page.tsx`",
+            "`app/contact/page.tsx`", "`components/PortfolioFilter.tsx`", "`components/ContactForm.tsx`"
           ],
-          canvas: { width: 1040, height: 520 },
+          canvas: { width: 1160, height: 610 },
           lanes: [
-            { label: "Entry", x: 20, y: 14, width: 190, height: 492, color: "#a78bfa" },
-            { label: "Shared Client", x: 230, y: 14, width: 200, height: 492, color: "#26cdeb" },
-            { label: "Route", x: 450, y: 14, width: 200, height: 492, color: "#ff6b4a" },
-            { label: "Data", x: 670, y: 14, width: 180, height: 492, color: "#34d399" },
-            { label: "Dictionary", x: 870, y: 14, width: 150, height: 492, color: "#34d399" }
+            { label: "Entry", x: 20, y: 14, width: 190, height: 582, color: "var(--external)" },
+            { label: "Shared Client", x: 230, y: 14, width: 210, height: 582, color: "var(--client)" },
+            { label: "Routes", x: 460, y: 14, width: 220, height: 582, color: "var(--route)" },
+            { label: "Content", x: 700, y: 14, width: 200, height: 582, color: "var(--data)" },
+            { label: "Conversion", x: 920, y: 14, width: 220, height: 582, color: "var(--external)" }
           ],
           positions: {
-            browser: { x: 34, y: 206 },
-            navbar: { x: 244, y: 74 },
-            footer: { x: 244, y: 334 },
-            home: { x: 464, y: 206 },
-            content: { x: 684, y: 206 },
-            i18n: { x: 684, y: 74 },
-            langFiles: { x: 884, y: 74 }
+            browser: { x: 36, y: 254 },
+            navbar: { x: 246, y: 84 },
+            footer: { x: 246, y: 424 },
+            portfolioFilter: { x: 246, y: 254 },
+            home: { x: 476, y: 70 },
+            portfolio: { x: 476, y: 214 },
+            caseStudy: { x: 476, y: 358 },
+            contact: { x: 476, y: 502 },
+            content: { x: 716, y: 214 },
+            i18n: { x: 716, y: 70 },
+            caseStudiesServer: { x: 716, y: 358 },
+            contactForm: { x: 936, y: 358 },
+            typeform: { x: 936, y: 502 },
+            langFiles: { x: 936, y: 70 }
           },
-          nodes: ["browser", "navbar", "home", "footer", "content", "i18n", "langFiles"],
+          nodes: ["browser", "navbar", "footer", "portfolioFilter", "home", "portfolio", "caseStudy", "contact", "content", "i18n", "caseStudiesServer", "contactForm", "typeform", "langFiles"],
           edges: [
-            ["browser", "navbar"], ["browser", "home"], ["navbar", "home"], ["home", "footer"],
-            ["home", "content"], ["home", "i18n"], ["i18n", "langFiles"]
-          ]
-        },
-        portfolio: {
-          label: "Portfolio",
-          teaser: "Listing project, filter tag, dan pintu masuk ke detail.",
-          title: "Flow portfolio `/portfolio`",
-          subtitle: "Server page + client filter + link ke slug detail",
-          summary: "Halaman portfolio adalah lapisan evaluasi. Server page menyiapkan hero dan CTA strip, lalu menyerahkan interaksi listing ke `PortfolioFilter`, sebuah client component yang menyimpan `activeTag` dan menyaring hasil dari `getPortfolioProjects(dict)`.",
-          journey: [
-            "Server page memuat dictionary dan render `Navbar`, hero portfolio, serta `PortfolioFilter`.",
-            "`PortfolioFilter` membentuk `ALL_TAGS` dari daftar project dan state awal `activeTag = 'All'`.",
-            "Klik filter pill mengubah state client dan menyaring daftar `ProjectCard` yang dirender.",
-            "Setiap `ProjectCard` mengarah ke `project.href`, saat ini `'/portfolio/haen-komputer'`."
-          ],
-          relations: [
-            "Layer data tetap statis, tetapi interaksi filter terjadi sepenuhnya di browser.",
-            "`ProjectCard` menjadi relasi transisi antara listing dan case study detail.",
-            "Portfolio page juga punya CTA bawah ke `/contact` untuk konversi langsung tanpa membaca case study.",
-            "Tag project berasal dari data content, jadi filter otomatis mengikuti isi dataset."
-          ],
-          files: [
-            "`app/portfolio/page.tsx`",
-            "`components/PortfolioFilter.tsx`",
-            "`components/case-study/ProjectCard.tsx`",
-            "`lib/content.ts`"
-          ],
-          canvas: { width: 1120, height: 560 },
-          lanes: [
-            { label: "Entry", x: 20, y: 14, width: 190, height: 532, color: "#a78bfa" },
-            { label: "Shared Client", x: 230, y: 14, width: 210, height: 532, color: "#26cdeb" },
-            { label: "Route", x: 460, y: 14, width: 210, height: 532, color: "#ff6b4a" },
-            { label: "Data", x: 690, y: 14, width: 190, height: 532, color: "#34d399" },
-            { label: "Next Route", x: 900, y: 14, width: 200, height: 532, color: "#ff6b4a" }
-          ],
-          positions: {
-            browser: { x: 34, y: 230 },
-            navbar: { x: 244, y: 72 },
-            portfolioFilter: { x: 244, y: 230 },
-            portfolio: { x: 474, y: 230 },
-            footer: { x: 244, y: 388 },
-            content: { x: 704, y: 230 },
-            i18n: { x: 704, y: 72 },
-            langFiles: { x: 704, y: 388 },
-            caseStudy: { x: 914, y: 230 }
-          },
-          nodes: ["browser", "navbar", "portfolio", "portfolioFilter", "content", "i18n", "langFiles", "footer", "caseStudy"],
-          edges: [
-            ["browser", "navbar"], ["browser", "portfolio"], ["navbar", "portfolio"], ["portfolio", "portfolioFilter"],
-            ["portfolioFilter", "content"], ["portfolio", "content"], ["portfolio", "i18n"], ["i18n", "langFiles"],
-            ["portfolio", "footer"], ["portfolioFilter", "caseStudy"]
+            ["browser", "home"], ["browser", "navbar"], ["navbar", "home"], ["navbar", "portfolio"], ["navbar", "contact"],
+            ["home", "portfolio"], ["portfolio", "portfolioFilter"], ["portfolioFilter", "caseStudy"], ["caseStudy", "contact"],
+            ["home", "content"], ["portfolio", "content"], ["caseStudy", "caseStudiesServer"],
+            ["home", "i18n"], ["portfolio", "i18n"], ["caseStudy", "i18n"], ["contact", "i18n"], ["i18n", "langFiles"],
+            ["home", "footer"], ["portfolio", "footer"], ["caseStudy", "footer"], ["contact", "footer"],
+            ["contact", "contactForm"], ["contactForm", "typeform"]
           ]
         },
         caseStudy: {
-          label: "Case Study Detail",
-          teaser: "Slug statis, SEO metadata, dan komposisi konten panjang.",
-          title: "Flow detail `/portfolio/[slug]`",
-          subtitle: "Slug -> lookup content (DB primary, static fallback) -> render section detail",
-          summary: "Case study detail dirancang sebagai halaman naratif yang kaya konten. Page melakukan lookup slug dari `getCaseStudyDetailBySlugFromDb()` (prioritas database) atau fallback ke `getCaseStudyDetails(dict)`, lalu jika ditemukan, menyusun hero, about, challenge, architecture, features, timeline, stack, results, testimonial, dan CTA akhir.",
+          label: "Case Detail",
+          teaser: "Slug, metadata, DB-first lookup, fallback, notFound.",
+          title: "Flow `/portfolio/[slug]`",
+          subtitle: "Build-time params + runtime DB lookup",
+          summary:
+            "Detail case study membaca slug dari params async, memuat dictionary, lalu lookup DB berdasarkan slug. Jika tidak ada di DB, page fallback ke static getCaseStudyDetails(dict). Jika tetap kosong, page memanggil notFound().",
           journey: [
-            "`generateStaticParams()` membentuk daftar slug dari `getCaseStudyDetails()` saat build.",
-            "`generateMetadata()` mengambil slug yang sama untuk title dan description per halaman.",
-            "Saat request, page server membaca `params.slug`, dictionary aktif, lalu melakukan lookup dari database via `getCaseStudyDetailBySlugFromDb()`, fallback ke static content.",
-            "Jika slug tidak ditemukan, `notFound()` dipanggil; jika valid, seluruh section detail dirender dan user bisa lanjut ke `/contact`."
+            "`generateStaticParams()` mengambil slug dari static content.",
+            "`generateMetadata()` lookup DB atau static content untuk SEO.",
+            "Page runtime membaca `params.slug`, `getDictionary()`, dan `getCurrentLang()`.",
+            "Data prioritas dari `getCaseStudyDetailBySlugFromDb(slug)`, fallback ke static `getCaseStudyDetails(dict)`.",
+            "Komponen detail dirender berurutan dari hero sampai CTA."
           ],
           relations: [
-            "Data case study saat ini bisa datang dari SQLite database (dinamis via admin) atau static content.ts (fallback).",
-            "Detail page sangat tergantung pada shape object `CaseStudyDetail` di `types/index.ts`.",
-            "`CaseStudyHero` menyediakan backlink ke `/portfolio` dan menampilkan meta industri, timeline, team size, year.",
-            "`CaseStudyCTA` adalah relasi conversion terakhir sebelum user pindah ke contact."
+            "Slug dari admin DB tidak otomatis masuk static params.",
+            "Mapper DB harus cocok dengan `CaseStudyDetail` di `types/index.ts`.",
+            "SEO metadata memakai DB-first lookup juga.",
+            "Invalid slug masuk ke `notFound()`."
           ],
           files: [
-            "`app/portfolio/[slug]/page.tsx`",
-            "`components/case-study/CaseStudyHero.tsx`",
-            "`components/case-study/CaseStudyCTA.tsx`",
-            "`lib/content.ts`",
-            "`lib/case-studies-server.ts`",
-            "`lib/db.ts`"
+            "`app/portfolio/[slug]/page.tsx`", "`lib/case-studies-server.ts`", "`lib/db.ts`",
+            "`lib/content.ts`", "`types/index.ts`", "`components/case-study/*`"
           ],
-          canvas: { width: 1180, height: 580 },
+          canvas: { width: 1220, height: 620 },
           lanes: [
-            { label: "Entry", x: 20, y: 14, width: 190, height: 552, color: "#a78bfa" },
-            { label: "Shared Client", x: 230, y: 14, width: 200, height: 552, color: "#26cdeb" },
-            { label: "Route", x: 450, y: 14, width: 210, height: 552, color: "#ff6b4a" },
-            { label: "Build / Data", x: 680, y: 14, width: 210, height: 552, color: "#34d399" },
-            { label: "Output", x: 910, y: 14, width: 250, height: 552, color: "#a78bfa" }
+            { label: "Entry", x: 20, y: 14, width: 190, height: 592, color: "var(--external)" },
+            { label: "Route", x: 230, y: 14, width: 220, height: 592, color: "var(--route)" },
+            { label: "Build / SEO", x: 470, y: 14, width: 220, height: 592, color: "var(--data)" },
+            { label: "Runtime Data", x: 710, y: 14, width: 220, height: 592, color: "var(--data)" },
+            { label: "Output", x: 950, y: 14, width: 250, height: 592, color: "var(--external)" }
           ],
           positions: {
-            browser: { x: 34, y: 240 },
-            navbar: { x: 244, y: 74 },
-            footer: { x: 244, y: 396 },
-            caseStudy: { x: 464, y: 240 },
-            contact: { x: 924, y: 396 },
-            content: { x: 694, y: 240 },
-            slugParams: { x: 694, y: 74 },
-            metadata: { x: 694, y: 396 },
-            i18n: { x: 924, y: 74 },
-            langFiles: { x: 924, y: 206 },
-            caseStudiesServer: { x: 694, y: 462 },
-            sqliteDB: { x: 924, y: 318 }
+            browser: { x: 36, y: 260 },
+            caseStudy: { x: 246, y: 260 },
+            slugParams: { x: 486, y: 80 },
+            metadata: { x: 486, y: 224 },
+            content: { x: 486, y: 368 },
+            i18n: { x: 726, y: 80 },
+            caseStudiesServer: { x: 726, y: 224 },
+            dbLib: { x: 726, y: 368 },
+            sqliteDB: { x: 966, y: 224 },
+            types: { x: 966, y: 368 },
+            notFound: { x: 966, y: 512 },
+            contact: { x: 966, y: 80 }
           },
-          nodes: ["browser", "navbar", "caseStudy", "slugParams", "metadata", "content", "i18n", "langFiles", "footer", "contact", "caseStudiesServer", "sqliteDB"],
+          nodes: ["browser", "caseStudy", "slugParams", "metadata", "content", "i18n", "caseStudiesServer", "dbLib", "sqliteDB", "types", "notFound", "contact"],
           edges: [
-            ["browser", "navbar"], ["browser", "caseStudy"], ["navbar", "caseStudy"], ["caseStudy", "slugParams"],
-            ["caseStudy", "metadata"], ["slugParams", "content"], ["metadata", "content"], ["caseStudy", "content"],
-            ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "sqliteDB"],
-            ["caseStudy", "i18n"], ["i18n", "langFiles"], ["caseStudy", "footer"], ["caseStudy", "contact"]
-          ]
-        },
-        i18n: {
-          label: "Language Switch",
-          teaser: "Cookie `lang`, refresh server component, reload dictionary.",
-          title: "Flow i18n dan state bahasa",
-          subtitle: "Client event di navbar -> cookie -> server refresh -> file dictionary",
-          summary: "I18n tidak memakai library translation runtime kompleks. Polanya sederhana dan langsung: state bahasa di UI dikelola `Navbar`, pilihan disimpan ke cookie browser, lalu server component dirender ulang agar seluruh halaman memakai dictionary baru.",
-          journey: [
-            "User klik tombol `EN` atau `ID` pada `Navbar`.",
-            "`handleLangChange()` menjalankan `document.cookie = lang=...; path=/; max-age=31536000`.",
-            "`router.refresh()` memicu server component reload di route aktif.",
-            "`getCurrentLang()` membaca cookie, `getDictionary()` membuka file `<lang>.lang`, parse JSON, lalu fallback ke `en.lang` jika gagal."
-          ],
-          relations: [
-            "Relasi ini aktif pada semua page yang memanggil `getDictionary()` dan `getCurrentLang()`.",
-            "Sumber truth untuk copy tetap file `.lang`, bukan `content.ts` langsung.",
-            "`Navbar` menyimpan state lokal `lang` untuk menandai tombol yang aktif.",
-            "Karena refresh route, perubahan bahasa berlaku global per halaman aktif."
-          ],
-          files: [
-            "`components/layout/Navbar.tsx`",
-            "`lib/i18n.ts`",
-            "`en.lang`",
-            "`id.lang`"
-          ],
-          canvas: { width: 1080, height: 500 },
-          lanes: [
-            { label: "User", x: 20, y: 14, width: 190, height: 472, color: "#a78bfa" },
-            { label: "Client Event", x: 230, y: 14, width: 210, height: 472, color: "#26cdeb" },
-            { label: "Server Read", x: 460, y: 14, width: 210, height: 472, color: "#34d399" },
-            { label: "Dictionary", x: 690, y: 14, width: 170, height: 472, color: "#34d399" },
-            { label: "Affected Routes", x: 880, y: 14, width: 180, height: 472, color: "#ff6b4a" }
-          ],
-          positions: {
-            browser: { x: 34, y: 200 },
-            navbar: { x: 244, y: 200 },
-            i18n: { x: 474, y: 200 },
-            langFiles: { x: 704, y: 200 },
-            home: { x: 894, y: 48 },
-            portfolio: { x: 894, y: 160 },
-            caseStudy: { x: 894, y: 272 },
-            contact: { x: 894, y: 384 }
-          },
-          nodes: ["browser", "navbar", "i18n", "langFiles", "home", "portfolio", "caseStudy", "contact"],
-          edges: [
-            ["browser", "navbar"], ["navbar", "i18n"], ["i18n", "langFiles"],
-            ["i18n", "home"], ["i18n", "portfolio"], ["i18n", "caseStudy"], ["i18n", "contact"]
-          ]
-        },
-        conversion: {
-          label: "Conversion",
-          teaser: "Semua jalur yang bermuara ke contact form eksternal.",
-          title: "Flow conversion ke `/contact`",
-          subtitle: "CTA global -> contact route -> Typeform embed",
-          summary: "Arah bisnis aplikasi ini jelas: mayoritas CTA mendorong user ke `/contact`. Setelah sampai di sana, page menampilkan informasi kontak perusahaan lalu memuat Typeform live embed sebagai mekanisme lead capture eksternal.",
-          journey: [
-            "User dapat masuk ke `/contact` dari tombol `Let's Talk` di navbar, Hero CTA, CTA section homepage, CTA strip portfolio, atau `CaseStudyCTA`.",
-            "Contact page server merender hero informasi kontak, email, telepon, jam kerja, dan alamat.",
-            "`ContactForm` client component membuat container `data-tf-live` dan memuat `https://embed.typeform.com/next/embed.js` dengan `strategy='afterInteractive'`.",
-            "Form submission selanjutnya berlangsung di layer Typeform, bukan API internal project ini."
-          ],
-          relations: [
-            "`/contact` adalah terminal utama untuk lead generation.",
-            "Tidak ada form handler lokal di repo; integrasi conversion bersifat embedded external service.",
-            "Route contact tetap memanggil dictionary agar heading/subtext dapat berubah per bahasa.",
-            "Relasi dari page lain ke contact adalah navigational, bukan modal atau inline form."
-          ],
-          files: [
-            "`app/contact/page.tsx`",
-            "`components/ContactForm.tsx`",
-            "`components/sections/HeroSection.tsx`",
-            "`components/sections/CTASection.tsx`",
-            "`components/case-study/CaseStudyCTA.tsx`",
-            "`components/layout/Navbar.tsx`"
-          ],
-          canvas: { width: 1120, height: 540 },
-          lanes: [
-            { label: "Entry", x: 20, y: 14, width: 190, height: 512, color: "#a78bfa" },
-            { label: "Sources", x: 230, y: 14, width: 210, height: 512, color: "#ff6b4a" },
-            { label: "Target Route", x: 460, y: 14, width: 210, height: 512, color: "#ff6b4a" },
-            { label: "Embed", x: 690, y: 14, width: 190, height: 512, color: "#26cdeb" },
-            { label: "External", x: 900, y: 14, width: 200, height: 512, color: "#a78bfa" }
-          ],
-          positions: {
-            browser: { x: 34, y: 228 },
-            navbar: { x: 244, y: 56 },
-            home: { x: 244, y: 170 },
-            portfolio: { x: 244, y: 284 },
-            caseStudy: { x: 244, y: 398 },
-            contact: { x: 474, y: 228 },
-            contactForm: { x: 704, y: 228 },
-            typeform: { x: 914, y: 228 },
-            i18n: { x: 704, y: 56 },
-            langFiles: { x: 914, y: 56 }
-          },
-          nodes: ["browser", "navbar", "home", "portfolio", "caseStudy", "contact", "contactForm", "typeform", "i18n", "langFiles"],
-          edges: [
-            ["browser", "home"], ["browser", "portfolio"], ["browser", "caseStudy"], ["browser", "navbar"],
-            ["navbar", "contact"], ["home", "contact"], ["portfolio", "contact"], ["caseStudy", "contact"],
-            ["contact", "contactForm"], ["contactForm", "typeform"], ["contact", "i18n"], ["i18n", "langFiles"]
+            ["browser", "caseStudy"], ["caseStudy", "slugParams"], ["caseStudy", "metadata"], ["slugParams", "content"], ["metadata", "caseStudiesServer"], ["metadata", "content"],
+            ["caseStudy", "i18n"], ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "dbLib"], ["dbLib", "sqliteDB"], ["caseStudiesServer", "types"],
+            ["caseStudy", "content"], ["caseStudy", "notFound"], ["caseStudy", "contact"]
           ]
         },
         admin: {
           label: "Admin CRUD",
-          teaser: "Manage case studies via server actions and SQLite.",
-          title: "Flow admin panel `/admin`",
-          subtitle: "Dashboard -> Create/Edit form -> Server actions -> SQLite DB",
-          summary: "Admin panel memiliki layout terpisah (`app/admin/layout.tsx`) dengan dashboard untuk manage case studies. CRUD operations menggunakan server actions (`lib/actions.ts`) yang berkomunikasi langsung dengan SQLite via `lib/db.ts`. Form handling mencakup text fields, JSON-structured data (product features, timeline, tech stack), dan file upload untuk images.",
+          teaser: "Dashboard, form, upload, SQLite, public view.",
+          title: "Flow admin CRUD",
+          subtitle: "Admin layout -> CRUD actions -> SQLite + public detail",
+          summary:
+            "Admin route memakai layout sendiri. Dashboard membaca rows ringkas dari SQLite, create/edit memakai CaseStudyForm, delete memakai DeleteButton. Server actions memproses FormData, upload image ke public folder, menulis SQLite, revalidate admin, dan redirect.",
           journey: [
-            "Admin mengakses `/admin` untuk melihat daftar case studies dari `getAllCaseStudies()` (SQLite).",
-            "Klik '+ Add New Case Study' menuju `/admin/new` yang merender `CaseStudyForm` sebagai create form.",
-            "Klik 'Edit' pada row manapun menuju `/admin/[id]/edit` yang merender `CaseStudyForm` dengan data existing.",
-            "Form submission mengirim `FormData` ke `createCaseStudy()` atau `updateCaseStudyAction()` di `lib/actions.ts`.",
-            "Server action memproses file upload ke `public/images/case-studies/[slug]/`, menyimpan data ke SQLite via `insertCaseStudy()` atau `updateCaseStudy()`, lalu `revalidatePath('/admin')` + `redirect('/admin')`.",
-            "Delete menggunakan `deleteCaseStudyAction()` via `DeleteButton` component dengan confirmation dialog."
+            "Admin masuk ke `/admin` melalui `app/admin/layout.tsx`.",
+            "Dashboard memanggil `getAllCaseStudies()` dan menampilkan table.",
+            "Add New membuka `/admin/new`; Edit membuka `/admin/[id]/edit`.",
+            "Form submit masuk ke `createCaseStudy()` atau `updateCaseStudyAction(id, formData)`.",
+            "Image upload ditulis ke `public/images/case-studies/[slug]/`; structured fields disimpan sebagai JSON string di SQLite.",
+            "Row View membuka `/portfolio/{slug}` di tab baru."
           ],
           relations: [
-            "Admin layout terisolasi dari layout publik; tidak memakai `Navbar`/`Footer` publik.",
-            "`lib/actions.ts` adalah bridge antara form UI dan database layer.",
-            "`lib/db.ts` menyediakan CRUD primitives: `insertCaseStudy()`, `updateCaseStudy()`, `deleteCaseStudy()`, `getAllCaseStudies()`.",
-            "`components/admin/CaseStudyForm.tsx` adalah component reusable untuk create dan edit.",
-            "File upload ditangani server-side dengan `fs.writeFileSync()`, disimpan ke folder slug-specific.",
-            "`types/index.ts` mendefinisikan shape `CaseStudyDetail` yang digunakan form dan DB."
+            "Admin tidak memakai Navbar/Footer public.",
+            "Create/update melakukan `redirect('/admin')` setelah write.",
+            "Delete memanggil action dari form dashboard dan memakai confirmation button.",
+            "Public detail membaca data yang dibuat admin melalui slug."
           ],
           files: [
-            "`app/admin/layout.tsx`",
-            "`app/admin/page.tsx`",
-            "`app/admin/new/page.tsx`",
-            "`app/admin/[id]/edit/page.tsx`",
-            "`components/admin/CaseStudyForm.tsx`",
-            "`components/admin/DeleteButton.tsx`",
-            "`components/admin/FormFields.tsx`",
-            "`lib/actions.ts`",
-            "`lib/db.ts`",
-            "`lib/case-studies-server.ts`",
-            "`types/index.ts`",
-            "`data/case-studies.db`"
+            "`app/admin/layout.tsx`", "`app/admin/page.tsx`", "`app/admin/new/page.tsx`",
+            "`app/admin/[id]/edit/page.tsx`", "`components/admin/*`", "`lib/actions.ts`", "`lib/db.ts`"
           ],
-          canvas: { width: 1200, height: 700 },
+          canvas: { width: 1240, height: 690 },
           lanes: [
-            { label: "Browser", x: 20, y: 14, width: 190, height: 672, color: "#a78bfa" },
-            { label: "Admin Routes", x: 230, y: 14, width: 220, height: 672, color: "#ff6b4a" },
-            { label: "UI Components", x: 470, y: 14, width: 220, height: 672, color: "#26cdeb" },
-            { label: "Server Actions", x: 710, y: 14, width: 220, height: 672, color: "#34d399" },
-            { label: "Database", x: 950, y: 14, width: 230, height: 672, color: "#34d399" }
+            { label: "Browser", x: 20, y: 14, width: 190, height: 662, color: "var(--external)" },
+            { label: "Admin Routes", x: 230, y: 14, width: 220, height: 662, color: "var(--route)" },
+            { label: "UI Components", x: 470, y: 14, width: 220, height: 662, color: "var(--client)" },
+            { label: "Server / DB", x: 710, y: 14, width: 220, height: 662, color: "var(--data)" },
+            { label: "Output", x: 950, y: 14, width: 270, height: 662, color: "var(--external)" }
           ],
           positions: {
-            browser: { x: 34, y: 300 },
-            adminDashboard: { x: 244, y: 60 },
-            adminNew: { x: 244, y: 220 },
-            adminEdit: { x: 244, y: 380 },
-            caseStudyForm: { x: 484, y: 220 },
-            deleteButton: { x: 484, y: 380 },
-            serverActions: { x: 724, y: 220 },
-            dbLib: { x: 724, y: 380 },
-            sqliteDB: { x: 964, y: 220 },
-            caseStudiesServer: { x: 964, y: 380 },
-            content: { x: 964, y: 540 },
-            types: { x: 724, y: 540 }
+            browser: { x: 36, y: 300 },
+            adminLayout: { x: 246, y: 62 },
+            adminDashboard: { x: 246, y: 206 },
+            adminNew: { x: 246, y: 350 },
+            adminEdit: { x: 246, y: 494 },
+            caseStudyForm: { x: 486, y: 246 },
+            deleteButton: { x: 486, y: 430 },
+            serverActions: { x: 726, y: 246 },
+            dbLib: { x: 726, y: 430 },
+            sqliteDB: { x: 966, y: 246 },
+            uploadDir: { x: 966, y: 390 },
+            revalidate: { x: 966, y: 534 },
+            adminView: { x: 966, y: 102 },
+            caseStudy: { x: 966, y: 18 }
           },
-          nodes: ["browser", "adminDashboard", "adminNew", "adminEdit", "caseStudyForm", "deleteButton", "serverActions", "dbLib", "sqliteDB", "caseStudiesServer", "content", "types"],
+          nodes: ["browser", "adminLayout", "adminDashboard", "adminNew", "adminEdit", "caseStudyForm", "deleteButton", "serverActions", "dbLib", "sqliteDB", "uploadDir", "revalidate", "adminView", "caseStudy"],
           edges: [
-            ["browser", "adminDashboard"], ["adminDashboard", "adminNew"], ["adminDashboard", "adminEdit"],
-            ["adminDashboard", "deleteButton"], ["deleteButton", "serverActions"],
-            ["adminNew", "caseStudyForm"], ["adminEdit", "caseStudyForm"],
-            ["caseStudyForm", "serverActions"], ["serverActions", "dbLib"],
-            ["dbLib", "sqliteDB"], ["dbLib", "caseStudiesServer"],
-            ["caseStudiesServer", "content"], ["caseStudyForm", "types"]
+            ["browser", "adminLayout"], ["adminLayout", "adminDashboard"], ["adminDashboard", "adminNew"], ["adminDashboard", "adminEdit"],
+            ["adminDashboard", "deleteButton"], ["adminDashboard", "adminView"], ["adminView", "caseStudy"],
+            ["adminNew", "caseStudyForm"], ["adminEdit", "caseStudyForm"], ["caseStudyForm", "serverActions"], ["deleteButton", "serverActions"],
+            ["serverActions", "dbLib"], ["dbLib", "sqliteDB"], ["serverActions", "uploadDir"], ["serverActions", "revalidate"], ["revalidate", "adminDashboard"]
+          ]
+        },
+        i18n: {
+          label: "I18n",
+          teaser: "Cookie lang, router refresh, dictionary files.",
+          title: "Flow language switch",
+          subtitle: "Client state -> cookie effect -> server dictionary",
+          summary:
+            "Bahasa aktif disimpan sebagai cookie `lang`, dibaca server melalui `cookies()` di `lib/i18n.ts`, lalu file `<lang>.lang` dibaca dengan `fs.readFileSync`. Navbar mengelola state lokal EN/ID dan memicu router refresh.",
+          journey: [
+            "User klik EN atau ID di Navbar desktop atau mobile menu.",
+            "`setLang(newLang)` mengubah state lokal.",
+            "`router.refresh()` dipanggil dari handler.",
+            "`useEffect([lang])` menulis cookie baru ke browser.",
+            "Server render berikutnya memanggil `getDictionary()` dan membaca file dictionary."
+          ],
+          relations: [
+            "Ada potensi timing: refresh bisa terjadi sebelum cookie baru ditulis oleh effect.",
+            "Fallback dictionary adalah `en.lang` jika file aktif gagal dibaca.",
+            "Semua public pages yang memanggil `getDictionary()` terdampak.",
+            "Admin page saat ini tidak memakai dictionary flow."
+          ],
+          files: ["`components/layout/Navbar.tsx`", "`lib/i18n.ts`", "`en.lang`", "`id.lang`"],
+          canvas: { width: 1120, height: 540 },
+          lanes: [
+            { label: "User", x: 20, y: 14, width: 190, height: 512, color: "var(--external)" },
+            { label: "Client", x: 230, y: 14, width: 220, height: 512, color: "var(--client)" },
+            { label: "Browser State", x: 470, y: 14, width: 200, height: 512, color: "var(--external)" },
+            { label: "Server", x: 690, y: 14, width: 200, height: 512, color: "var(--data)" },
+            { label: "Routes", x: 910, y: 14, width: 190, height: 512, color: "var(--route)" }
+          ],
+          positions: {
+            browser: { x: 36, y: 222 },
+            navbar: { x: 246, y: 130 },
+            mobileMenu: { x: 246, y: 314 },
+            i18n: { x: 706, y: 222 },
+            langFiles: { x: 486, y: 222 },
+            home: { x: 926, y: 58 },
+            portfolio: { x: 926, y: 174 },
+            caseStudy: { x: 926, y: 290 },
+            contact: { x: 926, y: 406 }
+          },
+          nodes: ["browser", "navbar", "mobileMenu", "langFiles", "i18n", "home", "portfolio", "caseStudy", "contact"],
+          edges: [
+            ["browser", "navbar"], ["browser", "mobileMenu"], ["navbar", "langFiles"], ["mobileMenu", "langFiles"],
+            ["langFiles", "i18n"], ["i18n", "home"], ["i18n", "portfolio"], ["i18n", "caseStudy"], ["i18n", "contact"]
+          ]
+        },
+        conversion: {
+          label: "Conversion",
+          teaser: "Semua jalur ke contact dan Typeform.",
+          title: "Conversion flow",
+          subtitle: "CTA -> /contact -> Typeform embed",
+          summary:
+            "Conversion utama berakhir di `/contact`. Source-nya berasal dari Navbar CTA, Hero CTA, CTASection, portfolio CTA strip, dan CaseStudyCTA. Contact page menampilkan info kontak lalu memuat Typeform embed melalui next/script.",
+          journey: [
+            "User klik CTA di public route mana pun.",
+            "Next navigation membuka `/contact`.",
+            "Contact page memuat dictionary dan menampilkan contact cards.",
+            "`ContactForm` membuat container `data-tf-live`.",
+            "Script Typeform dimuat afterInteractive dan submission berjalan di layanan eksternal."
+          ],
+          relations: [
+            "`/contact` tidak muncul di `getNavItems()`, tetapi ada sebagai CTA button.",
+            "Email, telepon, jam kerja, dan alamat tampil langsung di page.",
+            "Tidak ada endpoint API lokal untuk form submission.",
+            "Footer juga berisi contact info dan placeholder social/legal."
+          ],
+          files: ["`app/contact/page.tsx`", "`components/ContactForm.tsx`", "`components/layout/Navbar.tsx`", "`components/sections/CTASection.tsx`", "`components/case-study/CaseStudyCTA.tsx`"],
+          canvas: { width: 1120, height: 540 },
+          lanes: [
+            { label: "Entry", x: 20, y: 14, width: 190, height: 512, color: "var(--external)" },
+            { label: "CTA Sources", x: 230, y: 14, width: 220, height: 512, color: "var(--route)" },
+            { label: "Target Route", x: 470, y: 14, width: 200, height: 512, color: "var(--route)" },
+            { label: "Client Embed", x: 690, y: 14, width: 200, height: 512, color: "var(--client)" },
+            { label: "External", x: 910, y: 14, width: 190, height: 512, color: "var(--external)" }
+          ],
+          positions: {
+            browser: { x: 36, y: 222 },
+            navbar: { x: 246, y: 48 },
+            home: { x: 246, y: 164 },
+            portfolio: { x: 246, y: 280 },
+            caseStudy: { x: 246, y: 396 },
+            contact: { x: 486, y: 222 },
+            contactForm: { x: 706, y: 222 },
+            typeform: { x: 926, y: 222 },
+            i18n: { x: 706, y: 48 },
+            langFiles: { x: 926, y: 48 }
+          },
+          nodes: ["browser", "navbar", "home", "portfolio", "caseStudy", "contact", "contactForm", "typeform", "i18n", "langFiles"],
+          edges: [
+            ["browser", "navbar"], ["browser", "home"], ["browser", "portfolio"], ["browser", "caseStudy"],
+            ["navbar", "contact"], ["home", "contact"], ["portfolio", "contact"], ["caseStudy", "contact"],
+            ["contact", "contactForm"], ["contactForm", "typeform"], ["contact", "i18n"], ["i18n", "langFiles"]
+          ]
+        },
+        global: {
+          label: "Global Shell",
+          teaser: "Root layout, metadata, env branding, mobile nav.",
+          title: "Global shell flow",
+          subtitle: "Root metadata + public navigation behavior",
+          summary:
+            "Struktur global bukan business flow utama, tetapi memengaruhi setiap route. Root layout menetapkan font dan metadata default. Navbar menggunakan env branding, pathname active state, scroll state, CTA contact, language switch, dan mobile menu.",
+          journey: [
+            "Root layout membungkus semua children dan memasang Inter font.",
+            "Metadata default dideklarasikan di `app/layout.tsx`.",
+            "Public page memasang Navbar dan Footer secara manual.",
+            "Navbar membaca env logo, pathname, scroll, dan mobile menu state.",
+            "Admin layout terpisah dan tidak memakai shell public."
+          ],
+          relations: [
+            "Metadata detail case study menimpa metadata global untuk halaman slug.",
+            "Navbar active state memakai `usePathname()`.",
+            "Logo bisa berubah via `NEXT_PUBLIC_LOGO_URL` dan `NEXT_PUBLIC_LOGO_NAME`.",
+            "Admin route memiliki nav internal sendiri."
+          ],
+          files: ["`app/layout.tsx`", "`components/layout/Navbar.tsx`", "`components/layout/Footer.tsx`", "`app/admin/layout.tsx`", "`lib/env.ts`", "`ENV_SETUP.md`"],
+          canvas: { width: 1120, height: 540 },
+          lanes: [
+            { label: "Root", x: 20, y: 14, width: 210, height: 512, color: "var(--route)" },
+            { label: "Public Shell", x: 250, y: 14, width: 220, height: 512, color: "var(--client)" },
+            { label: "Config", x: 490, y: 14, width: 200, height: 512, color: "var(--data)" },
+            { label: "Routes", x: 710, y: 14, width: 190, height: 512, color: "var(--route)" },
+            { label: "Admin Shell", x: 920, y: 14, width: 180, height: 512, color: "var(--route)" }
+          ],
+          positions: {
+            rootLayout: { x: 36, y: 220 },
+            navbar: { x: 266, y: 106 },
+            footer: { x: 266, y: 334 },
+            mobileMenu: { x: 506, y: 106 },
+            envBrand: { x: 506, y: 220 },
+            metadataGlobal: { x: 506, y: 334 },
+            home: { x: 726, y: 76 },
+            portfolio: { x: 726, y: 220 },
+            contact: { x: 726, y: 364 },
+            adminLayout: { x: 936, y: 220 }
+          },
+          nodes: ["rootLayout", "navbar", "footer", "mobileMenu", "envBrand", "metadataGlobal", "home", "portfolio", "contact", "adminLayout"],
+          edges: [
+            ["rootLayout", "metadataGlobal"], ["rootLayout", "navbar"], ["rootLayout", "footer"], ["navbar", "mobileMenu"],
+            ["envBrand", "navbar"], ["navbar", "home"], ["navbar", "portfolio"], ["navbar", "contact"],
+            ["rootLayout", "adminLayout"]
           ]
         }
       };
 
       const graph = document.getElementById("graph");
+      const viewport = document.getElementById("viewport");
       const edgeLayer = document.getElementById("edge-layer");
       const flowList = document.getElementById("flow-list");
+      const search = document.getElementById("search");
+      const play = document.getElementById("play");
+      const reset = document.getElementById("reset");
       const NODE_WIDTH = 190;
-      const NODE_HEIGHT = 90;
+      const NODE_HEIGHT = 96;
+      let activeFlowKey = "overview";
+      let focusedNode = null;
+      let playTimer = null;
+
+      function textToHtml(text) {
+        return text.replace(/`([^`]+)`/g, "<code>$1</code>");
+      }
 
       function createFlowButtons() {
         Object.entries(flows).forEach(([key, flow], index) => {
           const button = document.createElement("button");
-          button.className = "flow-button" + (index === 0 ? " active" : "");
+          button.className = `flow-button${index === 0 ? " active" : ""}`;
           button.dataset.flow = key;
-          button.innerHTML = "<strong>" + flow.label + "</strong><small>" + flow.teaser + "</small>";
+          button.innerHTML = `<strong>${flow.label}</strong><small>${flow.teaser}</small>`;
           button.addEventListener("click", () => selectFlow(key));
           flowList.appendChild(button);
         });
@@ -1162,14 +1525,14 @@
 
       function renderLanes(flow) {
         graph.querySelectorAll(".lane").forEach((lane) => lane.remove());
-        (flow.lanes || []).forEach((lane) => {
+        flow.lanes.forEach((lane) => {
           const el = document.createElement("div");
           el.className = "lane";
-          el.style.left = lane.x + "px";
-          el.style.top = lane.y + "px";
-          el.style.width = lane.width + "px";
-          el.style.height = lane.height + "px";
-          el.innerHTML = '<span class="lane-label" style="--lane-color:' + lane.color + '">' + lane.label + "</span>";
+          el.style.left = `${lane.x}px`;
+          el.style.top = `${lane.y}px`;
+          el.style.width = `${lane.width}px`;
+          el.style.height = `${lane.height}px`;
+          el.innerHTML = `<span class="lane-label" style="--lane-color:${lane.color}">${lane.label}</span>`;
           graph.appendChild(el);
         });
       }
@@ -1179,40 +1542,43 @@
         flow.nodes.forEach((key) => {
           const node = nodeCatalog[key];
           const position = flow.positions[key];
-          const el = document.createElement("div");
-          el.className = "node type-" + node.type + " active";
-          el.style.left = position.x + "px";
-          el.style.top = position.y + "px";
-          el.innerHTML =
-            '<span class="node-type">' + node.type + "</span>" +
-            "<h4>" + node.title + "</h4>" +
-            "<p>" + node.desc + "</p>";
+          const el = document.createElement("button");
+          el.type = "button";
+          el.className = `node type-${node.type}`;
+          el.dataset.node = key;
+          el.style.left = `${position.x}px`;
+          el.style.top = `${position.y}px`;
+          el.innerHTML = `<span class="node-type">${node.type}</span><h4>${node.title}</h4><p>${node.desc}</p>`;
+          el.addEventListener("click", () => focusNode(key));
           graph.appendChild(el);
         });
       }
 
+      function edgePath(flow, fromKey, toKey) {
+        const from = flow.positions[fromKey];
+        const to = flow.positions[toKey];
+        const startX = from.x + NODE_WIDTH;
+        const startY = from.y + NODE_HEIGHT / 2;
+        const endX = to.x;
+        const endY = to.y + NODE_HEIGHT / 2;
+        const midX = startX + Math.max(44, (endX - startX) / 2);
+        const gutter = 24;
+        if (endX < startX) {
+          const loopX = Math.max(startX, endX) + 42;
+          return `M ${startX} ${startY} L ${loopX} ${startY} L ${loopX} ${endY} L ${endX} ${endY}`;
+        }
+        return `M ${startX} ${startY} L ${startX + gutter} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX - gutter} ${endY} L ${endX} ${endY}`;
+      }
+
       function renderEdges(flow) {
         edgeLayer.innerHTML = "";
-        flow.edges.forEach(([fromKey, toKey]) => {
-          const from = flow.positions[fromKey];
-          const to = flow.positions[toKey];
-          const startX = from.x + NODE_WIDTH;
-          const startY = from.y + NODE_HEIGHT / 2;
-          const endX = to.x;
-          const endY = to.y + NODE_HEIGHT / 2;
-          const gutter = 22;
-          const midX = startX + Math.max(42, (endX - startX) / 2);
-          const d = [
-            "M", startX, startY,
-            "L", startX + gutter, startY,
-            "L", midX, startY,
-            "L", midX, endY,
-            "L", endX - gutter, endY,
-            "L", endX, endY
-          ].join(" ");
+        flow.edges.forEach(([fromKey, toKey], index) => {
           const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-          path.setAttribute("d", d);
-          path.setAttribute("class", "edge active");
+          path.setAttribute("d", edgePath(flow, fromKey, toKey));
+          path.setAttribute("class", "edge");
+          path.dataset.from = fromKey;
+          path.dataset.to = toKey;
+          path.dataset.index = String(index);
           edgeLayer.appendChild(path);
         });
       }
@@ -1233,36 +1599,183 @@
 
         flow.journey.forEach((item) => {
           const li = document.createElement("li");
-          li.textContent = item;
+          li.innerHTML = textToHtml(item);
           journey.appendChild(li);
         });
 
         flow.relations.forEach((item) => {
           const li = document.createElement("li");
-          li.textContent = item;
+          li.innerHTML = textToHtml(item);
           relations.appendChild(li);
         });
 
         flow.files.forEach((item) => {
           const li = document.createElement("li");
-          li.innerHTML = item;
+          li.innerHTML = textToHtml(item);
           files.appendChild(li);
         });
       }
 
       function selectFlow(key) {
+        stopPlayback();
+        activeFlowKey = key;
+        focusedNode = null;
         const flow = flows[key];
         document.querySelectorAll(".flow-button").forEach((button) => {
           button.classList.toggle("active", button.dataset.flow === key);
         });
-        graph.style.width = flow.canvas.width + "px";
-        graph.style.height = flow.canvas.height + "px";
-        edgeLayer.setAttribute("viewBox", "0 0 " + flow.canvas.width + " " + flow.canvas.height);
+        graph.style.width = `${flow.canvas.width}px`;
+        graph.style.height = `${flow.canvas.height}px`;
+        edgeLayer.setAttribute("viewBox", `0 0 ${flow.canvas.width} ${flow.canvas.height}`);
+        edgeLayer.setAttribute("width", flow.canvas.width);
+        edgeLayer.setAttribute("height", flow.canvas.height);
         renderLanes(flow);
         renderNodes(flow);
         renderEdges(flow);
         renderDetails(flow);
+        applySearch();
+        viewport.scrollTo({ left: 0, top: 0, behavior: "smooth" });
       }
+
+      function focusNode(key) {
+        focusedNode = key;
+        const flow = flows[activeFlowKey];
+        const related = new Set([key]);
+        flow.edges.forEach(([from, to]) => {
+          if (from === key || to === key) {
+            related.add(from);
+            related.add(to);
+          }
+        });
+
+        graph.querySelectorAll(".node").forEach((node) => {
+          const nodeKey = node.dataset.node;
+          node.classList.toggle("is-active", nodeKey === key);
+          node.classList.toggle("is-muted", !related.has(nodeKey));
+        });
+
+        edgeLayer.querySelectorAll(".edge").forEach((edge) => {
+          const connected = edge.dataset.from === key || edge.dataset.to === key;
+          edge.classList.toggle("is-lit", connected);
+          edge.classList.toggle("is-muted", !connected);
+        });
+
+        const item = nodeCatalog[key];
+        document.getElementById("detail-title").textContent = item.title;
+        document.getElementById("detail-subtitle").textContent = `${item.type} node`;
+        document.getElementById("summary").textContent = item.desc;
+      }
+
+      function clearFocus() {
+        focusedNode = null;
+        graph.querySelectorAll(".node").forEach((node) => {
+          node.classList.remove("is-active", "is-muted", "is-playing");
+        });
+        edgeLayer.querySelectorAll(".edge").forEach((edge) => {
+          edge.classList.remove("is-lit", "is-muted");
+        });
+        renderDetails(flows[activeFlowKey]);
+        applySearch();
+      }
+
+      function applySearch() {
+        const term = search.value.trim().toLowerCase();
+        const flow = flows[activeFlowKey];
+        if (!term) {
+          if (!focusedNode) {
+            graph.querySelectorAll(".node").forEach((node) => node.classList.remove("is-muted"));
+            edgeLayer.querySelectorAll(".edge").forEach((edge) => edge.classList.remove("is-muted"));
+          }
+          return;
+        }
+
+        const matches = new Set();
+        flow.nodes.forEach((key) => {
+          const node = nodeCatalog[key];
+          const haystack = `${key} ${node.title} ${node.desc} ${node.type}`.toLowerCase();
+          if (haystack.includes(term)) matches.add(key);
+        });
+        flow.files.concat(flow.relations).forEach((item) => {
+          if (item.toLowerCase().includes(term)) {
+            flow.nodes.forEach((key) => {
+              const node = nodeCatalog[key];
+              if (item.toLowerCase().includes(node.title.toLowerCase()) || item.toLowerCase().includes(key.toLowerCase())) {
+                matches.add(key);
+              }
+            });
+          }
+        });
+
+        graph.querySelectorAll(".node").forEach((node) => {
+          node.classList.toggle("is-muted", !matches.has(node.dataset.node));
+          node.classList.toggle("is-active", matches.has(node.dataset.node));
+        });
+        edgeLayer.querySelectorAll(".edge").forEach((edge) => {
+          const connected = matches.has(edge.dataset.from) || matches.has(edge.dataset.to);
+          edge.classList.toggle("is-muted", !connected);
+          edge.classList.toggle("is-lit", connected);
+        });
+      }
+
+      function stopPlayback() {
+        if (playTimer) {
+          clearInterval(playTimer);
+          playTimer = null;
+        }
+        play.textContent = "Play flow";
+        play.classList.remove("active");
+      }
+
+      function runPlayback() {
+        const flow = flows[activeFlowKey];
+        let index = 0;
+        clearFocus();
+        stopPlayback();
+        play.textContent = "Stop";
+        play.classList.add("active");
+
+        function step() {
+          graph.querySelectorAll(".node").forEach((node) => node.classList.remove("is-playing"));
+          edgeLayer.querySelectorAll(".edge").forEach((edge) => edge.classList.remove("is-lit", "is-muted"));
+          const edge = flow.edges[index % flow.edges.length];
+          const [from, to] = edge;
+          const path = edgeLayer.querySelector(`[data-index="${index % flow.edges.length}"]`);
+          if (path) path.classList.add("is-lit");
+          [from, to].forEach((key) => {
+            const node = graph.querySelector(`[data-node="${key}"]`);
+            if (node) node.classList.add("is-playing", "is-active");
+          });
+          edgeLayer.querySelectorAll(".edge:not(.is-lit)").forEach((item) => item.classList.add("is-muted"));
+          graph.querySelectorAll(".node").forEach((node) => {
+            node.classList.toggle("is-muted", node.dataset.node !== from && node.dataset.node !== to);
+          });
+          index += 1;
+          if (index > flow.edges.length) {
+            stopPlayback();
+            clearFocus();
+          }
+        }
+
+        step();
+        playTimer = setInterval(step, 900);
+      }
+
+      document.querySelectorAll("[data-scroll]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      search.addEventListener("input", applySearch);
+      reset.addEventListener("click", clearFocus);
+      play.addEventListener("click", () => {
+        if (playTimer) {
+          stopPlayback();
+          clearFocus();
+        } else {
+          runPlayback();
+        }
+      });
 
       createFlowButtons();
       selectFlow("overview");
