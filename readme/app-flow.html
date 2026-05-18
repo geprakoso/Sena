@@ -533,17 +533,17 @@
         <h1>Flow aplikasi dan relasi project Sena</h1>
         <p class="lead">
           Dokumen ini memetakan alur aplikasi berdasarkan implementasi di codebase:
-          routing App Router Next 16, sumber data statis, i18n berbasis cookie,
-          relasi antar halaman, komponen client/server, dan conversion flow menuju
-          halaman contact.
+          routing App Router Next 16, sumber data campuran (static content + SQLite database),
+          i18n berbasis cookie, relasi antar halaman, komponen client/server, admin CRUD panel,
+          dan conversion flow menuju halaman contact.
         </p>
         <div class="stats">
-          <div class="stat"><b>4</b><span>route utama: `/`, `/portfolio`, `/portfolio/[slug]`, `/contact`</span></div>
+          <div class="stat"><b>7</b><span>route utama: `/`, `/portfolio`, `/portfolio/[slug]`, `/contact`, `/admin`, `/admin/new`, `/admin/[id]/edit`</span></div>
           <div class="stat"><b>2</b><span>locale file: `en.lang` dan `id.lang`</span></div>
-          <div class="stat"><b>1</b><span>slug case study aktif: `haen-komputer`</span></div>
-          <div class="stat"><b>3</b><span>komponen client penting: `Navbar`, `PortfolioFilter`, `ContactForm`</span></div>
+          <div class="stat"><b>1</b><span>SQLite database: `data/case-studies.db` untuk case study dinamis</span></div>
+          <div class="stat"><b>24</b><span>komponen terorganisir: admin, case-study, layout, sections</span></div>
           <div class="stat"><b>1</b><span>external conversion embed: Typeform live form</span></div>
-          <div class="stat"><b>2026-05-16</b><span>snapshot analisis project pada workspace lokal</span></div>
+          <div class="stat"><b>2026-05-18</b><span>snapshot analisis project dengan struktur terkini</span></div>
         </div>
       </section>
 
@@ -611,12 +611,15 @@
       <section class="route-grid">
         <article class="route-card">
           <h3>Route map</h3>
-          <p>Routing mengikuti App Router. Homepage memecah konten ke section anchor, sedangkan case study detail digenerate dari data slug statis.</p>
+          <p>Routing mengikuti App Router. Homepage memecah konten ke section anchor, sedangkan case study detail digenerate dari data slug statis dan database SQLite.</p>
           <div class="pill-row">
             <span class="pill"><code>/</code> home landing</span>
             <span class="pill"><code>/portfolio</code> listing + filter</span>
-            <span class="pill"><code>/portfolio/[slug]</code> static detail</span>
+            <span class="pill"><code>/portfolio/[slug]</code> static detail + DB</span>
             <span class="pill"><code>/contact</code> conversion page</span>
+            <span class="pill"><code>/admin</code> case study management</span>
+            <span class="pill"><code>/admin/new</code> create new</span>
+            <span class="pill"><code>/admin/[id]/edit</code> edit existing</span>
           </div>
         </article>
 
@@ -645,12 +648,36 @@
 
         <article class="route-card">
           <h3>Data source utama</h3>
-          <p>Konten aplikasi sebagian besar tidak datang dari API runtime. Ia dirakit dari `app/data/content.ts` dan dictionary file, lalu diturunkan ke komponen page/section/case study.</p>
+          <p>Konten aplikasi berasal dari dua sumber: `lib/content.ts` untuk data statis (services, approach, nav items) dan SQLite database `data/case-studies.db` untuk case study dinamis yang dikelola via admin panel.</p>
           <div class="pill-row">
             <span class="pill"><code>getServices(dict)</code></span>
             <span class="pill"><code>getApproachSteps(dict)</code></span>
             <span class="pill"><code>getPortfolioProjects(dict)</code></span>
-            <span class="pill"><code>getCaseStudyDetails(dict)</code></span>
+            <span class="pill"><code>getCaseStudyDetailBySlugFromDb(slug)</code></span>
+            <span class="pill"><code>SQLite DB</code></span>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <h3>Admin CRUD flow</h3>
+          <p>Admin panel memiliki layout terpisah (`app/admin/layout.tsx`) dengan dashboard untuk manage case studies. CRUD operations menggunakan server actions (`lib/actions.ts`) yang berkomunikasi langsung dengan SQLite via `lib/db.ts`.</p>
+          <div class="pill-row">
+            <span class="pill"><code>createCaseStudy()</code></span>
+            <span class="pill"><code>updateCaseStudyAction()</code></span>
+            <span class="pill"><code>deleteCaseStudyAction()</code></span>
+            <span class="pill"><code>revalidatePath()</code></span>
+            <span class="pill"><code>file upload</code></span>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <h3>Component architecture</h3>
+          <p>Komponen terorganisir dalam 4 kategori: `admin/` (form, delete button), `case-study/` (13 components untuk detail page), `layout/` (Navbar, Footer), dan `sections/` (6 homepage sections). Semua ada di folder `components/` root.</p>
+          <div class="pill-row">
+            <span class="pill"><code>components/admin/</code> 3 files</span>
+            <span class="pill"><code>components/case-study/</code> 13 files</span>
+            <span class="pill"><code>components/layout/</code> 2 files</span>
+            <span class="pill"><code>components/sections/</code> 6 files</span>
           </div>
         </article>
       </section>
@@ -658,8 +685,9 @@
       <div class="footer-note">
         Contact page saat ini adalah titik conversion utama. Route ini tidak muncul di `getNavItems()`,
         jadi akses utama ke `/contact` datang dari CTA di hero, CTA section, case study CTA, dan tombol
-        "Let's Talk" di navbar. Footer juga masih berisi beberapa tautan placeholder seperti sosial
-        `#twitter`, `#linkedin`, `#github`, serta legal links `#`.
+        "Let's Talk" di navbar. Admin panel (`/admin`) memiliki layout terpisah dan mengelola case studies
+        via SQLite database dengan server actions untuk CRUD operations + file upload. Footer juga masih
+        berisi beberapa tautan placeholder seperti sosial `#twitter`, `#linkedin`, `#github`, serta legal links `#`.
       </div>
     </div>
 
@@ -669,17 +697,27 @@
         navbar: { type: "client", title: "Navbar", desc: "Client component: scroll state, mobile menu, switch language." },
         home: { type: "route", title: "/", desc: "Home server page + section anchors." },
         portfolio: { type: "route", title: "/portfolio", desc: "Portfolio listing dengan hero, filter, CTA." },
-        caseStudy: { type: "route", title: "/portfolio/[slug]", desc: "Case study detail berdasarkan slug." },
+        caseStudy: { type: "route", title: "/portfolio/[slug]", desc: "Case study detail berdasarkan slug (DB + static fallback)." },
         contact: { type: "route", title: "/contact", desc: "Conversion page berisi info kontak + Typeform." },
+        adminDashboard: { type: "route", title: "/admin", desc: "Admin dashboard untuk manage case studies." },
+        adminNew: { type: "route", title: "/admin/new", desc: "Create new case study form." },
+        adminEdit: { type: "route", title: "/admin/[id]/edit", desc: "Edit existing case study form." },
         footer: { type: "client", title: "Footer", desc: "Shared links, contact info, social placeholders." },
         portfolioFilter: { type: "client", title: "PortfolioFilter", desc: "Client state `activeTag`, memfilter daftar project." },
         contactForm: { type: "client", title: "ContactForm", desc: "Client wrapper untuk embed script Typeform." },
-        content: { type: "data", title: "app/data/content.ts", desc: "Source services, projects, case study detail." },
+        caseStudyForm: { type: "client", title: "CaseStudyForm", desc: "Admin form component untuk create/edit case study." },
+        deleteButton: { type: "client", title: "DeleteButton", desc: "Admin component untuk delete confirmation." },
+        content: { type: "data", title: "lib/content.ts", desc: "Source services, projects, nav items, approach steps." },
         i18n: { type: "data", title: "lib/i18n.ts", desc: "Read cookie lang lalu load file dictionary." },
         langFiles: { type: "data", title: "en.lang / id.lang", desc: "Konten terjemahan yang di-parse JSON." },
+        sqliteDB: { type: "data", title: "data/case-studies.db", desc: "SQLite database untuk case study dinamis." },
+        dbLib: { type: "data", title: "lib/db.ts", desc: "Database connection + CRUD operations." },
+        caseStudiesServer: { type: "data", title: "lib/case-studies-server.ts", desc: "Server-side case study retrieval dari DB." },
+        serverActions: { type: "data", title: "lib/actions.ts", desc: "Server actions: create, update, delete case study + file upload." },
         slugParams: { type: "data", title: "generateStaticParams", desc: "Bangun slug statis dari data case study." },
         metadata: { type: "data", title: "generateMetadata", desc: "SEO title/description per slug." },
-        typeform: { type: "external", title: "Typeform Embed", desc: "External script `embed.js` + live form id." }
+        typeform: { type: "external", title: "Typeform Embed", desc: "External script `embed.js` + live form id." },
+        types: { type: "data", title: "types/index.ts", desc: "Type definitions untuk semua data structures." }
       };
 
       const flows = {
@@ -688,18 +726,21 @@
           teaser: "Peta lengkap route, data, dan komponen global.",
           title: "Overview aplikasi",
           subtitle: "Semua relasi utama yang aktif di project",
-          summary: "Aplikasi ini adalah website company profile berbasis Next App Router. Relasi utamanya berpusat pada shared layout parts (`Navbar`, `Footer`), server-rendered page routes, content statis dari `app/data/content.ts`, i18n berbasis cookie+file JSON, lalu conversion akhir ke contact form eksternal.",
+          summary: "Aplikasi ini adalah website company profile berbasis Next App Router dengan admin panel. Relasi utamanya berpusat pada shared layout parts (`Navbar`, `Footer`), server-rendered page routes, content statis dari `lib/content.ts`, case studies dinamis dari SQLite database `data/case-studies.db`, i18n berbasis cookie+file JSON, admin CRUD via server actions, lalu conversion akhir ke contact form eksternal.",
           journey: [
             "User masuk dari browser ke salah satu route utama: `/`, `/portfolio`, `/portfolio/[slug]`, atau `/contact`.",
             "Setiap page memuat `Navbar` dan `Footer`, sementara route server mengambil `dict` lewat `getDictionary()` dan bahasa aktif lewat `getCurrentLang()`.",
             "Homepage mengarahkan user ke anchor section atau ke route contact; portfolio mengarahkan ke detail case study; detail case study mengarahkan balik ke portfolio atau ke contact.",
-            "Contact page memuat `ContactForm` yang menyisipkan Typeform embed script sebagai titik conversion."
+            "Contact page memuat `ContactForm` yang menyisipkan Typeform embed script sebagai titik conversion.",
+            "Admin panel (`/admin`) memiliki layout terpisah, mengelola case studies via SQLite dengan server actions untuk CRUD + file upload."
           ],
           relations: [
             "`Navbar` adalah pusat navigasi, switch language, CTA global, dan state scroll/mobile menu.",
             "`lib/i18n.ts` membaca cookie `lang`, lalu load `${lang}.lang`, fallback ke `en.lang` bila gagal.",
-            "`app/data/content.ts` memasok daftar service, approach, project portfolio, dan detail case study.",
-            "`/portfolio/[slug]` memakai `generateStaticParams()`, `generateMetadata()`, dan `notFound()` untuk slug tidak valid."
+            "`lib/content.ts` memasok daftar service, approach, project portfolio, dan fallback case study.",
+            "`data/case-studies.db` adalah sumber utama untuk case study detail, dikelola via admin panel.",
+            "`/portfolio/[slug]` memakai `generateStaticParams()`, `generateMetadata()`, dan `notFound()` untuk slug tidak valid. Data prioritas dari DB, fallback ke content.ts.",
+            "Admin CRUD menggunakan `lib/actions.ts` (server actions) → `lib/db.ts` → SQLite database."
           ],
           files: [
             "`app/layout.tsx`",
@@ -707,39 +748,59 @@
             "`app/portfolio/page.tsx`",
             "`app/portfolio/[slug]/page.tsx`",
             "`app/contact/page.tsx`",
-            "`app/components/layout/Navbar.tsx`",
-            "`app/components/layout/Footer.tsx`",
+            "`app/admin/page.tsx`",
+            "`app/admin/new/page.tsx`",
+            "`app/admin/[id]/edit/page.tsx`",
+            "`app/admin/layout.tsx`",
+            "`components/layout/Navbar.tsx`",
+            "`components/layout/Footer.tsx`",
             "`lib/i18n.ts`",
-            "`app/data/content.ts`"
+            "`lib/content.ts`",
+            "`lib/db.ts`",
+            "`lib/case-studies-server.ts`",
+            "`lib/actions.ts`",
+            "`data/case-studies.db`"
           ],
-          canvas: { width: 1240, height: 760 },
+          canvas: { width: 1380, height: 900 },
           lanes: [
-            { label: "Entry", x: 20, y: 14, width: 200, height: 732, color: "#a78bfa" },
-            { label: "Shared Client", x: 240, y: 14, width: 220, height: 732, color: "#26cdeb" },
-            { label: "Routes", x: 480, y: 14, width: 220, height: 732, color: "#ff6b4a" },
-            { label: "Data Layer", x: 720, y: 14, width: 230, height: 732, color: "#34d399" },
-            { label: "External / Output", x: 970, y: 14, width: 250, height: 732, color: "#a78bfa" }
+            { label: "Entry", x: 20, y: 14, width: 200, height: 872, color: "#a78bfa" },
+            { label: "Shared Client", x: 240, y: 14, width: 220, height: 872, color: "#26cdeb" },
+            { label: "Routes", x: 480, y: 14, width: 220, height: 872, color: "#ff6b4a" },
+            { label: "Admin Routes", x: 720, y: 14, width: 220, height: 872, color: "#ff6b4a" },
+            { label: "Data Layer", x: 960, y: 14, width: 200, height: 872, color: "#34d399" },
+            { label: "External / Output", x: 1180, y: 14, width: 180, height: 872, color: "#a78bfa" }
           ],
           positions: {
-            browser: { x: 36, y: 324 },
+            browser: { x: 36, y: 400 },
             navbar: { x: 256, y: 80 },
-            portfolioFilter: { x: 256, y: 306 },
-            footer: { x: 256, y: 532 },
+            portfolioFilter: { x: 256, y: 300 },
+            footer: { x: 256, y: 620 },
             home: { x: 496, y: 52 },
-            portfolio: { x: 496, y: 226 },
-            caseStudy: { x: 496, y: 400 },
-            contact: { x: 496, y: 574 },
-            i18n: { x: 736, y: 80 },
-            content: { x: 736, y: 306 },
-            slugParams: { x: 736, y: 462 },
-            langFiles: { x: 986, y: 80 },
-            metadata: { x: 986, y: 462 },
-            contactForm: { x: 986, y: 574 },
-            typeform: { x: 986, y: 658 }
+            portfolio: { x: 496, y: 220 },
+            caseStudy: { x: 496, y: 388 },
+            contact: { x: 496, y: 556 },
+            adminDashboard: { x: 736, y: 80 },
+            adminNew: { x: 736, y: 248 },
+            adminEdit: { x: 736, y: 416 },
+            caseStudyForm: { x: 736, y: 584 },
+            deleteButton: { x: 736, y: 752 },
+            content: { x: 976, y: 80 },
+            i18n: { x: 976, y: 248 },
+            sqliteDB: { x: 976, y: 416 },
+            dbLib: { x: 976, y: 584 },
+            caseStudiesServer: { x: 976, y: 752 },
+            langFiles: { x: 1196, y: 248 },
+            serverActions: { x: 1196, y: 416 },
+            slugParams: { x: 1196, y: 584 },
+            metadata: { x: 1196, y: 752 },
+            contactForm: { x: 1196, y: 80 },
+            typeform: { x: 1196, y: 148 },
+            types: { x: 976, y: 880 }
           },
-          nodes: ["browser", "navbar", "home", "portfolio", "caseStudy", "contact", "footer", "portfolioFilter", "contactForm", "content", "i18n", "langFiles", "slugParams", "metadata", "typeform"],
+          nodes: ["browser", "navbar", "home", "portfolio", "caseStudy", "contact", "adminDashboard", "adminNew", "adminEdit", "footer", "portfolioFilter", "caseStudyForm", "deleteButton", "content", "i18n", "langFiles", "sqliteDB", "dbLib", "caseStudiesServer", "serverActions", "slugParams", "metadata", "contactForm", "typeform", "types"],
           edges: [
             ["browser", "navbar"], ["browser", "home"], ["browser", "portfolio"], ["browser", "caseStudy"], ["browser", "contact"],
+            ["browser", "adminDashboard"], ["browser", "adminNew"], ["browser", "adminEdit"],
             ["navbar", "home"], ["navbar", "portfolio"], ["navbar", "caseStudy"], ["navbar", "contact"],
             ["home", "footer"], ["portfolio", "footer"], ["caseStudy", "footer"], ["contact", "footer"],
             ["home", "i18n"], ["portfolio", "i18n"], ["caseStudy", "i18n"], ["contact", "i18n"],
@@ -747,7 +808,13 @@
             ["home", "content"], ["portfolio", "content"], ["caseStudy", "content"],
             ["portfolio", "portfolioFilter"], ["portfolioFilter", "content"],
             ["caseStudy", "slugParams"], ["caseStudy", "metadata"], ["slugParams", "content"], ["metadata", "content"],
-            ["contact", "contactForm"], ["contactForm", "typeform"]
+            ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "sqliteDB"], ["caseStudiesServer", "dbLib"],
+            ["contact", "contactForm"], ["contactForm", "typeform"],
+            ["adminDashboard", "dbLib"], ["adminDashboard", "deleteButton"],
+            ["adminNew", "caseStudyForm"], ["adminEdit", "caseStudyForm"],
+            ["caseStudyForm", "serverActions"], ["deleteButton", "serverActions"],
+            ["serverActions", "dbLib"], ["dbLib", "sqliteDB"],
+            ["serverActions", "content"], ["caseStudyForm", "types"], ["dbLib", "types"]
           ]
         },
         landing: {
@@ -770,11 +837,11 @@
           ],
           files: [
             "`app/(home)/page.tsx`",
-            "`app/components/sections/HeroSection.tsx`",
-            "`app/components/sections/ServicesSection.tsx`",
-            "`app/components/sections/ApproachSection.tsx`",
-            "`app/components/sections/CaseStudiesSection.tsx`",
-            "`app/components/sections/CTASection.tsx`"
+            "`components/sections/HeroSection.tsx`",
+            "`components/sections/ServicesSection.tsx`",
+            "`components/sections/ApproachSection.tsx`",
+            "`components/sections/CaseStudiesSection.tsx`",
+            "`components/sections/CTASection.tsx`"
           ],
           canvas: { width: 1040, height: 520 },
           lanes: [
@@ -819,9 +886,9 @@
           ],
           files: [
             "`app/portfolio/page.tsx`",
-            "`app/portfolio/PortfolioFilter.tsx`",
-            "`app/components/case-study/ProjectCard.tsx`",
-            "`app/data/content.ts`"
+            "`components/PortfolioFilter.tsx`",
+            "`components/case-study/ProjectCard.tsx`",
+            "`lib/content.ts`"
           ],
           canvas: { width: 1120, height: 560 },
           lanes: [
@@ -853,25 +920,27 @@
           label: "Case Study Detail",
           teaser: "Slug statis, SEO metadata, dan komposisi konten panjang.",
           title: "Flow detail `/portfolio/[slug]`",
-          subtitle: "Slug -> lookup content -> render section detail",
-          summary: "Case study detail dirancang sebagai halaman naratif yang kaya konten. Page melakukan lookup slug dari `getCaseStudyDetails(dict)`, lalu jika ditemukan, menyusun hero, about, challenge, architecture, features, timeline, stack, results, testimonial, dan CTA akhir.",
+          subtitle: "Slug -> lookup content (DB primary, static fallback) -> render section detail",
+          summary: "Case study detail dirancang sebagai halaman naratif yang kaya konten. Page melakukan lookup slug dari `getCaseStudyDetailBySlugFromDb()` (prioritas database) atau fallback ke `getCaseStudyDetails(dict)`, lalu jika ditemukan, menyusun hero, about, challenge, architecture, features, timeline, stack, results, testimonial, dan CTA akhir.",
           journey: [
             "`generateStaticParams()` membentuk daftar slug dari `getCaseStudyDetails()` saat build.",
             "`generateMetadata()` mengambil slug yang sama untuk title dan description per halaman.",
-            "Saat request, page server membaca `params.slug`, dictionary aktif, lalu melakukan `find()` ke dataset case study.",
+            "Saat request, page server membaca `params.slug`, dictionary aktif, lalu melakukan lookup dari database via `getCaseStudyDetailBySlugFromDb()`, fallback ke static content.",
             "Jika slug tidak ditemukan, `notFound()` dipanggil; jika valid, seluruh section detail dirender dan user bisa lanjut ke `/contact`."
           ],
           relations: [
-            "Saat ini hanya ada satu slug aktif: `haen-komputer`.",
-            "Detail page sangat tergantung pada shape object `CaseStudyDetail` di `content.ts`.",
+            "Data case study saat ini bisa datang dari SQLite database (dinamis via admin) atau static content.ts (fallback).",
+            "Detail page sangat tergantung pada shape object `CaseStudyDetail` di `types/index.ts`.",
             "`CaseStudyHero` menyediakan backlink ke `/portfolio` dan menampilkan meta industri, timeline, team size, year.",
             "`CaseStudyCTA` adalah relasi conversion terakhir sebelum user pindah ke contact."
           ],
           files: [
             "`app/portfolio/[slug]/page.tsx`",
-            "`app/components/case-study/CaseStudyHero.tsx`",
-            "`app/components/case-study/CaseStudyCTA.tsx`",
-            "`app/data/content.ts`"
+            "`components/case-study/CaseStudyHero.tsx`",
+            "`components/case-study/CaseStudyCTA.tsx`",
+            "`lib/content.ts`",
+            "`lib/case-studies-server.ts`",
+            "`lib/db.ts`"
           ],
           canvas: { width: 1180, height: 580 },
           lanes: [
@@ -891,12 +960,15 @@
             slugParams: { x: 694, y: 74 },
             metadata: { x: 694, y: 396 },
             i18n: { x: 924, y: 74 },
-            langFiles: { x: 924, y: 206 }
+            langFiles: { x: 924, y: 206 },
+            caseStudiesServer: { x: 694, y: 462 },
+            sqliteDB: { x: 924, y: 318 }
           },
-          nodes: ["browser", "navbar", "caseStudy", "slugParams", "metadata", "content", "i18n", "langFiles", "footer", "contact"],
+          nodes: ["browser", "navbar", "caseStudy", "slugParams", "metadata", "content", "i18n", "langFiles", "footer", "contact", "caseStudiesServer", "sqliteDB"],
           edges: [
             ["browser", "navbar"], ["browser", "caseStudy"], ["navbar", "caseStudy"], ["caseStudy", "slugParams"],
             ["caseStudy", "metadata"], ["slugParams", "content"], ["metadata", "content"], ["caseStudy", "content"],
+            ["caseStudy", "caseStudiesServer"], ["caseStudiesServer", "sqliteDB"],
             ["caseStudy", "i18n"], ["i18n", "langFiles"], ["caseStudy", "footer"], ["caseStudy", "contact"]
           ]
         },
@@ -919,7 +991,7 @@
             "Karena refresh route, perubahan bahasa berlaku global per halaman aktif."
           ],
           files: [
-            "`app/components/layout/Navbar.tsx`",
+            "`components/layout/Navbar.tsx`",
             "`lib/i18n.ts`",
             "`en.lang`",
             "`id.lang`"
@@ -968,11 +1040,11 @@
           ],
           files: [
             "`app/contact/page.tsx`",
-            "`app/contact/ContactForm.tsx`",
-            "`app/components/sections/HeroSection.tsx`",
-            "`app/components/sections/CTASection.tsx`",
-            "`app/components/case-study/CaseStudyCTA.tsx`",
-            "`app/components/layout/Navbar.tsx`"
+            "`components/ContactForm.tsx`",
+            "`components/sections/HeroSection.tsx`",
+            "`components/sections/CTASection.tsx`",
+            "`components/case-study/CaseStudyCTA.tsx`",
+            "`components/layout/Navbar.tsx`"
           ],
           canvas: { width: 1120, height: 540 },
           lanes: [
@@ -999,6 +1071,74 @@
             ["browser", "home"], ["browser", "portfolio"], ["browser", "caseStudy"], ["browser", "navbar"],
             ["navbar", "contact"], ["home", "contact"], ["portfolio", "contact"], ["caseStudy", "contact"],
             ["contact", "contactForm"], ["contactForm", "typeform"], ["contact", "i18n"], ["i18n", "langFiles"]
+          ]
+        },
+        admin: {
+          label: "Admin CRUD",
+          teaser: "Manage case studies via server actions and SQLite.",
+          title: "Flow admin panel `/admin`",
+          subtitle: "Dashboard -> Create/Edit form -> Server actions -> SQLite DB",
+          summary: "Admin panel memiliki layout terpisah (`app/admin/layout.tsx`) dengan dashboard untuk manage case studies. CRUD operations menggunakan server actions (`lib/actions.ts`) yang berkomunikasi langsung dengan SQLite via `lib/db.ts`. Form handling mencakup text fields, JSON-structured data (product features, timeline, tech stack), dan file upload untuk images.",
+          journey: [
+            "Admin mengakses `/admin` untuk melihat daftar case studies dari `getAllCaseStudies()` (SQLite).",
+            "Klik '+ Add New Case Study' menuju `/admin/new` yang merender `CaseStudyForm` sebagai create form.",
+            "Klik 'Edit' pada row manapun menuju `/admin/[id]/edit` yang merender `CaseStudyForm` dengan data existing.",
+            "Form submission mengirim `FormData` ke `createCaseStudy()` atau `updateCaseStudyAction()` di `lib/actions.ts`.",
+            "Server action memproses file upload ke `public/images/case-studies/[slug]/`, menyimpan data ke SQLite via `insertCaseStudy()` atau `updateCaseStudy()`, lalu `revalidatePath('/admin')` + `redirect('/admin')`.",
+            "Delete menggunakan `deleteCaseStudyAction()` via `DeleteButton` component dengan confirmation dialog."
+          ],
+          relations: [
+            "Admin layout terisolasi dari layout publik; tidak memakai `Navbar`/`Footer` publik.",
+            "`lib/actions.ts` adalah bridge antara form UI dan database layer.",
+            "`lib/db.ts` menyediakan CRUD primitives: `insertCaseStudy()`, `updateCaseStudy()`, `deleteCaseStudy()`, `getAllCaseStudies()`.",
+            "`components/admin/CaseStudyForm.tsx` adalah component reusable untuk create dan edit.",
+            "File upload ditangani server-side dengan `fs.writeFileSync()`, disimpan ke folder slug-specific.",
+            "`types/index.ts` mendefinisikan shape `CaseStudyDetail` yang digunakan form dan DB."
+          ],
+          files: [
+            "`app/admin/layout.tsx`",
+            "`app/admin/page.tsx`",
+            "`app/admin/new/page.tsx`",
+            "`app/admin/[id]/edit/page.tsx`",
+            "`components/admin/CaseStudyForm.tsx`",
+            "`components/admin/DeleteButton.tsx`",
+            "`components/admin/FormFields.tsx`",
+            "`lib/actions.ts`",
+            "`lib/db.ts`",
+            "`lib/case-studies-server.ts`",
+            "`types/index.ts`",
+            "`data/case-studies.db`"
+          ],
+          canvas: { width: 1200, height: 700 },
+          lanes: [
+            { label: "Browser", x: 20, y: 14, width: 190, height: 672, color: "#a78bfa" },
+            { label: "Admin Routes", x: 230, y: 14, width: 220, height: 672, color: "#ff6b4a" },
+            { label: "UI Components", x: 470, y: 14, width: 220, height: 672, color: "#26cdeb" },
+            { label: "Server Actions", x: 710, y: 14, width: 220, height: 672, color: "#34d399" },
+            { label: "Database", x: 950, y: 14, width: 230, height: 672, color: "#34d399" }
+          ],
+          positions: {
+            browser: { x: 34, y: 300 },
+            adminDashboard: { x: 244, y: 60 },
+            adminNew: { x: 244, y: 220 },
+            adminEdit: { x: 244, y: 380 },
+            caseStudyForm: { x: 484, y: 220 },
+            deleteButton: { x: 484, y: 380 },
+            serverActions: { x: 724, y: 220 },
+            dbLib: { x: 724, y: 380 },
+            sqliteDB: { x: 964, y: 220 },
+            caseStudiesServer: { x: 964, y: 380 },
+            content: { x: 964, y: 540 },
+            types: { x: 724, y: 540 }
+          },
+          nodes: ["browser", "adminDashboard", "adminNew", "adminEdit", "caseStudyForm", "deleteButton", "serverActions", "dbLib", "sqliteDB", "caseStudiesServer", "content", "types"],
+          edges: [
+            ["browser", "adminDashboard"], ["adminDashboard", "adminNew"], ["adminDashboard", "adminEdit"],
+            ["adminDashboard", "deleteButton"], ["deleteButton", "serverActions"],
+            ["adminNew", "caseStudyForm"], ["adminEdit", "caseStudyForm"],
+            ["caseStudyForm", "serverActions"], ["serverActions", "dbLib"],
+            ["dbLib", "sqliteDB"], ["dbLib", "caseStudiesServer"],
+            ["caseStudiesServer", "content"], ["caseStudyForm", "types"]
           ]
         }
       };
