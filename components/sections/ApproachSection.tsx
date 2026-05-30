@@ -28,7 +28,7 @@ export default function ApproachSection({ dict = {} }: { dict?: Record<string, a
             textTransform: "uppercase",
             margin: "0 0 0.75rem",
           }}>
-            {dict?.approach_section?.our_approach || "Our Approach"}
+            {dict?.approach_section?.our_approach || "Cara Kami Bekerja"}
           </p>
           <h2
             id="approach-heading"
@@ -41,7 +41,7 @@ export default function ApproachSection({ dict = {} }: { dict?: Record<string, a
               margin: 0,
             }}
           >
-            {dict?.approach_section?.heading || "We solve problems with clarity, collaboration and code."}
+            {dict?.approach_section?.heading || "Proses kerja yang terstruktur untuk memastikan software yang dibangun benar-benar sesuai dengan kebutuhan bisnis Anda."}
           </h2>
         </div>
 

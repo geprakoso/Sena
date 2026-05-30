@@ -44,8 +44,8 @@ export default function HeroSection({ dict = {} }: { dict?: Record<string, any> 
       <div className="container-base" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
         {/* Left: Copy */}
         <div style={{ opacity: 0, animation: "fadeInUp 0.7s ease-out 0.1s forwards" }}>
-          {/* Badge */}
-          <div style={{
+          {/* Badge - hidden */}
+          {/* <div style={{
             display: "inline-flex",
             alignItems: "center",
             gap: "0.5rem",
@@ -65,13 +65,13 @@ export default function HeroSection({ dict = {} }: { dict?: Record<string, any> 
             <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", color: "var(--color-accent-light)", textTransform: "uppercase" }}>
               {dict?.hero?.badge || "Software Development & Problem Solving"}
             </span>
-          </div>
+          </div> */}
 
           {/* Heading */}
           <h1
             id="hero-heading"
             style={{
-              fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
               fontWeight: 800,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
@@ -120,7 +120,7 @@ export default function HeroSection({ dict = {} }: { dict?: Record<string, any> 
             </Link>
 
             <Link
-              href="#case-studies"
+              href="/portfolio"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

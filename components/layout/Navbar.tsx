@@ -14,12 +14,13 @@ export default function Navbar({ dict = {}, currentLang = "en" }: { dict?: Recor
 
   const handleLangChange = (newLang: string) => {
     setLang(newLang);
+    document.cookie = `lang=${newLang.toLowerCase()}; path=/; max-age=31536000`;
     router.refresh();
   };
 
   useEffect(() => {
-    document.cookie = `lang=${lang.toLowerCase()}; path=/; max-age=31536000`;
-  }, [lang]);
+    setLang(currentLang.toUpperCase());
+  }, [currentLang]);
 
   const navItems = getNavItems(dict);
 

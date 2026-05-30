@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function CTASection({ dict = {} }: { dict?: Record<string, any> }) {
   const TRUST_SIGNALS = [
-    { icon: "shield", label: dict?.cta_section?.trust_shield || "No long-term lock-in" },
-    { icon: "clock", label: dict?.cta_section?.trust_clock || "Response within 24h" },
-    { icon: "star", label: dict?.cta_section?.trust_star || "Trusted by 30+ companies" },
+    { icon: "shield", label: dict?.cta_section?.trust_shield || "Skalabilitas sistem yang fleksibel dan dapat dikembangkan jangka panjang." },
+    { icon: "clock", label: dict?.cta_section?.trust_clock || "Dukungan dan respons cepat maksimal 24 jam." },
+    { icon: "star", label: dict?.cta_section?.trust_star || "Dipercaya oleh berbagai bisnis untuk membantu digitalisasi operasional mereka." },
   ];
 
   return (
@@ -101,7 +101,7 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
             color: "var(--color-accent-light)",
             textTransform: "uppercase",
           }}>
-            {dict?.cta_section?.badge || "Let's Work Together"}
+            {dict?.cta_section?.badge || "Mari diskusikan kebutuhan bisnis Anda"}
           </span>
         </div>
 
@@ -109,7 +109,7 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
         <h2
           id="cta-heading"
           style={{
-            fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+            fontSize: "clamp(2rem, 5vw, 3rem)",
             fontWeight: 800,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
@@ -118,14 +118,14 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
             maxWidth: "680px",
           }}
         >
-          {dict?.cta_section?.heading_1 || "Ready to build something"} {" "}
+          {dict?.cta_section?.heading_1 || "Ceritakan kebutuhan bisnis Anda dan kami akan"} {" "}
           <span style={{
             background: "linear-gradient(135deg, var(--color-accent-light) 0%, #FB7185 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            {dict?.cta_section?.heading_2 || "that matters?"}
+            {dict?.cta_section?.heading_2 || "membantu merancang solusi software yang tepat."}
           </span>
         </h2>
 
@@ -137,7 +137,7 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
           maxWidth: "520px",
           margin: "0 0 2.75rem",
         }}>
-          {dict?.cta_section?.subtext || "Tell us about your challenge. We'll bring clarity, the right technology, and a team that genuinely cares about your outcome."}
+          {dict?.cta_section?.subtext || "Ceritakan proses bisnis dan tantangan yang sedang Anda hadapi. Kami akan membantu merancang sistem yang sesuai dengan kebutuhan operasional bisnis Anda."}
         </p>
 
         {/* Action buttons */}
@@ -166,14 +166,14 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
             }}
             className="cta-primary-btn"
           >
-            {dict?.cta_section?.start_project || "Start a Project"}
+            {dict?.cta_section?.start_project || "Diskusikan Proyek Anda"}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
 
           <Link
-            href="#case-studies"
+            href="#about"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -190,7 +190,7 @@ export default function CTASection({ dict = {} }: { dict?: Record<string, any> }
             }}
             className="cta-secondary-btn"
           >
-            {dict?.cta_section?.view_work || "View Our Work"}
+            {dict?.cta_section?.view_work || "Kenapa Memilih Haen Software?"}
           </Link>
         </div>
 

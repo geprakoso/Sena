@@ -82,23 +82,24 @@ export default function Footer({ dict = {} }: { dict?: Record<string, any> }) {
             </div>
           </div>
 
-          <FooterColumn title={dict?.footer?.services || "Services"} links={[
-            { label: dict?.footer?.custom_software || "Custom Software", href: "#services" },
-            { label: dict?.footer?.problem_solving || "Problem Solving", href: "#services" },
-            { label: dict?.footer?.cloud_devops || "Cloud & DevOps", href: "#services" },
-            { label: dict?.footer?.product_development || "Product Development", href: "#services" },
+          <FooterColumn title={dict?.footer?.services || "Keahlian"} links={[
+            { label: dict?.footer?.custom_software || "Pengembangan Software Kustom", href: "#services" },
+            { label: dict?.footer?.problem_solving || "Sistem Internal Bisnis", href: "#services" },
+            { label: dict?.footer?.cloud_devops || "Cloud & Infrastruktur", href: "#services" },
+            { label: dict?.footer?.product_development || "Pengembangan Produk Digital", href: "#services" },
           ]} />
 
-          <FooterColumn title={dict?.footer?.company || "Company"} links={[
-            { label: dict?.footer?.about_us || "About Us", href: "#about" },
-            { label: dict?.footer?.case_studies || "Case Studies", href: "#case-studies" },
+          <FooterColumn title={dict?.footer?.company || "Perusahaan"} links={[
+            { label: dict?.footer?.about_us || "Tentang Kami", href: "#about" },
+            { label: dict?.footer?.case_studies || "Portfolio", href: "#case-studies" },
             { label: dict?.footer?.blog || "Blog", href: "#blog" },
+            { label: dict?.footer?.contact_link || "Kontak Kami", href: "/contact" },
           ]} />
 
-          <FooterColumn title={dict?.footer?.contact || "Contact"} links={[
-            { label: "haensoftware@gmail.com", href: "mailto:haensoftware@gmail.com" },
-            { label: "+62 816 111 9046", href: "tel:+628161119046" },
-            { label: "Perum Muria Indah 377B, Bae, Kudus", href: "/contact" },
+          <FooterColumn title={dict?.footer?.contact || "Kontak Kami"} links={[
+            { label: dict?.footer?.contact_email || "Email", href: "mailto:haensoftware@gmail.com" },
+            { label: dict?.footer?.contact_whatsapp || "Whatsapp", href: "tel:+628161119046" },
+            { label: dict?.footer?.contact_location || "Lokasi", href: "/contact" },
           ]} />
         </div>
 

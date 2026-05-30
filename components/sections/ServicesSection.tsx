@@ -46,7 +46,7 @@ export default function ServicesSection({ dict = {} }: { dict?: Record<string, a
                 margin: 0,
               }}
             >
-              {dict?.services_section?.heading || "End-to-end services to build, scale and optimize your software."}
+              {dict?.services_section?.heading || "Software yang dirancang untuk kebutuhan bisnis nyata."}
             </h2>
           </div>
 
@@ -57,7 +57,7 @@ export default function ServicesSection({ dict = {} }: { dict?: Record<string, a
               lineHeight: 1.7,
               margin: 0,
             }}>
-              {dict?.services_section?.description || "From idea to launch and beyond, we help you turn challenges into reliable, scalable and future-ready digital solutions."}
+              {dict?.services_section?.description || "Berawal dari ide, kami membantu mengubah tantangan menjadi solusi digital yang dengan skalabilitas tinggi."}
             </p>
           </div>
         </div>
